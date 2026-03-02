@@ -188,44 +188,16 @@
     "links": [
       {
         "id": 1,
-        "name": "百度",
-        "url": "https://www.baidu.com",
+        "name": "资源站",
+        "url": "https://ziyuanzhan.world123.top",
         "icon": "fas fa-search",
         "iconType": "fontawesome"
       },
       {
         "id": 2,
-        "name": "GitHub",
-        "url": "https://github.com",
-        "icon": "fab fa-github",
-        "iconType": "fontawesome"
-      },
-      {
-        "id": 3,
-        "name": "哔哩哔哩",
-        "url": "https://www.bilibili.com",
-        "icon": "fab fa-bilibili",
-        "iconType": "fontawesome"
-      },
-      {
-        "id": 4,
-        "name": "CCW",
-        "url": "https://www.ccw.site",
-        "icon": "fas fa-globe",
-        "iconType": "fontawesome"
-      },
-      {
-        "id": 5,
         "name": "博客",
-        "url": "https://www.world123.top",
+        "url": "https://blog.world123.top",
         "icon": "fas fa-blog",
-        "iconType": "fontawesome"
-      },
-      {
-        "id": 6,
-        "name": "邮箱",
-        "url": "mailto:admin@world123.top",
-        "icon": "fas fa-envelope",
         "iconType": "fontawesome"
       }
     ]
