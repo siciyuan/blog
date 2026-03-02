@@ -189,14 +189,22 @@
       {
         "id": 1,
         "name": "资源站",
+<<<<<<< HEAD
         "url": "https://ziyuanzhan.world123.top",
+=======
+        "url": "https://zyz.world123.top/",
+>>>>>>> f368d64f0ef972ba0c5bbaf1db79d37f01a5c8c8
         "icon": "fas fa-search",
         "iconType": "fontawesome"
       },
       {
         "id": 2,
         "name": "博客",
+<<<<<<< HEAD
         "url": "https://www.blog.world123.top",
+=======
+        "url": "https://blog.world123.top",
+>>>>>>> f368d64f0ef972ba0c5bbaf1db79d37f01a5c8c8
         "icon": "fas fa-blog",
         "iconType": "fontawesome"
       }
