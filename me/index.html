@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="./logo.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>鳞游の小窝</title>
+    <meta name="description" content="鳞游的个人主页，展示壁纸、音乐和个人信息" />
+    <meta name="keywords" content="鳞游,个人主页,壁纸,音乐" />
+    <meta name="author" content="鳞游SCROAM" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- 安全头部 -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    
+    <!-- 性能优化标签 -->
+    <link rel="preload" href="./config.json" as="fetch" crossorigin="anonymous" fetchpriority="high">
+    <link rel="preload" href="./articles.json" as="fetch" crossorigin="anonymous" fetchpriority="medium">
+    
+    <!-- 字体加载优化 - 只使用系统字体，移除大字体文件 -->
+    <style>
+      /* 只使用系统字体，避免加载大字体文件 */
+      body, #app {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      }
+    </style>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://picsum.photos" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://picsum.photos">
+    
+    <!-- 安全策略元标签 - 暂时移除限制以测试壁纸功能 -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.busuanzi.cc 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src *; font-src 'self' https://cdnjs.cloudflare.com; media-src *; connect-src *"> -->
+    
+    <!-- 内联关键CSS - 优化LCP -->
+    <style>
+      /* 基础样式重置 */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body, #app {
+        min-height: 100vh;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        background-color: #1a1a2e;
+      }
+      
+      #app {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+        position: relative;
+        overflow: hidden;
+        background-blend-mode: overlay;
+        background-image: none;
+      }
+      
+      /* 骨架屏 - 减少CLS */
+      .skeleton {
+        background: linear-gradient(90deg, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 75%);
+        background-size: 200% 100%;
+        animation: loading 1.5s infinite;
+        border-radius: 10px;
+      }
+      
+      @keyframes loading {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+      }
+      
+      /* 容器尺寸固定 - 减少CLS */
+      .main-container {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        gap: 15px;
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      
+      .top-section, .profile-section, .bottom-section {
+        width: 100%;
+        min-height: 100px;
+      }
+      
+      /* 关键UI组件样式 */
+      .controls, .profile-card, .quick-links, .friend-links, .article-section {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 15px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      /* 响应式设计 */
+      @media (max-width: 768px) {
+        .main-container {
+          padding: 8px;
+          gap: 12px;
+        }
+        
+        .controls, .profile-card, .quick-links, .friend-links, .article-section {
+          padding: 12px;
+        }
+      }
+    </style>
+    
+    <!-- FontAwesome图标库 (异步加载) - 不设置cookie -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/fontawesome.min.css" media="print" onload="this.media='all'" fetchpriority="low" referrerpolicy="no-referrer" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/brands.min.css" media="print" onload="this.media='all'" fetchpriority="low" referrerpolicy="no-referrer" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/solid.min.css" media="print" onload="this.media='all'" fetchpriority="low" referrerpolicy="no-referrer" crossorigin="anonymous">
+    <script type="module" crossorigin src="./assets/js/index-CVxrbPXm.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/js/vendor-VJOEek0X.js">
+    <link rel="stylesheet" crossorigin href="./assets/css/index-kFLzKd0H.css">
+  </head>
+  <body>
+    <div id="app">
+      <!-- 骨架屏 -->
+      <div class="main-container">
+        <div class="top-section skeleton" style="height: 120px;"></div>
+        <div class="profile-section skeleton" style="height: 200px;"></div>
+        <div class="bottom-section skeleton" style="height: 400px;"></div>
+      </div>
+    </div>
+    <!-- 不蒜子统计脚本 -->
+    <script src="https://cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+  </body>
+</html>

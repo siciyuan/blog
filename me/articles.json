@@ -1,0 +1,64 @@
+{
+  "enabled": true,
+  "title": "文章板块",
+  "articles": [
+    {
+      "id": 1,
+      "title": "Vue 3 新特性详解",
+      "preview": "https://picsum.photos/seed/vue3/600/400",
+      "links": [
+        {
+          "name": "查看文章",
+          "url": "https://www.world123.top/vue3-features"
+        },
+        {
+          "name": "GitHub",
+          "url": "https://github.com"
+        },
+        {
+          "name": "官方文档",
+          "url": "https://vuejs.org"
+        }
+      ],
+      "description": "深入了解 Vue 3 的 Composition API、Teleport、Suspense 等新特性",
+      "category": "前端框架",
+      "tags": ["Vue", "JavaScript", "前端"]
+    },
+    {
+      "id": 2,
+      "title": "前端性能优化指南",
+      "preview": "https://picsum.photos/seed/performance/600/400",
+      "links": [
+        {
+          "name": "查看文章",
+          "url": "https://www.world123.top/frontend-performance"
+        },
+        {
+          "name": "Google 开发者文档",
+          "url": "https://developer.google.com"
+        }
+      ],
+      "description": "从网络请求、资源加载到渲染优化的全面指南",
+      "category": "性能优化",
+      "tags": ["性能", "前端", "优化"]
+    },
+    {
+      "id": 3,
+      "title": "TypeScript 实战技巧",
+      "preview": "https://picsum.photos/seed/typescript/600/400",
+      "links": [
+        {
+          "name": "查看文章",
+          "url": "https://www.world123.top/typescript-tips"
+        },
+        {
+          "name": "TypeScript 官网",
+          "url": "https://www.typescriptlang.org"
+        }
+      ],
+      "description": "掌握 TypeScript 的高级类型、泛型和最佳实践",
+      "category": "编程语言",
+      "tags": ["TypeScript", "JavaScript", "前端"]
+    }
+  ]
+}

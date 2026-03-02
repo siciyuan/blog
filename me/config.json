@@ -1,0 +1,309 @@
+{
+  "site": {
+    "title": "鳞游の小窝",
+    "favicon": "logo.ico",
+    "description": "鳞游的个人主页，一个展示壁纸、音乐和个人信息的网站。这里有各种精美的壁纸资源，好听的音乐，以及个人的技术分享和生活感悟。",
+    "keywords": "鳞游,个人主页,壁纸,音乐,技术博客,全栈开发,开源项目",
+    "author": "鳞游SCROAM",
+    "robots": "index, follow"
+  },
+  "profile": {
+    "name": "AAA鳞游SCROAM",
+    "avatar": "https://m.ccw.site/user_projects_assets/b69b283d-c243-492c-a2d3-2b84e4275605.jpg?x-oss-process=image%2Fresize%2Cs_150%2Fformat%2Cwebp",
+    "bio": "全栈开发者 | 开源爱好者 | 技术博客作者",
+    "about": "我是一名热爱技术的全栈开发者，专注于Web开发和用户体验设计。喜欢探索新技术，分享知识，参与开源项目。我相信技术可以改变世界，让生活变得更美好."
+  },
+  "contacts": [
+    {
+      "id": 1,
+      "name": "GitHub",
+      "icon": "fab fa-github",
+      "iconType": "fontawesome",
+      "url": "https://github.com/siciyuan"
+    },
+    {
+      "id": 2,
+      "name": "GITEE",
+      "icon": "https://gitee.com/favicon.ico",
+      "iconType": "image",
+      "url": "https://gitee.com/scroam"
+    },
+    {
+      "id": 3,
+      "name": "Email",
+      "icon": "fas fa-envelope",
+      "iconType": "fontawesome",
+      "url": "mailto:admin@world123.top"
+    },
+    {
+      "id": 4,
+      "name": "CCW",
+      "icon": "https://m.ccw.site/community/images/logo-ccw.png",
+      "iconType": "image",
+      "url": "https://www.ccw.site/student/65cf41ca4b42321bf8da5ece"
+    },
+    {
+      "id": 5,
+      "name": "BILIBILI",
+      "icon": "https://www.bilibili.com/favicon.ico",
+      "iconType": "image",
+      "url": "https://space.bilibili.com/385463410"
+    },
+    {
+      "id": 6,
+      "name": "QQ",
+      "icon": "fab fa-qq",
+      "iconType": "fontawesome",
+      "url": "tencent://message/?uin=1493216423&Site=&Menu=yes"
+    }
+  ],
+  "wallpaperSources": {
+    "desktop": [
+      {
+        "name": "MMP 风景",
+        "url": "https://api.mmp.cc/api/pcwallpaper?category=landscape&type=jpg"
+      },
+      {
+        "name": "Elaina Auto",
+        "url": "https://api.elaina.cat/random/"
+      },
+      {
+        "name": "Elaina PC",
+        "url": "https://api.elaina.cat/random/pc"
+      },
+      {
+        "name": "XXAPI 壁纸",
+        "url": "https://v2.xxapi.cn/api/wallpaper?return=302"
+      },
+      {
+        "name": "MMP Random",
+        "url": "https://api.mmp.cc/api/pcwallpaper?type=jpg"
+      },
+      {
+        "name": "MMP 4K",
+        "url": "https://api.mmp.cc/api/pcwallpaper?category=4k&type=jpg"
+      },
+      {
+        "name": "MMP 动漫",
+        "url": "https://api.mmp.cc/api/pcwallpaper?category=cartoon&type=jpg"
+      },
+      {
+        "name": "MMP 游戏",
+        "url": "https://api.mmp.cc/api/pcwallpaper?category=game&type=jpg"
+      },
+      {
+        "name": "UPX8",
+        "url": "https://wp.upx8.com/api.php"
+      },
+      {
+        "name": "Sretna",
+        "url": "https://api.sretna.cn/api/pc.php"
+      },
+      {
+        "name": "DMOE",
+        "url": "https://www.dmoe.cc/random.php"
+      }
+    ],
+    "mobile": [
+      {
+        "name": "MMP 风景",
+        "url": "https://api.mmp.cc/api/pcwallpaper?category=landscape&type=jpg"
+      },
+      {
+        "name": "Elaina Auto",
+        "url": "https://api.elaina.cat/random/"
+      },
+      {
+        "name": "Elaina Mobile",
+        "url": "https://api.elaina.cat/random/mobile"
+      },
+      {
+        "name": "XXAPI 壁纸",
+        "url": "https://v2.xxapi.cn/api/wallpaper?return=302"
+      },
+      {
+        "name": "MMP Random",
+        "url": "https://api.mmp.cc/api/pcwallpaper?type=jpg"
+      },
+      {
+        "name": "MMP 4K",
+        "url": "https://api.mmp.cc/api/pcwallpaper?category=4k&type=jpg"
+      },
+      {
+        "name": "MMP 动漫",
+        "url": "https://api.mmp.cc/api/pcwallpaper?category=cartoon&type=jpg"
+      },
+      {
+        "name": "Sretna Mobile",
+        "url": "https://api.sretna.cn/api/pe.php"
+      },
+      {
+        "name": "UPX8",
+        "url": "https://wp.upx8.com/api.php"
+      },
+      {
+        "name": "DMOE",
+        "url": "https://www.dmoe.cc/random.php"
+      }
+    ]
+  },
+  "poetryAPI": {
+    "enabled": true,
+    "sources": [
+      {
+        "url": "https://v1.jinrishici.com/all.json",
+        "responseType": "json",
+        "jsonPath": "content+'——'+author"
+      },
+      {
+        "url": "https://xiaojiyun.world123.top/yiyan/?format=text",
+        "responseType": "text",
+        "jsonPath": ""
+      },
+      {
+        "url": "https://xiaojiyun1.world123.top/yiyan/?format=text",
+        "responseType": "text",
+        "jsonPath": ""
+      },
+      {
+        "url": "https://xiaojiyun.world123.top/yiyan2/?format=text",
+        "responseType": "text",
+        "jsonPath": ""
+      },
+      {
+        "url": "https://xiaojiyun1.world123.top/yiyan2/?format=text",
+        "responseType": "text",
+        "jsonPath": ""
+      },
+      {
+        "url": "https://v1.hitokoto.cn/?encode=text",
+        "responseType": "text",
+        "jsonPath": ""
+      }
+    ]
+  },
+  "quickLinks": {
+    "enabled": true,
+    "title": "快速链接",
+    "links": [
+      {
+        "id": 1,
+        "name": "百度",
+        "url": "https://www.baidu.com",
+        "icon": "fas fa-search",
+        "iconType": "fontawesome"
+      },
+      {
+        "id": 2,
+        "name": "GitHub",
+        "url": "https://github.com",
+        "icon": "fab fa-github",
+        "iconType": "fontawesome"
+      },
+      {
+        "id": 3,
+        "name": "哔哩哔哩",
+        "url": "https://www.bilibili.com",
+        "icon": "fab fa-bilibili",
+        "iconType": "fontawesome"
+      },
+      {
+        "id": 4,
+        "name": "CCW",
+        "url": "https://www.ccw.site",
+        "icon": "fas fa-globe",
+        "iconType": "fontawesome"
+      },
+      {
+        "id": 5,
+        "name": "博客",
+        "url": "https://www.world123.top",
+        "icon": "fas fa-blog",
+        "iconType": "fontawesome"
+      },
+      {
+        "id": 6,
+        "name": "邮箱",
+        "url": "mailto:admin@world123.top",
+        "icon": "fas fa-envelope",
+        "iconType": "fontawesome"
+      }
+    ]
+  },
+  "friendLinks": {
+    "enabled": true,
+    "title": "友情链接",
+    "links": [
+      {
+        "id": 1,
+        "name": "CCW编程",
+        "url": "https://www.ccw.site",
+        "icon": "https://m.ccw.site/community/images/logo-ccw.png",
+        "iconType": "image"
+      },
+      {
+        "id": 2,
+        "name": "GitHub",
+        "url": "https://github.com",
+        "icon": "fab fa-github",
+        "iconType": "fontawesome"
+      },
+      {
+        "id": 3,
+        "name": "哔哩哔哩",
+        "url": "https://www.bilibili.com",
+        "icon": "https://www.bilibili.com/favicon.ico",
+        "iconType": "image"
+      },
+      {
+        "id": 4,
+        "name": "百度",
+        "url": "https://www.baidu.com",
+        "icon": "https://www.baidu.com/favicon.ico",
+        "iconType": "image"
+      }
+    ]
+  },
+  "musicPlayer": {
+    "enabled": true,
+    "playlist": [
+      {
+        "id": 1,
+        "title": "バケモノの唄",
+        "artist": " ",
+        "url": "https://ziyuan.world123.top/music/%E3%83%90%E3%82%B1%E3%83%A2%E3%83%8E%E3%81%AE%E5%94%84.mp3",
+        "cover": "https://p2.music.126.net/zTh66C3TCVC257zdaPBKJw==/109951164906851042.jpg"
+      },
+      {
+        "id": 2,
+        "title": " 蜘蛛糸モノポリー",
+        "artist": " ",
+        "url": "https://ziyuan.world123.top/music/%E8%9C%98%E8%9B%9B%E7%B3%B8%E3%83%A2%E3%83%8E%E3%83%9D%E3%83%AA%E3%83%BC.mp3",
+        "cover": "https://p1.music.126.net/b6cwIaAUy5MXSm3iNC0KNg==/109951163352158677.jpg"
+      },
+      {
+        "id": 3,
+        "title": "权御天下 (2025官方重置版)",
+        "artist": " ",
+        "url": "https://ziyuan.world123.top/music/%E6%9D%83%E5%BE%A1%E5%A4%A9%E4%B8%8B%20(2025%E5%AE%98%E6%96%B9%E9%87%8D%E7%BD%AE%E7%89%88).mp3",
+        "cover": "https://p2.music.126.net/K8rz1l6deNUTLzMDN7TW7g==/109951171458493945.jpg"
+      },
+      {
+        "id": 4,
+        "title": "Senbonzakura",
+        "artist": " ",
+        "url": "https://ziyuan.world123.top/music/Senbonzakura.mp3",
+        "cover": "https://p1.music.126.net/wNYE1PR-KJVjjRY0pxfT6g==/109951164905404725.jpg"
+      }
+    ]
+  },
+  "footer": {
+    "enabled": true,
+    "content": "© 2026 鳞游の小窝 | <a href='https://www.world123.top' target='_blank' style='color: white; text-decoration: none;'>访问博客</a> | <a href='https://github.com/siciyuan' target='_blank' style='color: white; text-decoration: none;'>GitHub</a>"
+  },
+  "announcement": {
+    "enabled": true,
+    "title": "公告",
+    "content": "欢迎访问我的个人主页！<br>这里是一个展示壁纸和音乐的小空间。<br>希望你喜欢这里的内容。"
+  }
+}
