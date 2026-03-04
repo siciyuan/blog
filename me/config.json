@@ -299,7 +299,7 @@
   },
   "footer": {
     "enabled": true,
-    "content": "© 2026 鳞游の小窝 |<a href='https://icp.gov.moe/?keyword=20269994' target='_blank' style='color: white; text-decoration: none;'>萌ICP备20269994号</a>|<a href='https://www.world123.top' target='_blank' style='color: white; text-decoration: none;'>访问博客</a> | <a href='https://github.com/siciyuan' target='_blank' style='color: white; text-decoration: none;'>GitHub</a>"
+    "content": "© 2026 鳞游の小窝 | <a href='https://www.world123.top' target='_blank' style='color: white; text-decoration: none;'>访问博客</a> | <a href='https://github.com/siciyuan' target='_blank' style='color: white; text-decoration: none;'>GitHub</a>"
   },
   "announcement": {
     "enabled": true,
