@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -141,18 +141,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -169,6 +169,729 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://blog.world123.top/2026/03/07/2026-03-07-Hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="鳞游">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鳞游の博客">
+      <meta itemprop="description" content="这是一个使用Hexo和Butterfly主题搭建的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 鳞游の博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/03/07/2026-03-07-Hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">Hexo博客部署到GitHub Pages并绑定自定义域名教程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-03-07 00:00:00 / 修改时间：12:42:22" itemprop="dateCreated datePublished" datetime="2026-03-07T00:00:00+08:00">2026-03-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Hexo博客部署到GitHub-Pages并绑定自定义域名教程"><a href="#Hexo博客部署到GitHub-Pages并绑定自定义域名教程" class="headerlink" title="Hexo博客部署到GitHub Pages并绑定自定义域名教程"></a>Hexo博客部署到GitHub Pages并绑定自定义域名教程</h1><h2 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a>一、准备工作</h2><ol>
+<li>安装Node.js和npm环境</li>
+<li>安装Git</li>
+<li>注册GitHub账号</li>
+<li>购买并拥有一个自定义域名</li>
+</ol>
+<h2 id="二、创建GitHub仓库"><a href="#二、创建GitHub仓库" class="headerlink" title="二、创建GitHub仓库"></a>二、创建GitHub仓库</h2><ol>
+<li>登录GitHub，创建一个新的仓库</li>
+<li>仓库名格式必须为：<code>用户名.github.io</code></li>
+<li>设置仓库为Public（公开）</li>
+</ol>
+<h2 id="三、配置Hexo项目"><a href="#三、配置Hexo项目" class="headerlink" title="三、配置Hexo项目"></a>三、配置Hexo项目</h2><ol>
+<li><p>在Hexo项目根目录执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑<code>_config.yml</code>文件，在deploy部分添加：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/用户名/用户名.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="四、部署到GitHub-Pages"><a href="#四、部署到GitHub-Pages" class="headerlink" title="四、部署到GitHub Pages"></a>四、部署到GitHub Pages</h2><ol>
+<li><p>生成静态文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo generate</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>部署到GitHub：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>访问地址：<code>https://用户名.github.io</code></p>
+</li>
+</ol>
+<h2 id="五、绑定自定义域名"><a href="#五、绑定自定义域名" class="headerlink" title="五、绑定自定义域名"></a>五、绑定自定义域名</h2><h3 id="方法一：使用CNAME文件"><a href="#方法一：使用CNAME文件" class="headerlink" title="方法一：使用CNAME文件"></a>方法一：使用CNAME文件</h3><ol>
+<li>在Hexo项目source目录下创建CNAME文件（无后缀）</li>
+<li>文件内容写入你的域名，例如：<code>www.example.com</code></li>
+</ol>
+<h3 id="方法二：通过GitHub设置"><a href="#方法二：通过GitHub设置" class="headerlink" title="方法二：通过GitHub设置"></a>方法二：通过GitHub设置</h3><ol>
+<li>进入GitHub仓库设置页面</li>
+<li>找到”Pages”选项卡</li>
+<li>在”Custom domain”中输入你的域名并保存</li>
+</ol>
+<h2 id="六、DNS配置"><a href="#六、DNS配置" class="headerlink" title="六、DNS配置"></a>六、DNS配置</h2><p>根据你的域名提供商，添加以下DNS记录：</p>
+<h3 id="A记录（推荐）"><a href="#A记录（推荐）" class="headerlink" title="A记录（推荐）"></a>A记录（推荐）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">记录类型：A</span><br><span class="line">主机记录：@</span><br><span class="line">记录值：185.199.108.153</span><br><span class="line">记录值：185.199.109.153</span><br><span class="line">记录值：185.199.110.153</span><br><span class="line">记录值：185.199.111.153</span><br></pre></td></tr></table></figure>
+
+<h3 id="CNAME记录（二选一）"><a href="#CNAME记录（二选一）" class="headerlink" title="CNAME记录（二选一）"></a>CNAME记录（二选一）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">记录类型：CNAME</span><br><span class="line">主机记录：www</span><br><span class="line">记录值：用户名.github.io</span><br></pre></td></tr></table></figure>
+
+<h2 id="七、启用HTTPS"><a href="#七、启用HTTPS" class="headerlink" title="七、启用HTTPS"></a>七、启用HTTPS</h2><ol>
+<li>GitHub Pages会自动为自定义域名申请SSL证书</li>
+<li>在仓库设置的Pages选项中，勾选”Enforce HTTPS”</li>
+<li>等待证书生效（可能需要几分钟到几小时）</li>
+</ol>
+<h2 id="八、注意事项"><a href="#八、注意事项" class="headerlink" title="八、注意事项"></a>八、注意事项</h2><ol>
+<li>部署后可能需要等待几分钟才能访问</li>
+<li>每次更新博客后需要重新部署</li>
+<li>确保CNAME文件在每次部署时都存在</li>
+<li>DNS更改可能需要一段时间生效</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://blog.world123.top/2026/03/07/2026-03-07-Vue%E9%A1%B9%E7%9B%AE%E7%9A%84%E9%83%A8%E7%BD%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="鳞游">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鳞游の博客">
+      <meta itemprop="description" content="这是一个使用Hexo和Butterfly主题搭建的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 鳞游の博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/03/07/2026-03-07-Vue%E9%A1%B9%E7%9B%AE%E7%9A%84%E9%83%A8%E7%BD%B2/" class="post-title-link" itemprop="url">Vue项目打包入门：从流程到核心要点解析</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-03-07 00:00:00 / 修改时间：12:42:16" itemprop="dateCreated datePublished" datetime="2026-03-07T00:00:00+08:00">2026-03-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Vue项目打包入门：从流程到核心要点解析</p>
+<p>在Vue项目的开发周期中，打包是衔接开发与部署的关键环节，它能将零散的源代码、依赖库整合为可直接部署的静态资源，同时通过压缩、优化提升项目的加载性能与安全性。本文将为您梳理Vue项目打包的基本流程、核心配置与常见问题解决方案。</p>
+<p>一、打包前的准备工作</p>
+<ol>
+<li>环境与依赖检查</li>
+</ol>
+<p>确保项目依赖完整是打包的基础，在项目根目录执行以下命令安装或更新依赖：</p>
+<p>npm install  # 或 yarn install</p>
+<p>若使用Vue CLI 3.x及以上版本，需提前确认Vue CLI已正确安装，未安装可通过npm install -g @vue&#x2F;cli完成全局安装。</p>
+<ol start="2">
+<li>多环境配置（可选）</li>
+</ol>
+<p>为区分开发与生产环境的接口地址、调试模式等，可在项目根目录创建环境配置文件：</p>
+<p>.env.development（开发环境）：</p>
+<p>NODE_ENV&#x3D;development<br>VUE_APP_API_BASE&#x3D;<a target="_blank" rel="noopener" href="http://localhost:3000/api">http://localhost:3000/api</a></p>
+<p>.env.production（生产环境）：</p>
+<p>NODE_ENV&#x3D;production<br>VUE_APP_API_BASE&#x3D;<a target="_blank" rel="noopener" href="https://api.your-domain.com/">https://api.your-domain.com</a></p>
+<p>通过环境变量，项目可在不同打包模式下自动切换配置，避免手动修改代码的繁琐。</p>
+<p>二、核心打包流程</p>
+<ol>
+<li>执行打包命令</li>
+</ol>
+<p>Vue项目的打包命令十分统一，在项目根目录的终端中运行：</p>
+<p>npm run build  # 或 yarn build</p>
+<p>执行完成后，项目根目录会自动生成dist文件夹，这就是打包后的静态资源目录。</p>
+<ol start="2">
+<li>自定义打包命令（进阶）</li>
+</ol>
+<p>若需针对不同场景打包，可在package.json的scripts字段中自定义命令，例如：</p>
+<p>{<br>  “scripts”: {<br>    “build:prod”: “vue-cli-service build –mode production”,<br>    “build:dev”: “vue-cli-service build –mode development”<br>  }<br>}</p>
+<p>通过–mode参数指定环境模式，满足开发测试、正式发布等不同需求。</p>
+<p>三、打包后文件结构解析</p>
+<p>dist目录是打包的核心产出，其典型结构如下：</p>
+<p>dist&#x2F;<br>├── index.html          # 项目入口HTML，自动注入JS、CSS引用<br>├── css&#x2F;                # 压缩后的样式文件<br>│   ├── app.[hash].css  # 业务样式文件，哈希值用于缓存控制<br>│   └── app.[hash].css.map  # Source Map，用于调试压缩后的CSS<br>├── js&#x2F;                 # 压缩后的脚本文件<br>│   ├── app.[hash].js   # 业务逻辑代码<br>│   ├── chunk-vendors.[hash].js  # 第三方依赖包（如Vue、Vue Router）<br>│   └── [路由分组].[hash].js  # 路由懒加载生成的拆分文件<br>├── img&#x2F;                # 图片资源，已压缩优化<br>└── fonts&#x2F;              # 字体文件（若项目使用）</p>
+<p>其中，文件名中的哈希值是文件指纹，可确保文件内容变更时浏览器加载新版本，避免缓存问题^。</p>
+<p>四、常见问题与解决方案</p>
+<ol>
+<li>直接打开index.html页面空白</li>
+</ol>
+<p>这是最常见的问题，根源是资源引用路径错误。默认打包后的资源路径为绝对路径（以&#x2F;开头），直接打开本地文件时无法正确加载。解决方法有两种：</p>
+<p>配置相对路径：在vue.config.js中设置publicPath: ‘.&#x2F;‘，重新打包后资源路径会变为相对路径，双击index.html即可正常显示。</p>
+<p>服务器部署：将dist文件夹部署到Nginx、Apache等静态服务器，通过服务器域名或IP访问，绝对路径可正常生效。</p>
+<ol start="2">
+<li>打包文件体积过大</li>
+</ol>
+<p>大体积文件会拖慢页面加载速度，可通过以下方式优化：</p>
+<p>代码分割：在vue.config.js中开启splitChunks配置，将第三方依赖与业务代码拆分，实现按需加载：</p>
+<p>module.exports &#x3D; {<br>  configureWebpack: {<br>    optimization: {<br>      splitChunks: {<br>        chunks: ‘all’<br>      }<br>    }<br>  }<br>}</p>
+<p>分析体积占比：安装webpack-bundle-analyzer插件，可视化查看各模块体积占比，针对性优化：</p>
+<p>npm install –save-dev webpack-bundle-analyzer</p>
+<p>在vue.config.js中配置后，执行npm run build会自动打开体积分析页面^。</p>
+<p>删除无用代码：使用Tree Shaking剔除未使用的JS、CSS代码，Vue CLI在生产模式下已默认开启该功能。</p>
+<p>五、打包后的部署方向</p>
+<ol>
+<li>静态服务器部署</li>
+</ol>
+<p>将dist文件夹上传至Nginx、Apache等服务器，配置服务器指向dist目录即可。以Nginx为例，核心配置如下：</p>
+<p>server {<br>  listen 80;<br>  server_name your-domain.com;<br>  location &#x2F; {<br>    root &#x2F;path&#x2F;to&#x2F;dist;<br>    try_files $uri $uri&#x2F; &#x2F;index.html;  # 支持Vue Router History模式<br>  }<br>}</p>
+<p>若需部署在非域名根路径（如<a target="_blank" rel="noopener" href="http://your-domain.com/test%EF%BC%89%EF%BC%8C%E9%9C%80%E5%90%8C%E6%97%B6%E4%BF%AE%E6%94%B9vue.config.js%E7%9A%84publicPath">http://your-domain.com/test），需同时修改vue.config.js的publicPath</a>: ‘&#x2F;test&#x2F;‘和Nginx的location配置^。</p>
+<ol start="2">
+<li>打包为客户端或移动端APP</li>
+</ol>
+<p>桌面客户端：借助nodewebkit将打包后的dist文件封装为Windows、Mac客户端，实现“网页变应用”的效果。</p>
+<p>移动端APP：使用HBuilderX将dist文件夹打包为Android APK或iOS IPA文件，适配移动端设备显示。</p>
+<p>六、Vue CLI与Vite打包的差异</p>
+<p>Vue项目目前主流的打包工具有Vue CLI（基于Webpack）和Vite，两者核心差异在于打包速度与配置复杂度：</p>
+<p>Vue CLI：兼容性强，支持复杂的Webpack配置，适合中大型项目，但冷启动与打包速度较慢。</p>
+<p>Vite：基于ESModule实现按需编译，开发与打包速度显著提升，配置更简洁，是Vue 3官方推荐工具，适合轻量型或现代化项目。</p>
+<p>Vite的打包配置需在vite.config.ts中完成，示例如下：</p>
+<p>import { defineConfig } from ‘vite’;<br>import vue from ‘@vitejs&#x2F;plugin-vue’;</p>
+<p>export default defineConfig({<br>  plugins: [vue()],<br>  base: ‘.&#x2F;‘,  &#x2F;&#x2F; 对应Vue CLI的publicPath<br>  build: {<br>    outDir: ‘dist’,  &#x2F;&#x2F; 输出目录<br>    sourcemap: false  &#x2F;&#x2F; 关闭Source Map减小体积<br>  }<br>});</p>
+<p>总结</p>
+<p>Vue项目打包并非复杂的黑箱操作，核心是理解“资源整合-路径配置-性能优化”的逻辑。通过规范的流程配置、针对性的问题解决，开发者可以快速完成从开发到部署的过渡，让Vue项目以最优状态交付给用户。无论是部署到服务器还是封装为客户端，打包都是Vue项目落地的关键一步，掌握这些基础技能，能大幅提升前端开发的全流程能力。 </p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://blog.world123.top/2026/03/07/2026-03-07-github%E8%AE%BF%E9%97%AE%E4%BC%98%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="鳞游">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鳞游の博客">
+      <meta itemprop="description" content="这是一个使用Hexo和Butterfly主题搭建的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 鳞游の博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/03/07/2026-03-07-github%E8%AE%BF%E9%97%AE%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">GitHub访问优化完整教程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-03-07 00:00:00 / 修改时间：12:42:09" itemprop="dateCreated datePublished" datetime="2026-03-07T00:00:00+08:00">2026-03-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="GitHub访问优化完整教程"><a href="#GitHub访问优化完整教程" class="headerlink" title="GitHub访问优化完整教程"></a>GitHub访问优化完整教程</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>GitHub作为全球最大的代码托管平台，在国内访问时常遇到连接不稳定、速度慢甚至无法访问的问题。本文将详细介绍几种有效的解决方案，帮助您顺畅地使用GitHub。</p>
+<h2 id="方案一：使用在线工具获取真实IP地址"><a href="#方案一：使用在线工具获取真实IP地址" class="headerlink" title="方案一：使用在线工具获取真实IP地址"></a>方案一：使用在线工具获取真实IP地址</h2><h3 id="Boce网络检测工具"><a href="#Boce网络检测工具" class="headerlink" title="Boce网络检测工具"></a>Boce网络检测工具</h3><p>Boce是一个专业的网络检测平台，可以帮助我们找到GitHub的最佳访问IP。</p>
+<p><strong>操作步骤：</strong></p>
+<ol>
+<li>访问 <a target="_blank" rel="noopener" href="https://www.boce.com/">Boce官方网站</a></li>
+<li>在检测框中输入 <code>github.com</code></li>
+<li>选择多个检测节点进行PING测试</li>
+<li>记录响应速度快且稳定的IP地址</li>
+<li>常见的优质IP包括：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">140.82.113.4 github.com</span><br><span class="line">199.232.69.194 github.global.ssl.fastly.net</span><br><span class="line">185.199.108.153 assets-cdn.github.com</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="AntPing检测工具"><a href="#AntPing检测工具" class="headerlink" title="AntPing检测工具"></a>AntPing检测工具</h3><p>AntPing提供了更加直观的网络检测界面。</p>
+<p><strong>使用方法：</strong></p>
+<ol>
+<li>访问AntPing相关检测网站</li>
+<li>输入GitHub相关域名进行多地PING测试</li>
+<li>分析各地响应时间和丢包率</li>
+<li>选取最优IP地址用于HOSTS配置</li>
+</ol>
+<h2 id="方案二：修改系统HOSTS文件"><a href="#方案二：修改系统HOSTS文件" class="headerlink" title="方案二：修改系统HOSTS文件"></a>方案二：修改系统HOSTS文件</h2><p>获取到优质IP后，我们需要将其写入系统HOSTS文件以提升访问速度。</p>
+<h3 id="Windows系统操作"><a href="#Windows系统操作" class="headerlink" title="Windows系统操作"></a>Windows系统操作</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># <span class="number">1</span>. 以管理员身份打开记事本</span><br><span class="line"># <span class="number">2</span>. 打开文件路径：C:\Windows\System32\drivers\etc\hosts</span><br><span class="line"># <span class="number">3</span>. 在文件末尾添加以下内容：</span><br><span class="line"><span class="number">140</span>.<span class="number">82</span>.<span class="number">113</span>.<span class="number">4</span> github.com</span><br><span class="line"><span class="number">199</span>.<span class="number">232</span>.<span class="number">69</span>.<span class="number">194</span> github.global.ssl.fastly.<span class="built_in">net</span></span><br><span class="line"><span class="number">185</span>.<span class="number">199</span>.<span class="number">108</span>.<span class="number">153</span> assets-cdn.github.com</span><br><span class="line"><span class="number">185</span>.<span class="number">199</span>.<span class="number">109</span>.<span class="number">153</span> assets-cdn.github.com</span><br><span class="line"><span class="number">185</span>.<span class="number">199</span>.<span class="number">110</span>.<span class="number">153</span> assets-cdn.github.com</span><br><span class="line"><span class="number">185</span>.<span class="number">199</span>.<span class="number">111</span>.<span class="number">153</span> assets-cdn.github.com</span><br><span class="line"></span><br><span class="line"># <span class="number">4</span>. 保存文件并关闭</span><br><span class="line"># <span class="number">5</span>. 刷新DNS缓存：</span><br><span class="line"><span class="built_in">ipconfig</span> /flushdns</span><br></pre></td></tr></table></figure>
+
+<h3 id="macOS-Linux系统操作"><a href="#macOS-Linux系统操作" class="headerlink" title="macOS&#x2F;Linux系统操作"></a>macOS&#x2F;Linux系统操作</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 打开终端并编辑HOSTS文件：</span></span><br><span class="line"><span class="built_in">sudo</span> vim /etc/hosts</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 添加相同的IP映射关系</span></span><br><span class="line"><span class="comment"># 3. 保存退出后刷新DNS：</span></span><br><span class="line"><span class="comment"># macOS:</span></span><br><span class="line"><span class="built_in">sudo</span> dscacheutil -flushcache</span><br><span class="line"><span class="built_in">sudo</span> killall -HUP mDNSResponder</span><br><span class="line"></span><br><span class="line"><span class="comment"># Linux:</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl restart systemd-resolved.service</span><br></pre></td></tr></table></figure>
+
+<h2 id="方案三：使用Watt-Toolkit加速（强烈推荐）"><a href="#方案三：使用Watt-Toolkit加速（强烈推荐）" class="headerlink" title="方案三：使用Watt Toolkit加速（强烈推荐）"></a>方案三：使用Watt Toolkit加速（强烈推荐）</h2><p>Watt Toolkit（原Steam++）是一款免费开源的网络工具箱，专门针对各类网络服务进行加速优化。</p>
+<h3 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h3><ol>
+<li>访问Watt Toolkit官方GitHub仓库</li>
+<li>下载对应操作系统版本的安装包</li>
+<li>正常安装并启动程序</li>
+</ol>
+<h3 id="配置GitHub加速"><a href="#配置GitHub加速" class="headerlink" title="配置GitHub加速"></a>配置GitHub加速</h3><p><strong>基础配置步骤：</strong></p>
+<ol>
+<li>启动Watt Toolkit应用程序</li>
+<li>在主界面找到”网络加速”功能模块</li>
+<li>启用以下GitHub相关域名的加速：<ul>
+<li>github.com</li>
+<li>github.global.ssl.fastly.net</li>
+<li>raw.githubusercontent.com</li>
+<li>api.github.com</li>
+<li>avatars.githubusercontent.com</li>
+<li>camo.githubusercontent.com</li>
+</ul>
+</li>
+</ol>
+<p><strong>高级优化设置：</strong></p>
+<ol>
+<li>在设置中选择合适的代理模式（PAC智能代理推荐）</li>
+<li>启用系统代理自动配置</li>
+<li>设置开机自启动以保持持续加速</li>
+<li>定期更新内置的加速节点列表</li>
+</ol>
+<h3 id="使用优势"><a href="#使用优势" class="headerlink" title="使用优势"></a>使用优势</h3><ul>
+<li>自动识别并加速GitHub相关服务</li>
+<li>无需手动配置复杂的代理设置</li>
+<li>支持多种网络环境下的智能切换</li>
+<li>完全免费且开源透明</li>
+</ul>
+<h2 id="方案四：网络环境切换策略"><a href="#方案四：网络环境切换策略" class="headerlink" title="方案四：网络环境切换策略"></a>方案四：网络环境切换策略</h2><h3 id="VPN使用建议"><a href="#VPN使用建议" class="headerlink" title="VPN使用建议"></a>VPN使用建议</h3><p>当其他方法都无法解决问题时，可以考虑使用VPN切换网络环境。</p>
+<p><strong>选择VPN时需要注意：</strong></p>
+<ol>
+<li>选择信誉良好的服务商</li>
+<li>确保连接稳定性和安全性</li>
+<li>优选距离较近且延迟较低的服务器节点</li>
+<li>遵守当地网络使用法律法规</li>
+</ol>
+<h3 id="多网络环境管理"><a href="#多网络环境管理" class="headerlink" title="多网络环境管理"></a>多网络环境管理</h3><p>建立灵活的网络切换机制：</p>
+<ol>
+<li>家庭宽带网络（默认使用）</li>
+<li>移动热点网络（应急备用）</li>
+<li>办公网络（企业环境）</li>
+<li>VPN虚拟网络（特殊情况）</li>
+</ol>
+<h2 id="方案五：使用GitHub镜像站点"><a href="#方案五：使用GitHub镜像站点" class="headerlink" title="方案五：使用GitHub镜像站点"></a>方案五：使用GitHub镜像站点</h2><h3 id="常用镜像站点推荐"><a href="#常用镜像站点推荐" class="headerlink" title="常用镜像站点推荐"></a>常用镜像站点推荐</h3><p>在国内有一些提供GitHub镜像服务的站点：</p>
+<ol>
+<li><p><strong>CNPMJS镜像</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com.cnpmjs.org</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>FastGit镜像</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://download.fastgit.org</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>GHProxy代理</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://ghproxy.com</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="镜像站使用方法"><a href="#镜像站使用方法" class="headerlink" title="镜像站使用方法"></a>镜像站使用方法</h3><p><strong>克隆仓库时使用镜像：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 原始方式</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/username/repository.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用镜像方式</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com.cnpmjs.org/username/repository.git</span><br></pre></td></tr></table></figure>
+
+<p><strong>下载文件使用代理：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 原始链接</span></span><br><span class="line">https://github.com/username/repository/archive/main.zip</span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过代理下载</span></span><br><span class="line">https://ghproxy.com/https://github.com/username/repository/archive/main.zip</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置Git全局替换：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置Git使用镜像</span></span><br><span class="line">git config --global url.<span class="string">&quot;https://github.com.cnpmjs.org/&quot;</span>.insteadOf <span class="string">&quot;https://github.com/&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 恢复原始配置</span></span><br><span class="line">git config --global --<span class="built_in">unset</span> url.<span class="string">&quot;https://github.com.cnpmjs.org/&quot;</span>.insteadOf</span><br></pre></td></tr></table></figure>
+
+<h2 id="综合解决方案推荐"><a href="#综合解决方案推荐" class="headerlink" title="综合解决方案推荐"></a>综合解决方案推荐</h2><h3 id="日常使用最佳实践"><a href="#日常使用最佳实践" class="headerlink" title="日常使用最佳实践"></a>日常使用最佳实践</h3><ol>
+<li><strong>首选方案</strong>：Watt Toolkit全自动加速</li>
+<li><strong>备选方案</strong>：HOSTS文件优化 + 镜像站辅助</li>
+<li><strong>应急方案</strong>：VPN网络环境切换</li>
+<li><strong>极端情况</strong>：多重方案组合使用</li>
+</ol>
+<h3 id="配置优先级建议"><a href="#配置优先级建议" class="headerlink" title="配置优先级建议"></a>配置优先级建议</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">高优先级（推荐日常使用）</span><br><span class="line">├── Watt Toolkit加速</span><br><span class="line">└── HOSTS文件修改</span><br><span class="line"></span><br><span class="line">中优先级（特定场景使用）</span><br><span class="line">├── 镜像站点</span><br><span class="line">└── 网络环境切换</span><br><span class="line"></span><br><span class="line">低优先级（临时应急）</span><br><span class="line">└── VPN服务</span><br></pre></td></tr></table></figure>
+
+<h2 id="故障排查与验证"><a href="#故障排查与验证" class="headerlink" title="故障排查与验证"></a>故障排查与验证</h2><h3 id="常见问题诊断命令"><a href="#常见问题诊断命令" class="headerlink" title="常见问题诊断命令"></a>常见问题诊断命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查网络连通性</span></span><br><span class="line">ping github.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查DNS解析</span></span><br><span class="line">nslookup github.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查端口连通性</span></span><br><span class="line">telnet github.com 443</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查Git配置</span></span><br><span class="line">git config --global --list</span><br></pre></td></tr></table></figure>
+
+<h3 id="状态验证方法"><a href="#状态验证方法" class="headerlink" title="状态验证方法"></a>状态验证方法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 验证SSH连接</span></span><br><span class="line">ssh -T git@github.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证HTTPS访问</span></span><br><span class="line">curl -I https://github.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证Git操作</span></span><br><span class="line">git ls-remote https://github.com/git/git.git HEAD</span><br></pre></td></tr></table></figure>
+
+<h2 id="预防性维护措施"><a href="#预防性维护措施" class="headerlink" title="预防性维护措施"></a>预防性维护措施</h2><h3 id="定期维护任务"><a href="#定期维护任务" class="headerlink" title="定期维护任务"></a>定期维护任务</h3><ol>
+<li><p><strong>每月更新HOSTS文件</strong></p>
+<ul>
+<li>检测新IP地址变化</li>
+<li>替换失效的映射条目</li>
+<li>清理冗余配置项</li>
+</ul>
+</li>
+<li><p><strong>每周检查工具更新</strong></p>
+<ul>
+<li>更新Watt Toolkit至最新版本</li>
+<li>验证加速节点有效性</li>
+<li>优化配置参数</li>
+</ul>
+</li>
+<li><p><strong>每日监控访问状态</strong></p>
+<ul>
+<li>测试基本连通性</li>
+<li>记录异常访问情况</li>
+<li>准备应急预案</li>
+</ul>
+</li>
+</ol>
+<h3 id="多方案备份策略"><a href="#多方案备份策略" class="headerlink" title="多方案备份策略"></a>多方案备份策略</h3><ol>
+<li>保留多种解决方案的配置文档</li>
+<li>定期测试各种方案的有效性</li>
+<li>建立快速切换的操作流程</li>
+<li>记录个人最适用的组合方案</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过上述多种方法的综合运用，我们可以显著改善GitHub在国内的访问体验。建议根据个人实际情况和技术水平选择合适的方法：</p>
+<ul>
+<li>技术新手：推荐使用Watt Toolkit一站式解决方案</li>
+<li>技术爱好者：可以尝试HOSTS优化配合镜像站使用</li>
+<li>极客用户：多种方案组合实现最佳效果</li>
+</ul>
+<p>记住，网络环境随时可能发生变化，保持多种解决方案的灵活性是应对GitHub访问问题的关键。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://blog.world123.top/2026/03/07/2026-03-07-cloudflare/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="鳞游">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鳞游の博客">
+      <meta itemprop="description" content="这是一个使用Hexo和Butterfly主题搭建的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 鳞游の博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/03/07/2026-03-07-cloudflare/" class="post-title-link" itemprop="url">教你玩转cloudflare</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-03-07 00:00:00 / 修改时间：12:50:52" itemprop="dateCreated datePublished" datetime="2026-03-07T00:00:00+08:00">2026-03-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/cloudflare/" itemprop="url" rel="index"><span itemprop="name">cloudflare</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/cloudflare/%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">配置</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/cloudflare/%E9%85%8D%E7%BD%AE/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/cloudflare/%E9%85%8D%E7%BD%AE/%E6%95%99%E7%A8%8B/%E6%8C%87%E5%8D%97/" itemprop="url" rel="index"><span itemprop="name">指南</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="将自定义域名托管到Cloudflare并使用Worker-js的教程"><a href="#将自定义域名托管到Cloudflare并使用Worker-js的教程" class="headerlink" title="将自定义域名托管到Cloudflare并使用Worker.js的教程"></a>将自定义域名托管到Cloudflare并使用Worker.js的教程</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Cloudflare作为全球领先的CDN和网络安全服务提供商，不仅提供DNS解析、DDoS防护等基础服务，还通过其强大的Worker平台支持无服务器函数计算。本文将详细介绍如何将自定义域名托管到Cloudflare，并配置Worker.js来实现自定义逻辑处理。</p>
+<h2 id="第一步：注册并配置Cloudflare账户"><a href="#第一步：注册并配置Cloudflare账户" class="headerlink" title="第一步：注册并配置Cloudflare账户"></a>第一步：注册并配置Cloudflare账户</h2><h3 id="1-1-创建Cloudflare账户"><a href="#1-1-创建Cloudflare账户" class="headerlink" title="1.1 创建Cloudflare账户"></a>1.1 创建Cloudflare账户</h3><ol>
+<li>访问 <a target="_blank" rel="noopener" href="https://www.cloudflare.com/">Cloudflare官网</a></li>
+<li>点击”Sign Up”注册新账户</li>
+<li>填写邮箱地址和密码完成注册</li>
+<li>验证邮箱地址</li>
+</ol>
+<h3 id="1-2-添加您的域名"><a href="#1-2-添加您的域名" class="headerlink" title="1.2 添加您的域名"></a>1.2 添加您的域名</h3><ol>
+<li>登录Cloudflare控制面板</li>
+<li>在左侧导航栏找到”Workers”选项</li>
+<li>点击”Add a Site”按钮</li>
+<li>输入您的自定义域名（例如：example.com）</li>
+<li>选择合适的套餐计划（免费计划已足够大多数使用场景）</li>
+</ol>
+<h2 id="第二步：配置DNS解析"><a href="#第二步：配置DNS解析" class="headerlink" title="第二步：配置DNS解析"></a>第二步：配置DNS解析</h2><h3 id="2-1-获取当前DNS记录"><a href="#2-1-获取当前DNS记录" class="headerlink" title="2.1 获取当前DNS记录"></a>2.1 获取当前DNS记录</h3><p>Cloudflare会自动扫描您域名当前的DNS记录，包括：</p>
+<ul>
+<li>A记录（IPv4地址映射）</li>
+<li>AAAA记录（IPv6地址映射）</li>
+<li>CNAME记录（别名映射）</li>
+<li>MX记录（邮件服务器）</li>
+<li>TXT记录（文本信息）</li>
+<li>NS记录（域名服务器）</li>
+</ul>
+<h3 id="2-2-修改域名服务器"><a href="#2-2-修改域名服务器" class="headerlink" title="2.2 修改域名服务器"></a>2.2 修改域名服务器</h3><ol>
+<li>在Cloudflare中完成域名添加后，获取分配的Cloudflare DNS服务器地址</li>
+<li>登录您的域名注册商管理面板</li>
+<li>找到域名服务器（Nameservers）设置</li>
+<li>将原有DNS服务器替换为Cloudflare提供的服务器地址</li>
+<li>保存更改（DNS传播可能需要几小时到48小时）</li>
+</ol>
+<h3 id="2-3-验证DNS配置"><a href="#2-3-验证DNS配置" class="headerlink" title="2.3 验证DNS配置"></a>2.3 验证DNS配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用nslookup命令验证DNS解析</span></span><br><span class="line">nslookup example.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用dig命令查看详细DNS信息</span></span><br><span class="line">dig example.com NS</span><br></pre></td></tr></table></figure>
+
+<h2 id="第三步：创建Cloudflare-Worker"><a href="#第三步：创建Cloudflare-Worker" class="headerlink" title="第三步：创建Cloudflare Worker"></a>第三步：创建Cloudflare Worker</h2><h3 id="3-1-访问Workers控制台"><a href="#3-1-访问Workers控制台" class="headerlink" title="3.1 访问Workers控制台"></a>3.1 访问Workers控制台</h3><ol>
+<li>登录Cloudflare控制面板</li>
+<li>在左侧导航栏找到”Workers &amp; Pages”选项</li>
+<li>点击”Create”按钮，选择”Create Worker”</li>
+</ol>
+<h3 id="3-2-创建Worker服务"><a href="#3-2-创建Worker服务" class="headerlink" title="3.2 创建Worker服务"></a>3.2 创建Worker服务</h3><ol>
+<li>输入Worker名称（例如：my-custom-worker）</li>
+<li>选择”Default”模板</li>
+<li>点击”Deploy”完成创建</li>
+</ol>
+<h3 id="3-3-编写Worker-js代码"><a href="#3-3-编写Worker-js代码" class="headerlink" title="3.3 编写Worker.js代码"></a>3.3 编写Worker.js代码</h3><p>在Worker编辑器中编写您的自定义逻辑：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 基础Worker.js示例</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="keyword">async</span> <span class="title function_">fetch</span>(<span class="params">request, env</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> url = <span class="keyword">new</span> <span class="title function_">URL</span>(request.<span class="property">url</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 根据路径返回不同内容</span></span><br><span class="line">    <span class="keyword">if</span> (url.<span class="property">pathname</span> === <span class="string">&#x27;/&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Response</span>(<span class="string">&#x27;Hello, Cloudflare Workers!&#x27;</span>, &#123;</span><br><span class="line">        <span class="attr">headers</span>: &#123; <span class="string">&#x27;content-type&#x27;</span>: <span class="string">&#x27;text/plain&#x27;</span> &#125;,</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (url.<span class="property">pathname</span> === <span class="string">&#x27;/api/time&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Response</span>(<span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">toISOString</span>(), &#123;</span><br><span class="line">        <span class="attr">headers</span>: &#123; <span class="string">&#x27;content-type&#x27;</span>: <span class="string">&#x27;text/plain&#x27;</span> &#125;,</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 默认返回404</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Response</span>(<span class="string">&#x27;Not Found&#x27;</span>, &#123; <span class="attr">status</span>: <span class="number">404</span> &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-4-部署Worker"><a href="#3-4-部署Worker" class="headerlink" title="3.4 部署Worker"></a>3.4 部署Worker</h3><ol>
+<li>点击”Save and Deploy”按钮</li>
+<li>等待部署完成</li>
+<li>记录分配的Worker子域名（例如：my-custom-worker.username.workers.dev）</li>
+</ol>
+<h2 id="第四步：配置自定义域名路由"><a href="#第四步：配置自定义域名路由" class="headerlink" title="第四步：配置自定义域名路由"></a>第四步：配置自定义域名路由</h2><h3 id="4-1-添加自定义域"><a href="#4-1-添加自定义域" class="headerlink" title="4.1 添加自定义域"></a>4.1 添加自定义域</h3><ol>
+<li>在Worker设置页面找到”Triggers”选项卡</li>
+<li>点击”Add Custom Domain”</li>
+<li>输入您的自定义域名（例如：api.example.com）</li>
+<li>点击”Add Custom Domain”确认</li>
+</ol>
+<h3 id="4-2-验证SSL证书"><a href="#4-2-验证SSL证书" class="headerlink" title="4.2 验证SSL证书"></a>4.2 验证SSL证书</h3><p>Cloudflare会自动为您的自定义域名申请并配置SSL证书：</p>
+<ol>
+<li>系统会自动验证域名所有权</li>
+<li>SSL证书通常在几分钟内生效</li>
+<li>您可以通过HTTPS访问您的Worker服务</li>
+</ol>
+<h3 id="4-3-DNS验证"><a href="#4-3-DNS验证" class="headerlink" title="4.3 DNS验证"></a>4.3 DNS验证</h3><p>确保您的域名DNS配置正确：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 验证CNAME记录</span></span><br><span class="line">dig api.example.com CNAME</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证SSL证书</span></span><br><span class="line">openssl s_client -connect api.example.com:443 -servername api.example.com</span><br></pre></td></tr></table></figure>
+
+<h2 id="第五步：高级Worker-js功能实现"><a href="#第五步：高级Worker-js功能实现" class="headerlink" title="第五步：高级Worker.js功能实现"></a>第五步：高级Worker.js功能实现</h2><h3 id="5-1-环境变量配置"><a href="#5-1-环境变量配置" class="headerlink" title="5.1 环境变量配置"></a>5.1 环境变量配置</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用环境变量</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="keyword">async</span> <span class="title function_">fetch</span>(<span class="params">request, env</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> apiKey = env.<span class="property">API_KEY</span>;</span><br><span class="line">    <span class="keyword">const</span> apiUrl = env.<span class="property">API_URL</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 使用环境变量进行API调用</span></span><br><span class="line">    <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="string">`<span class="subst">$&#123;apiUrl&#125;</span>/data`</span>, &#123;</span><br><span class="line">      <span class="attr">headers</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;Authorization&#x27;</span>: <span class="string">`Bearer <span class="subst">$&#123;apiKey&#125;</span>`</span>,</span><br><span class="line">        <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> response;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-请求路由处理"><a href="#5-2-请求路由处理" class="headerlink" title="5.2 请求路由处理"></a>5.2 请求路由处理</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 复杂路由处理示例</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="keyword">async</span> <span class="title function_">fetch</span>(<span class="params">request, env</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> url = <span class="keyword">new</span> <span class="title function_">URL</span>(request.<span class="property">url</span>);</span><br><span class="line">    <span class="keyword">const</span> method = request.<span class="property">method</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 路由分发</span></span><br><span class="line">    <span class="keyword">switch</span> (url.<span class="property">pathname</span>) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;/users&#x27;</span>:</span><br><span class="line">        <span class="keyword">if</span> (method === <span class="string">&#x27;GET&#x27;</span>) <span class="keyword">return</span> <span class="title function_">getUsers</span>(env);</span><br><span class="line">        <span class="keyword">if</span> (method === <span class="string">&#x27;POST&#x27;</span>) <span class="keyword">return</span> <span class="title function_">createUser</span>(request, env);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;/health&#x27;</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Response</span>(<span class="string">&#x27;OK&#x27;</span>, &#123; <span class="attr">status</span>: <span class="number">200</span> &#125;);</span><br><span class="line">      <span class="attr">default</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Response</span>(<span class="string">&#x27;Not Found&#x27;</span>, &#123; <span class="attr">status</span>: <span class="number">404</span> &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">getUsers</span>(<span class="params">env</span>) &#123;</span><br><span class="line">  <span class="comment">// 获取用户列表逻辑</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Response</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>([]), &#123;</span><br><span class="line">    <span class="attr">headers</span>: &#123; <span class="string">&#x27;content-type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span> &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">createUser</span>(<span class="params">request, env</span>) &#123;</span><br><span class="line">  <span class="comment">// 创建用户逻辑</span></span><br><span class="line">  <span class="keyword">const</span> userData = <span class="keyword">await</span> request.<span class="title function_">json</span>();</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Response</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(&#123; <span class="attr">id</span>: <span class="number">1</span>, ...userData &#125;), &#123;</span><br><span class="line">    <span class="attr">headers</span>: &#123; <span class="string">&#x27;content-type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span> &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-3-缓存和性能优化"><a href="#5-3-缓存和性能优化" class="headerlink" title="5.3 缓存和性能优化"></a>5.3 缓存和性能优化</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用Cloudflare缓存</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="keyword">async</span> <span class="title function_">fetch</span>(<span class="params">request, env</span>) &#123;</span><br><span class="line">    <span class="comment">// 尝试从缓存获取</span></span><br><span class="line">    <span class="keyword">const</span> cache = caches.<span class="property">default</span>;</span><br><span class="line">    <span class="keyword">let</span> response = <span class="keyword">await</span> cache.<span class="title function_">match</span>(request);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (!response) &#123;</span><br><span class="line">      <span class="comment">// 缓存未命中，执行实际逻辑</span></span><br><span class="line">      response = <span class="keyword">await</span> <span class="title function_">fetch</span>(request);</span><br><span class="line">      </span><br><span class="line">      <span class="comment">// 缓存响应5分钟</span></span><br><span class="line">      response = <span class="keyword">new</span> <span class="title class_">Response</span>(response.<span class="property">body</span>, response);</span><br><span class="line">      response.<span class="property">headers</span>.<span class="title function_">append</span>(<span class="string">&#x27;Cache-Control&#x27;</span>, <span class="string">&#x27;s-maxage=300&#x27;</span>);</span><br><span class="line">      <span class="keyword">await</span> cache.<span class="title function_">put</span>(request, response.<span class="title function_">clone</span>());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> response;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="第六步：监控和日志配置"><a href="#第六步：监控和日志配置" class="headerlink" title="第六步：监控和日志配置"></a>第六步：监控和日志配置</h2><h3 id="6-1-启用日志记录"><a href="#6-1-启用日志记录" class="headerlink" title="6.1 启用日志记录"></a>6.1 启用日志记录</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 添加日志记录</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="keyword">async</span> <span class="title function_">fetch</span>(<span class="params">request, env</span>) &#123;</span><br><span class="line">    <span class="comment">// 记录请求信息</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Request: <span class="subst">$&#123;request.method&#125;</span> <span class="subst">$&#123;request.url&#125;</span>`</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">const</span> startTime = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span><br><span class="line">    <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="title function_">handleRequest</span>(request, env);</span><br><span class="line">    <span class="keyword">const</span> duration = <span class="title class_">Date</span>.<span class="title function_">now</span>() - startTime;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 记录响应信息</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Response: <span class="subst">$&#123;response.status&#125;</span> (<span class="subst">$&#123;duration&#125;</span>ms)`</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> response;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-2-错误处理"><a href="#6-2-错误处理" class="headerlink" title="6.2 错误处理"></a>6.2 错误处理</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 统一错误处理</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="keyword">async</span> <span class="title function_">fetch</span>(<span class="params">request, env</span>) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">await</span> <span class="title function_">handleRequest</span>(request, env);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;Worker error:&#x27;</span>, error);</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Response</span>(<span class="string">&#x27;Internal Server Error&#x27;</span>, &#123; <span class="attr">status</span>: <span class="number">500</span> &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="第七步：安全配置"><a href="#第七步：安全配置" class="headerlink" title="第七步：安全配置"></a>第七步：安全配置</h2><h3 id="7-1-CORS配置"><a href="#7-1-CORS配置" class="headerlink" title="7.1 CORS配置"></a>7.1 CORS配置</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 配置CORS头</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">setCORSHeaders</span>(<span class="params">response, origin = <span class="string">&#x27;*&#x27;</span></span>) &#123;</span><br><span class="line">  response.<span class="property">headers</span>.<span class="title function_">set</span>(<span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span>, origin);</span><br><span class="line">  response.<span class="property">headers</span>.<span class="title function_">set</span>(<span class="string">&#x27;Access-Control-Allow-Methods&#x27;</span>, <span class="string">&#x27;GET, POST, PUT, DELETE, OPTIONS&#x27;</span>);</span><br><span class="line">  response.<span class="property">headers</span>.<span class="title function_">set</span>(<span class="string">&#x27;Access-Control-Allow-Headers&#x27;</span>, <span class="string">&#x27;Content-Type, Authorization&#x27;</span>);</span><br><span class="line">  <span class="keyword">return</span> response;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="keyword">async</span> <span class="title function_">fetch</span>(<span class="params">request, env</span>) &#123;</span><br><span class="line">    <span class="comment">// 处理预检请求</span></span><br><span class="line">    <span class="keyword">if</span> (request.<span class="property">method</span> === <span class="string">&#x27;OPTIONS&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="title function_">setCORSHeaders</span>(<span class="keyword">new</span> <span class="title class_">Response</span>(<span class="literal">null</span>, &#123; <span class="attr">status</span>: <span class="number">204</span> &#125;));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="title function_">handleRequest</span>(request, env);</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">setCORSHeaders</span>(response);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-2-请求频率限制"><a href="#7-2-请求频率限制" class="headerlink" title="7.2 请求频率限制"></a>7.2 请求频率限制</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 简单的频率限制</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="keyword">async</span> <span class="title function_">fetch</span>(<span class="params">request, env</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> ip = request.<span class="property">headers</span>.<span class="title function_">get</span>(<span class="string">&#x27;CF-Connecting-IP&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> key = <span class="string">`rate-limit:<span class="subst">$&#123;ip&#125;</span>`</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 使用KV存储记录请求次数</span></span><br><span class="line">    <span class="keyword">const</span> count = <span class="keyword">await</span> env.<span class="property">MY_KV</span>.<span class="title function_">get</span>(key) || <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (count &gt; <span class="number">100</span>) &#123; <span class="comment">// 每分钟限制100次请求</span></span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Response</span>(<span class="string">&#x27;Too Many Requests&#x27;</span>, &#123; <span class="attr">status</span>: <span class="number">429</span> &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 增加计数器</span></span><br><span class="line">    <span class="keyword">await</span> env.<span class="property">MY_KV</span>.<span class="title function_">put</span>(key, <span class="built_in">parseInt</span>(count) + <span class="number">1</span>, &#123; <span class="attr">expirationTtl</span>: <span class="number">60</span> &#125;);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">await</span> <span class="title function_">handleRequest</span>(request, env);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="第八步：测试和验证"><a href="#第八步：测试和验证" class="headerlink" title="第八步：测试和验证"></a>第八步：测试和验证</h2><h3 id="8-1-功能测试"><a href="#8-1-功能测试" class="headerlink" title="8.1 功能测试"></a>8.1 功能测试</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 测试基本功能</span></span><br><span class="line">curl https://api.example.com/</span><br><span class="line">curl https://api.example.com/api/time</span><br><span class="line">curl https://api.example.com/health</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试POST请求</span></span><br><span class="line">curl -X POST https://api.example.com/users \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;&quot;name&quot;: &quot;test&quot;, &quot;email&quot;: &quot;test@example.com&quot;&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="8-2-性能测试"><a href="#8-2-性能测试" class="headerlink" title="8.2 性能测试"></a>8.2 性能测试</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用wrk进行压力测试</span></span><br><span class="line">wrk -t12 -c400 -d30s https://api.example.com/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用ab进行基准测试</span></span><br><span class="line">ab -n 1000 -c 100 https://api.example.com/</span><br></pre></td></tr></table></figure>
+
+<h2 id="第九步：优化和维护"><a href="#第九步：优化和维护" class="headerlink" title="第九步：优化和维护"></a>第九步：优化和维护</h2><h3 id="9-1-性能优化建议"><a href="#9-1-性能优化建议" class="headerlink" title="9.1 性能优化建议"></a>9.1 性能优化建议</h3><ol>
+<li>合理使用缓存策略</li>
+<li>压缩响应内容</li>
+<li>优化代码逻辑</li>
+<li>使用CDN边缘计算功能</li>
+</ol>
+<h3 id="9-2-监控告警设置"><a href="#9-2-监控告警设置" class="headerlink" title="9.2 监控告警设置"></a>9.2 监控告警设置</h3><ol>
+<li>配置Cloudflare Analytics监控</li>
+<li>设置自定义指标告警</li>
+<li>集成第三方监控服务</li>
+<li>定期审查访问日志</li>
+</ol>
+<h2 id="常见问题解决"><a href="#常见问题解决" class="headerlink" title="常见问题解决"></a>常见问题解决</h2><h3 id="DNS解析问题"><a href="#DNS解析问题" class="headerlink" title="DNS解析问题"></a>DNS解析问题</h3><ul>
+<li>检查域名服务器是否正确配置</li>
+<li>等待DNS传播完成</li>
+<li>使用在线工具验证DNS解析</li>
+</ul>
+<h3 id="SSL证书问题"><a href="#SSL证书问题" class="headerlink" title="SSL证书问题"></a>SSL证书问题</h3><ul>
+<li>确认域名所有权验证通过</li>
+<li>检查DNS记录配置</li>
+<li>联系Cloudflare支持团队</li>
+</ul>
+<h3 id="Worker部署失败"><a href="#Worker部署失败" class="headerlink" title="Worker部署失败"></a>Worker部署失败</h3><ul>
+<li>检查代码语法错误</li>
+<li>验证环境变量配置</li>
+<li>查看部署日志信息</li>
+</ul>
+<h2 id="最佳实践建议"><a href="#最佳实践建议" class="headerlink" title="最佳实践建议"></a>最佳实践建议</h2><ol>
+<li><strong>安全第一</strong>：始终验证输入数据，使用HTTPS加密传输</li>
+<li><strong>性能优化</strong>：合理使用缓存，避免不必要的计算</li>
+<li><strong>错误处理</strong>：完善的错误处理机制，友好的错误响应</li>
+<li><strong>监控维护</strong>：定期检查服务状态，设置告警机制</li>
+<li><strong>版本管理</strong>：使用版本控制管理Worker代码变更</li>
+</ol>
+<p>通过以上步骤，您可以成功将自定义域名托管到Cloudflare并配置功能强大的Worker.js服务。Cloudflare Workers提供了无服务器架构的优势，让您可以专注于业务逻辑而无需关心服务器运维，同时享受全球CDN网络带来的性能提升。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -268,7 +991,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://blog.world123.top/2026/03/02/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://blog.world123.top/2026/03/02/2026-03-07-hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -286,7 +1009,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/03/02/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+          <a href="/2026/03/02/2026-03-07-hello-world/" class="post-title-link" itemprop="url">Hello World</a>
         </h2>
 
         <div class="post-meta-container">
