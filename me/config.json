@@ -236,31 +236,43 @@
     "links": [
       {
         "id": 1,
-        "name": "CCW编程",
-        "url": "https://www.ccw.site",
-        "icon": "https://m.ccw.site/community/images/logo-ccw.png",
-        "iconType": "image"
+        "name": "Alice的技术博客",
+        "description": "前端开发",
+        "icon": "fab fa-react",
+        "iconType": "fontawesome",
+        "url": "https://example.com"
       },
       {
         "id": 2,
-        "name": "GitHub",
-        "url": "https://github.com",
-        "icon": "fab fa-github",
-        "iconType": "fontawesome"
+        "name": "虚舟实验室",
+        "description": "探未来之境 · 载无界新生",
+        "icon": "https://www.caellab.com/static/image/icon/logo.png",
+        "iconType": "image",
+        "url": "https://www.caellab.com/"
       },
       {
         "id": 3,
-        "name": "哔哩哔哩",
-        "url": "https://www.bilibili.com",
-        "icon": "https://www.bilibili.com/favicon.ico",
-        "iconType": "image"
+        "name": "A.C·TD（狙宿/宿长）的个人主页",
+        "description": "一位开发者的ccw主页",
+        "icon": "https://m.ccw.site/avatar/87fa8782-68ff-4f6e-b225-7595e29171f6.png?x-oss-process=image%2Fresize%2Cs_150%2Fformat%2Cwebp",
+        "iconType": "image",
+        "url": "https://www.ccw.site/student/63ef2da0e77d1a05041bd28a"
       },
       {
         "id": 4,
-        "name": "百度",
-        "url": "https://www.baidu.com",
-        "icon": "https://www.baidu.com/favicon.ico",
-        "iconType": "image"
+        "name": "XIAOWU Blog",
+        "description": "一个喜欢学电脑的初中生创建的个人技术博客",
+        "icon": "https://youye-luna.top/upload/20251008_10023328.png",
+        "iconType": "image",
+        "url": "https://youye-luna.top"
+      },
+      {
+        "id": 5,
+        "name": "Kitten's Blog",
+        "description": "一只走在前端与设计不归路上的技术宅",
+        "icon": "https://gravatar.com/avatar/59cb46c14fe1df1292ca09a761b7cbe3",
+        "iconType": "image",
+        "url": "https://blog.skillcat.cn/"
       }
     ]
   },
