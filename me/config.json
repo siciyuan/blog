@@ -311,11 +311,11 @@
   },
   "footer": {
     "enabled": true,
-    "content": "© 2026 鳞游の小窝 | <a href='https://www.world123.top' target='_blank' style='color: white; text-decoration: none;'>访问博客</a> | <a href='https://github.com/siciyuan' target='_blank' style='color: white; text-decoration: none;'>GitHub</a>"
+    "content": "© 2026 鳞游の小窝 | <a href=\"https://icp.gov.moe/?keyword=20269994\" target=\"_blank\">萌ICP备20269994号</a>|<a href='https://www.world123.top' target='_blank' style='color: white; text-decoration: none;'>访问博客</a> | <a href='https://github.com/siciyuan' target='_blank' style='color: white; text-decoration: none;'>GitHub</a>"
   },
   "announcement": {
     "enabled": true,
     "title": "公告",
-    "content": "欢迎访问我的个人主页！<br>这里是一个展示壁纸和音乐的小空间。<br>希望你喜欢这里的内容。"
+    "content": "欢迎访问我的个人主页！<br>这里是一个小空间。<br>希望你喜欢这里的内容。"
   }
 }
