@@ -1,0 +1,28 @@
+// 引入本地字体
+@font-face {
+  font-family: 'CustomFont';
+  src: url('/fonts/font.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+// 确保所有元素优先使用本地字体，外部字体作为fallback
+body {
+  font-family: 'CustomFont', 'Noto Sans SC', sans-serif;
+}
+
+// 标题字体
+.site-title, h1, h2, h3, h4, h5, h6 {
+  font-family: 'CustomFont', 'Noto Sans SC', sans-serif;
+}
+
+// 文章正文字体
+.post-body {
+  font-family: 'CustomFont', 'Noto Serif SC', serif;
+}
+
+// 代码字体
+code, pre {
+  font-family: 'CustomFont', 'Fira Code', monospace;
+}
