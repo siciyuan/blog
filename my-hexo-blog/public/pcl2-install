@@ -30,9 +30,9 @@
 <meta property="article:published_time" content="2026-03-21T14:00:00.000Z">
 <meta property="article:modified_time" content="2026-03-21T12:50:49.892Z">
 <meta property="article:author" content="鳞游">
+<meta property="article:tag" content="教程">
 <meta property="article:tag" content="Minecraft">
 <meta property="article:tag" content="PCL2">
-<meta property="article:tag" content="教程">
 <meta name="twitter:card" content="summary">
 
 
@@ -146,18 +146,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -335,9 +335,9 @@
 
     <footer class="post-footer">
           <div class="post-tags">
+              <a href="/tags/%E6%95%99%E7%A8%8B/" rel="tag"># 教程</a>
               <a href="/tags/Minecraft/" rel="tag"># Minecraft</a>
               <a href="/tags/PCL2/" rel="tag"># PCL2</a>
-              <a href="/tags/%E6%95%99%E7%A8%8B/" rel="tag"># 教程</a>
           </div>
 
         
@@ -349,6 +349,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2026/03/22/2026-03-21-%E8%AE%A4%E8%AF%86%E4%BD%A0%E7%9A%84%E7%94%B5%E8%84%91/" rel="next" title="电脑入门 01：先认识一下你的电脑">
+                  电脑入门 01：先认识一下你的电脑 <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>
