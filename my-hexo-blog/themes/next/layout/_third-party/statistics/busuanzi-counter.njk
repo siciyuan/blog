@@ -1,0 +1,7 @@
+{%- if theme.busuanzi_count.enable %}
+  {%- if theme.vendors.busuanzi %}
+  <script{{ pjax }} src="{{ theme.vendors.busuanzi }}"></script>
+  {%- else %}
+  <script{{ pjax }} src="https://cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js"></script>
+  {%- endif %}
+{%- endif %}
