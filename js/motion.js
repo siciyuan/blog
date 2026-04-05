@@ -91,6 +91,7 @@ NexT.motion.middleWares = {
       elements.forEach(targets => {
         sequence.push({
           targets,
+          visibility: 'visible',
           complete: () => targets.classList.add('animated', animation),
           deltaT  : '-=100'
         });

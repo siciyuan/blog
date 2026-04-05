@@ -1,0 +1,33 @@
+{
+  "path": "search.json",
+  "field": "post",
+  "format": "html",
+  "limit": 10000,
+  "content": true,
+  "data": [
+    {
+      "title": "Hello World",
+      "url": "/2026/03/02/2026-03-07-hello-world/",
+      "date": "2026-03-02T14:51:52+08:00",
+      "categories": ["技术", "教程"],
+      "tags": ["Hexo", "博客"],
+      "content": "Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub."
+    },
+    {
+      "title": "测试文章",
+      "url": "/2026/03/02/2026-03-02-test-post/",
+      "date": "2026-03-02T14:51:52+08:00",
+      "categories": ["测试", "教程"],
+      "tags": ["测试"],
+      "content": "这是一篇测试文章。"
+    },
+    {
+      "title": "Hexo博客部署教程",
+      "url": "/2026/03/07/2026-03-07-Hexo博客部署教程/",
+      "date": "2026-03-07T14:51:52+08:00",
+      "categories": ["技术", "教程"],
+      "tags": ["Hexo", "博客", "部署"],
+      "content": "Hexo博客部署教程"
+    }
+  ]
+}
