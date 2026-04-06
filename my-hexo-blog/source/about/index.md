@@ -42,6 +42,18 @@ layout: page
 
 ---
 
+## 音乐播放器
+
+<div class="hexo-audio-player">
+  <h4>网易云音乐 - 网络音乐</h4>
+  <audio controls preload="metadata">
+    <source src="https://api-v2.cenguigui.cn/api/netease/?&type=mp3" type="audio/mpeg">
+    您的浏览器不支持音频播放。
+   </audio>
+</div>
+
+---
+
 ## 趣味投票
 **投票:我的网站怎么样？？？？（说真话）**(点击选项进行投票):  
 [好的不得了!!!!](https://vote.saobby.com/v/UiIRHRoJ/0) ![](https://vote.saobby.com/i/UiIRHRoJ/0)  

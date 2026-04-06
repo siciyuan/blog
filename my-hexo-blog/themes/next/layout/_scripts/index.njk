@@ -5,6 +5,9 @@
 {%- endif %}
 
 {{- next_js('utils.js') }}
+{%- if theme.localsearch.enable %}
+  {{- next_js('third-party/search/search.js') }}
+{%- endif %}
 {%- if theme.motion.enable %}
   {{- next_js('motion.js') }}
 {%- endif %}
@@ -20,3 +23,5 @@
 {%- if theme.pjax %}
   {{- next_js('pjax.js') }}
 {%- endif %}
+
+{{- next_js('floating-audio.js') }}

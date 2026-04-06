@@ -105,4 +105,34 @@ deploy:
   repo: https://github.com/siciyuan/blog.git
   branch: main
 
+# Giscus Comments
+giscus:
+  enable: true
+  repo: siciyuan/blog
+  repo_id: R_kgDORcXi_w
+  category: Announcements
+  category_id: DIC_kwDORcXi_84C6EiT
+  mapping: pathname
+  reactions_enabled: 1
+  emit_metadata: 1
+  input_position: top
+  theme: preferred_color_scheme
+  lang: zh-CN
+  loading: lazy
+  crossorigin: anonymous
+
+# Emoji support
+emoji:
+  enable: true
+  className: github-emoji
+  styles:
+  customEmojis:
+
+# Search
+search:
+  path: search.json
+  field: post
+  content: true
+  format: striptags
+
 

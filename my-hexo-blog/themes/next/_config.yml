@@ -576,10 +576,10 @@ math:
   # Default (false) will load mathjax / katex script on demand.
   # That is it only render those page which has `mathjax: true` in front-matter.
   # If you set it to true, it will load mathjax / katex script EVERY PAGE.
-  every_page: false
+  every_page: true
 
   mathjax:
-    enable: false
+    enable: true
     # Available values: none | ams | all
     tags: none
 
@@ -687,8 +687,8 @@ comments:
   # Available values: tabs | buttons
   style: tabs
   # Choose a comment system to be displayed by default.
-  # Available values: disqus | disqusjs | livere | gitalk | utterances | isso
-  active:
+  # Available values: disqus | disqusjs | livere | gitalk | utterances | isso | giscus
+  active: giscus
   # Setting `true` means remembering the comment system selected by the visitor.
   storage: true
   # Lazyload all comment systems.
@@ -700,6 +700,9 @@ comments:
     #  order: -1
     #gitalk:
     #  order: -2
+    giscus:
+      text: Giscus
+      order: -1
 
 # Disqus
 # For more information: https://disqus.com
@@ -758,6 +761,23 @@ utterances:
 # Isso
 # For more information: https://isso-comments.de
 isso: # <data_isso>
+
+# Giscus
+# For more information: https://giscus.app
+giscus:
+  enable: true
+  repo: siciyuan/blog
+  repo_id: R_kgDORcXi_w
+  category: Announcements
+  category_id: DIC_kwDORcXi_84C6EiT
+  mapping: pathname
+  strict: 1
+  reactions_enabled: 1
+  emit_metadata: 1
+  input_position: top
+  theme: preferred_color_scheme
+  lang: zh-CN
+  loading: lazy
 
 
 # ---------------------------------------------------------------
@@ -857,7 +877,7 @@ algolia_search:
 # Local Search
 # Dependencies: https://github.com/next-theme/hexo-generator-searchdb
 local_search:
-  enable: false
+  enable: true
   # Show top n results per article, show all results by setting to -1
   top_n_per_article: 1
   # Unescape html strings to the readable one.
@@ -907,7 +927,7 @@ vendors:
   # The default CDN provider of third-party plugins.
   # Available values: local | jsdelivr | unpkg | cdnjs | custom
   # Dependencies for `plugins: local`: https://github.com/next-theme/plugins
-  plugins: cdnjs
+  plugins: local
   # Custom CDN URL
   # For example:
   # custom_cdn_url: https://cdn.jsdelivr.net/npm/${npm_name}@${version}/${minified}
