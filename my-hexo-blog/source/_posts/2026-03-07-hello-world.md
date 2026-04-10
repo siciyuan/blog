@@ -1,5 +1,6 @@
 ---
 title: Hello World
+date: 2026-03-07
 categories:
   - 技术
   - 教程

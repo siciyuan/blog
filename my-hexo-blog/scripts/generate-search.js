@@ -26,7 +26,7 @@ function parseFrontMatter(content) {
       if (value.startsWith('[') && value.endsWith(']')) {
         data[key] = value.slice(1, -1).split(',').map(item => item.trim());
       } else {
-        data[key] = value;
+        data[key] = value.trim(); // 添加trim()处理
       }
     }
   });
@@ -43,9 +43,36 @@ function readMarkdownFiles(dir) {
     const { data, content: rawContent } = parseFrontMatter(content);
     
     // 生成URL
-    const date = data.date ? new Date(data.date) : new Date();
+    let date;
+    if (data.date) {
+      // 尝试解析Front Matter中的日期
+      try {
+        date = new Date(data.date);
+        // 验证日期是否有效
+        if (isNaN(date.getTime())) {
+          throw new Error('Invalid date');
+        }
+      } catch (e) {
+        date = null;
+      }
+    }
+    
+    if (!date) {
+      // 尝试从文件名中提取日期 (格式: YYYY-MM-DD-标题.md)
+      const fileName = path.basename(file, '.md');
+      const dateMatch = fileName.match(/^(\d{4})-(\d{2})-(\d{2})-/);
+      if (dateMatch) {
+        date = new Date(`${dateMatch[1]}-${dateMatch[2]}-${dateMatch[3]}`);
+      } else {
+        date = new Date();
+      }
+    }
+    
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
     const fileName = path.basename(file, '.md');
-    const url = `/posts/${fileName}/`;
+    const url = `/${year}/${month}/${day}/${fileName}/`;
     
     // 提取内容（去除Markdown标记）
     const contentWithoutMarkdown = rawContent
