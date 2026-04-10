@@ -20,12 +20,16 @@ Set-Location "my-hexo-blog"
 echo "Cleaning files..."
 try {
     hexo clean
+    echo "Generating search.json..."
+    node scripts/generate-search.js
     echo "Generating files..."
     hexo generate
     echo "Files generated successfully!"
 } catch {
     echo "Using full path to hexo..."
     & "$npmGlobalPath\hexo.cmd" clean
+    echo "Generating search.json..."
+    & "$env:NODE_PATH\node.exe" scripts/generate-search.js
     & "$npmGlobalPath\hexo.cmd" generate
     echo "Files generated successfully!"
 }

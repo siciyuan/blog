@@ -109,7 +109,7 @@ menu:
   archives: /archives/ || fa fa-archive
   一些链接: /links/ || fa fa-link
   #schedule: /schedule/ || fa fa-calendar
-  #sitemap: /sitemap.xml || fa fa-sitemap
+  sitemap: /sitemap.xml || fa fa-sitemap
   #commonweal: /404/ || fa fa-heartbeat
 
 # Enable / Disable menu icons / item badges.

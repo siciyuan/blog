@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "node scripts/generate-search.js && hexo generate",
-    "clean": "hexo clean && node scripts/generate-search.js",
-    "deploy": "node scripts/generate-search.js && hexo deploy",
-    "server": "node scripts/generate-search.js && hexo server"
+    "build": "node scripts/generate-search.js && node scripts/generate-sitemap.js && hexo generate",
+    "clean": "hexo clean && node scripts/generate-search.js && node scripts/generate-sitemap.js",
+    "deploy": "node scripts/generate-search.js && node scripts/generate-sitemap.js && hexo deploy",
+    "server": "node scripts/generate-search.js && node scripts/generate-sitemap.js && hexo server"
   },
   "hexo": {
     "version": "7.3.0"
