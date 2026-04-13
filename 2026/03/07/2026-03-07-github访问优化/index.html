@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#37c6c0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#37c6c0" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://gp3e.saobby.com/i/1KmIsDN13WaHYFB0.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://gp3e.saobby.com/i/1KmIsDN13WaHYFB0.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://gp3e.saobby.com/i/1KmIsDN13WaHYFB0.ico">
+  <link rel="mask-icon" href="https://gp3e.saobby.com/i/1KmIsDN13WaHYFB0.ico" color="#37c6c0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Noto+Serif+SC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Fira+Code:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"world123.top","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"giscus","storage":true,"lazyload":false,"nav":{"giscus":{"text":"Giscus","order":-1}},"activeClass":"giscus"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="GitHub访问优化完整教程前言GitHub作为全球最大的代码托管平台，在国内访问时常遇到连接不稳定、速度慢甚至无法访问的问题。本文将详细介绍几种有效的解决方案，帮助您顺畅地使用GitHub。 方案一：使用在线工具获取真实IP地址Boce网络检测工具Boce是一个专业的网络检测平台，可以帮助我们找到GitHub的最佳访问IP。 操作步骤：  访问 Boce官方网站 在检测框中输入 github.c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GitHub访问优化完整教程">
+<meta property="og:url" content="https://world123.top/2026/03/07/2026-03-07-github%E8%AE%BF%E9%97%AE%E4%BC%98%E5%8C%96/index.html">
+<meta property="og:site_name" content="鳞游の博客">
+<meta property="og:description" content="GitHub访问优化完整教程前言GitHub作为全球最大的代码托管平台，在国内访问时常遇到连接不稳定、速度慢甚至无法访问的问题。本文将详细介绍几种有效的解决方案，帮助您顺畅地使用GitHub。 方案一：使用在线工具获取真实IP地址Boce网络检测工具Boce是一个专业的网络检测平台，可以帮助我们找到GitHub的最佳访问IP。 操作步骤：  访问 Boce官方网站 在检测框中输入 github.c">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-03-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-10T10:47:54.310Z">
+<meta property="article:author" content="鳞游">
+<meta property="article:tag" content="GitHub">
+<meta property="article:tag" content="网络优化">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://world123.top/2026/03/07/2026-03-07-github%E8%AE%BF%E9%97%AE%E4%BC%98%E5%8C%96/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://world123.top/2026/03/07/2026-03-07-github%E8%AE%BF%E9%97%AE%E4%BC%98%E5%8C%96/","path":"2026/03/07/2026-03-07-github访问优化/","title":"GitHub访问优化完整教程"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>GitHub访问优化完整教程 | 鳞游の博客</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/floating-audio.js" defer></script>
+
+  <script src="/js/third-party/search/search.js" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+  <script src="https://cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">鳞游の博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录生活与技术的一个小空间</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-一些链接"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>一些链接</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GitHub%E8%AE%BF%E9%97%AE%E4%BC%98%E5%8C%96%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">GitHub访问优化完整教程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%B8%80%EF%BC%9A%E4%BD%BF%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7%E8%8E%B7%E5%8F%96%E7%9C%9F%E5%AE%9EIP%E5%9C%B0%E5%9D%80"><span class="nav-number">1.2.</span> <span class="nav-text">方案一：使用在线工具获取真实IP地址</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Boce%E7%BD%91%E7%BB%9C%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7"><span class="nav-number">1.2.1.</span> <span class="nav-text">Boce网络检测工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AntPing%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7"><span class="nav-number">1.2.2.</span> <span class="nav-text">AntPing检测工具</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%BA%8C%EF%BC%9A%E4%BF%AE%E6%94%B9%E7%B3%BB%E7%BB%9FHOSTS%E6%96%87%E4%BB%B6"><span class="nav-number">1.3.</span> <span class="nav-text">方案二：修改系统HOSTS文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C"><span class="nav-number">1.3.1.</span> <span class="nav-text">Windows系统操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#macOS-Linux%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C"><span class="nav-number">1.3.2.</span> <span class="nav-text">macOS&#x2F;Linux系统操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%B8%89%EF%BC%9A%E4%BD%BF%E7%94%A8Watt-Toolkit%E5%8A%A0%E9%80%9F%EF%BC%88%E5%BC%BA%E7%83%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">方案三：使用Watt Toolkit加速（强烈推荐）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85"><span class="nav-number">1.4.1.</span> <span class="nav-text">下载与安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEGitHub%E5%8A%A0%E9%80%9F"><span class="nav-number">1.4.2.</span> <span class="nav-text">配置GitHub加速</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E4%BC%98%E5%8A%BF"><span class="nav-number">1.4.3.</span> <span class="nav-text">使用优势</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E5%9B%9B%EF%BC%9A%E7%BD%91%E7%BB%9C%E7%8E%AF%E5%A2%83%E5%88%87%E6%8D%A2%E7%AD%96%E7%95%A5"><span class="nav-number">1.5.</span> <span class="nav-text">方案四：网络环境切换策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VPN%E4%BD%BF%E7%94%A8%E5%BB%BA%E8%AE%AE"><span class="nav-number">1.5.1.</span> <span class="nav-text">VPN使用建议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E7%BD%91%E7%BB%9C%E7%8E%AF%E5%A2%83%E7%AE%A1%E7%90%86"><span class="nav-number">1.5.2.</span> <span class="nav-text">多网络环境管理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%BA%94%EF%BC%9A%E4%BD%BF%E7%94%A8GitHub%E9%95%9C%E5%83%8F%E7%AB%99%E7%82%B9"><span class="nav-number">1.6.</span> <span class="nav-text">方案五：使用GitHub镜像站点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E9%95%9C%E5%83%8F%E7%AB%99%E7%82%B9%E6%8E%A8%E8%8D%90"><span class="nav-number">1.6.1.</span> <span class="nav-text">常用镜像站点推荐</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%95%9C%E5%83%8F%E7%AB%99%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">1.6.2.</span> <span class="nav-text">镜像站使用方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%BC%E5%90%88%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E6%8E%A8%E8%8D%90"><span class="nav-number">1.7.</span> <span class="nav-text">综合解决方案推荐</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="nav-number">1.7.1.</span> <span class="nav-text">日常使用最佳实践</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E4%BC%98%E5%85%88%E7%BA%A7%E5%BB%BA%E8%AE%AE"><span class="nav-number">1.7.2.</span> <span class="nav-text">配置优先级建议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E4%B8%8E%E9%AA%8C%E8%AF%81"><span class="nav-number">1.8.</span> <span class="nav-text">故障排查与验证</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%AF%8A%E6%96%AD%E5%91%BD%E4%BB%A4"><span class="nav-number">1.8.1.</span> <span class="nav-text">常见问题诊断命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E9%AA%8C%E8%AF%81%E6%96%B9%E6%B3%95"><span class="nav-number">1.8.2.</span> <span class="nav-text">状态验证方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%80%A7%E7%BB%B4%E6%8A%A4%E6%8E%AA%E6%96%BD"><span class="nav-number">1.9.</span> <span class="nav-text">预防性维护措施</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E6%9C%9F%E7%BB%B4%E6%8A%A4%E4%BB%BB%E5%8A%A1"><span class="nav-number">1.9.1.</span> <span class="nav-text">定期维护任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E6%96%B9%E6%A1%88%E5%A4%87%E4%BB%BD%E7%AD%96%E7%95%A5"><span class="nav-number">1.9.2.</span> <span class="nav-text">多方案备份策略</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.10.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">鳞游</p>
+  <div class="site-description" itemprop="description">这是一个使用Hexo和Next主题搭建的个人博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://www.caellab.com/" title="https:&#x2F;&#x2F;www.caellab.com&#x2F;" rel="noopener" target="_blank">虚舟实验室</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.ccw.site/student/63ef2da0e77d1a05041bd28a" title="https:&#x2F;&#x2F;www.ccw.site&#x2F;student&#x2F;63ef2da0e77d1a05041bd28a" rel="noopener" target="_blank">A.C·TD（狙宿/宿长）</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://youye-luna.top/" title="https:&#x2F;&#x2F;youye-luna.top" rel="noopener" target="_blank">XIAOWU Blog</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://huhu.tomstudio.site/" title="https:&#x2F;&#x2F;huhu.tomstudio.site" rel="noopener" target="_blank">思绪矩阵</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://hexo.io/" title="https:&#x2F;&#x2F;hexo.io" rel="noopener" target="_blank">Hexo</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://theme-next.js.org/" title="https:&#x2F;&#x2F;theme-next.js.org" rel="noopener" target="_blank">NexT</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://world123.top/2026/03/07/2026-03-07-github%E8%AE%BF%E9%97%AE%E4%BC%98%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="鳞游">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鳞游の博客">
+      <meta itemprop="description" content="这是一个使用Hexo和Next主题搭建的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="GitHub访问优化完整教程 | 鳞游の博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          GitHub访问优化完整教程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-03-07 00:00:00" itemprop="dateCreated datePublished" datetime="2026-03-07T00:00:00+08:00">2026-03-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-04-10 18:47:54" itemprop="dateModified" datetime="2026-04-10T18:47:54+08:00">2026-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="GitHub访问优化完整教程"><a href="#GitHub访问优化完整教程" class="headerlink" title="GitHub访问优化完整教程"></a>GitHub访问优化完整教程</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>GitHub作为全球最大的代码托管平台，在国内访问时常遇到连接不稳定、速度慢甚至无法访问的问题。本文将详细介绍几种有效的解决方案，帮助您顺畅地使用GitHub。</p>
+<h2 id="方案一：使用在线工具获取真实IP地址"><a href="#方案一：使用在线工具获取真实IP地址" class="headerlink" title="方案一：使用在线工具获取真实IP地址"></a>方案一：使用在线工具获取真实IP地址</h2><h3 id="Boce网络检测工具"><a href="#Boce网络检测工具" class="headerlink" title="Boce网络检测工具"></a>Boce网络检测工具</h3><p>Boce是一个专业的网络检测平台，可以帮助我们找到GitHub的最佳访问IP。</p>
+<p><strong>操作步骤：</strong></p>
+<ol>
+<li>访问 <a target="_blank" rel="noopener" href="https://www.boce.com/">Boce官方网站</a></li>
+<li>在检测框中输入 <code>github.com</code></li>
+<li>选择多个检测节点进行PING测试</li>
+<li>记录响应速度快且稳定的IP地址</li>
+<li>常见的优质IP包括：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">140.82.113.4 github.com</span><br><span class="line">199.232.69.194 github.global.ssl.fastly.net</span><br><span class="line">185.199.108.153 assets-cdn.github.com</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="AntPing检测工具"><a href="#AntPing检测工具" class="headerlink" title="AntPing检测工具"></a>AntPing检测工具</h3><p>AntPing提供了更加直观的网络检测界面。</p>
+<p><strong>使用方法：</strong></p>
+<ol>
+<li>访问AntPing相关检测网站</li>
+<li>输入GitHub相关域名进行多地PING测试</li>
+<li>分析各地响应时间和丢包率</li>
+<li>选取最优IP地址用于HOSTS配置</li>
+</ol>
+<h2 id="方案二：修改系统HOSTS文件"><a href="#方案二：修改系统HOSTS文件" class="headerlink" title="方案二：修改系统HOSTS文件"></a>方案二：修改系统HOSTS文件</h2><p>获取到优质IP后，我们需要将其写入系统HOSTS文件以提升访问速度。</p>
+<h3 id="Windows系统操作"><a href="#Windows系统操作" class="headerlink" title="Windows系统操作"></a>Windows系统操作</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># <span class="number">1</span>. 以管理员身份打开记事本</span><br><span class="line"># <span class="number">2</span>. 打开文件路径：C:\Windows\System32\drivers\etc\hosts</span><br><span class="line"># <span class="number">3</span>. 在文件末尾添加以下内容：</span><br><span class="line"><span class="number">140</span>.<span class="number">82</span>.<span class="number">113</span>.<span class="number">4</span> github.com</span><br><span class="line"><span class="number">199</span>.<span class="number">232</span>.<span class="number">69</span>.<span class="number">194</span> github.global.ssl.fastly.<span class="built_in">net</span></span><br><span class="line"><span class="number">185</span>.<span class="number">199</span>.<span class="number">108</span>.<span class="number">153</span> assets-cdn.github.com</span><br><span class="line"><span class="number">185</span>.<span class="number">199</span>.<span class="number">109</span>.<span class="number">153</span> assets-cdn.github.com</span><br><span class="line"><span class="number">185</span>.<span class="number">199</span>.<span class="number">110</span>.<span class="number">153</span> assets-cdn.github.com</span><br><span class="line"><span class="number">185</span>.<span class="number">199</span>.<span class="number">111</span>.<span class="number">153</span> assets-cdn.github.com</span><br><span class="line"></span><br><span class="line"># <span class="number">4</span>. 保存文件并关闭</span><br><span class="line"># <span class="number">5</span>. 刷新DNS缓存：</span><br><span class="line"><span class="built_in">ipconfig</span> /flushdns</span><br></pre></td></tr></table></figure>
+
+<h3 id="macOS-Linux系统操作"><a href="#macOS-Linux系统操作" class="headerlink" title="macOS&#x2F;Linux系统操作"></a>macOS&#x2F;Linux系统操作</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 打开终端并编辑HOSTS文件：</span></span><br><span class="line"><span class="built_in">sudo</span> vim /etc/hosts</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 添加相同的IP映射关系</span></span><br><span class="line"><span class="comment"># 3. 保存退出后刷新DNS：</span></span><br><span class="line"><span class="comment"># macOS:</span></span><br><span class="line"><span class="built_in">sudo</span> dscacheutil -flushcache</span><br><span class="line"><span class="built_in">sudo</span> killall -HUP mDNSResponder</span><br><span class="line"></span><br><span class="line"><span class="comment"># Linux:</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl restart systemd-resolved.service</span><br></pre></td></tr></table></figure>
+
+<h2 id="方案三：使用Watt-Toolkit加速（强烈推荐）"><a href="#方案三：使用Watt-Toolkit加速（强烈推荐）" class="headerlink" title="方案三：使用Watt Toolkit加速（强烈推荐）"></a>方案三：使用Watt Toolkit加速（强烈推荐）</h2><p>Watt Toolkit（原Steam++）是一款免费开源的网络工具箱，专门针对各类网络服务进行加速优化。</p>
+<h3 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h3><ol>
+<li>访问Watt Toolkit官方GitHub仓库</li>
+<li>下载对应操作系统版本的安装包</li>
+<li>正常安装并启动程序</li>
+</ol>
+<h3 id="配置GitHub加速"><a href="#配置GitHub加速" class="headerlink" title="配置GitHub加速"></a>配置GitHub加速</h3><p><strong>基础配置步骤：</strong></p>
+<ol>
+<li>启动Watt Toolkit应用程序</li>
+<li>在主界面找到”网络加速”功能模块</li>
+<li>启用以下GitHub相关域名的加速：<ul>
+<li>github.com</li>
+<li>github.global.ssl.fastly.net</li>
+<li>raw.githubusercontent.com</li>
+<li>api.github.com</li>
+<li>avatars.githubusercontent.com</li>
+<li>camo.githubusercontent.com</li>
+</ul>
+</li>
+</ol>
+<p><strong>高级优化设置：</strong></p>
+<ol>
+<li>在设置中选择合适的代理模式（PAC智能代理推荐）</li>
+<li>启用系统代理自动配置</li>
+<li>设置开机自启动以保持持续加速</li>
+<li>定期更新内置的加速节点列表</li>
+</ol>
+<h3 id="使用优势"><a href="#使用优势" class="headerlink" title="使用优势"></a>使用优势</h3><ul>
+<li>自动识别并加速GitHub相关服务</li>
+<li>无需手动配置复杂的代理设置</li>
+<li>支持多种网络环境下的智能切换</li>
+<li>完全免费且开源透明</li>
+</ul>
+<h2 id="方案四：网络环境切换策略"><a href="#方案四：网络环境切换策略" class="headerlink" title="方案四：网络环境切换策略"></a>方案四：网络环境切换策略</h2><h3 id="VPN使用建议"><a href="#VPN使用建议" class="headerlink" title="VPN使用建议"></a>VPN使用建议</h3><p>当其他方法都无法解决问题时，可以考虑使用VPN切换网络环境。</p>
+<p><strong>选择VPN时需要注意：</strong></p>
+<ol>
+<li>选择信誉良好的服务商</li>
+<li>确保连接稳定性和安全性</li>
+<li>优选距离较近且延迟较低的服务器节点</li>
+<li>遵守当地网络使用法律法规</li>
+</ol>
+<h3 id="多网络环境管理"><a href="#多网络环境管理" class="headerlink" title="多网络环境管理"></a>多网络环境管理</h3><p>建立灵活的网络切换机制：</p>
+<ol>
+<li>家庭宽带网络（默认使用）</li>
+<li>移动热点网络（应急备用）</li>
+<li>办公网络（企业环境）</li>
+<li>VPN虚拟网络（特殊情况）</li>
+</ol>
+<h2 id="方案五：使用GitHub镜像站点"><a href="#方案五：使用GitHub镜像站点" class="headerlink" title="方案五：使用GitHub镜像站点"></a>方案五：使用GitHub镜像站点</h2><h3 id="常用镜像站点推荐"><a href="#常用镜像站点推荐" class="headerlink" title="常用镜像站点推荐"></a>常用镜像站点推荐</h3><p>在国内有一些提供GitHub镜像服务的站点：</p>
+<ol>
+<li><p><strong>CNPMJS镜像</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com.cnpmjs.org</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>FastGit镜像</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://download.fastgit.org</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>GHProxy代理</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://ghproxy.com</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="镜像站使用方法"><a href="#镜像站使用方法" class="headerlink" title="镜像站使用方法"></a>镜像站使用方法</h3><p><strong>克隆仓库时使用镜像：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 原始方式</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/username/repository.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用镜像方式</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com.cnpmjs.org/username/repository.git</span><br></pre></td></tr></table></figure>
+
+<p><strong>下载文件使用代理：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 原始链接</span></span><br><span class="line">https://github.com/username/repository/archive/main.zip</span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过代理下载</span></span><br><span class="line">https://ghproxy.com/https://github.com/username/repository/archive/main.zip</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置Git全局替换：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置Git使用镜像</span></span><br><span class="line">git config --global url.<span class="string">&quot;https://github.com.cnpmjs.org/&quot;</span>.insteadOf <span class="string">&quot;https://github.com/&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 恢复原始配置</span></span><br><span class="line">git config --global --<span class="built_in">unset</span> url.<span class="string">&quot;https://github.com.cnpmjs.org/&quot;</span>.insteadOf</span><br></pre></td></tr></table></figure>
+
+<h2 id="综合解决方案推荐"><a href="#综合解决方案推荐" class="headerlink" title="综合解决方案推荐"></a>综合解决方案推荐</h2><h3 id="日常使用最佳实践"><a href="#日常使用最佳实践" class="headerlink" title="日常使用最佳实践"></a>日常使用最佳实践</h3><ol>
+<li><strong>首选方案</strong>：Watt Toolkit全自动加速</li>
+<li><strong>备选方案</strong>：HOSTS文件优化 + 镜像站辅助</li>
+<li><strong>应急方案</strong>：VPN网络环境切换</li>
+<li><strong>极端情况</strong>：多重方案组合使用</li>
+</ol>
+<h3 id="配置优先级建议"><a href="#配置优先级建议" class="headerlink" title="配置优先级建议"></a>配置优先级建议</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">高优先级（推荐日常使用）</span><br><span class="line">├── Watt Toolkit加速</span><br><span class="line">└── HOSTS文件修改</span><br><span class="line"></span><br><span class="line">中优先级（特定场景使用）</span><br><span class="line">├── 镜像站点</span><br><span class="line">└── 网络环境切换</span><br><span class="line"></span><br><span class="line">低优先级（临时应急）</span><br><span class="line">└── VPN服务</span><br></pre></td></tr></table></figure>
+
+<h2 id="故障排查与验证"><a href="#故障排查与验证" class="headerlink" title="故障排查与验证"></a>故障排查与验证</h2><h3 id="常见问题诊断命令"><a href="#常见问题诊断命令" class="headerlink" title="常见问题诊断命令"></a>常见问题诊断命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查网络连通性</span></span><br><span class="line">ping github.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查DNS解析</span></span><br><span class="line">nslookup github.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查端口连通性</span></span><br><span class="line">telnet github.com 443</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查Git配置</span></span><br><span class="line">git config --global --list</span><br></pre></td></tr></table></figure>
+
+<h3 id="状态验证方法"><a href="#状态验证方法" class="headerlink" title="状态验证方法"></a>状态验证方法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 验证SSH连接</span></span><br><span class="line">ssh -T git@github.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证HTTPS访问</span></span><br><span class="line">curl -I https://github.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证Git操作</span></span><br><span class="line">git ls-remote https://github.com/git/git.git HEAD</span><br></pre></td></tr></table></figure>
+
+<h2 id="预防性维护措施"><a href="#预防性维护措施" class="headerlink" title="预防性维护措施"></a>预防性维护措施</h2><h3 id="定期维护任务"><a href="#定期维护任务" class="headerlink" title="定期维护任务"></a>定期维护任务</h3><ol>
+<li><p><strong>每月更新HOSTS文件</strong></p>
+<ul>
+<li>检测新IP地址变化</li>
+<li>替换失效的映射条目</li>
+<li>清理冗余配置项</li>
+</ul>
+</li>
+<li><p><strong>每周检查工具更新</strong></p>
+<ul>
+<li>更新Watt Toolkit至最新版本</li>
+<li>验证加速节点有效性</li>
+<li>优化配置参数</li>
+</ul>
+</li>
+<li><p><strong>每日监控访问状态</strong></p>
+<ul>
+<li>测试基本连通性</li>
+<li>记录异常访问情况</li>
+<li>准备应急预案</li>
+</ul>
+</li>
+</ol>
+<h3 id="多方案备份策略"><a href="#多方案备份策略" class="headerlink" title="多方案备份策略"></a>多方案备份策略</h3><ol>
+<li>保留多种解决方案的配置文档</li>
+<li>定期测试各种方案的有效性</li>
+<li>建立快速切换的操作流程</li>
+<li>记录个人最适用的组合方案</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过上述多种方法的综合运用，我们可以显著改善GitHub在国内的访问体验。建议根据个人实际情况和技术水平选择合适的方法：</p>
+<ul>
+<li>技术新手：推荐使用Watt Toolkit一站式解决方案</li>
+<li>技术爱好者：可以尝试HOSTS优化配合镜像站使用</li>
+<li>极客用户：多种方案组合实现最佳效果</li>
+</ul>
+<p>记住，网络环境随时可能发生变化，保持多种解决方案的灵活性是应对GitHub访问问题的关键。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/GitHub/" rel="tag"># GitHub</a>
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E4%BC%98%E5%8C%96/" rel="tag"># 网络优化</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/07/2026-03-07-%E7%8E%A9%E8%BD%ACcloudflare/" rel="prev" title="教你玩转cloudflare">
+                  <i class="fa fa-angle-left"></i> 教你玩转cloudflare
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/03/07/2026-03-07-Vue%E9%A1%B9%E7%9B%AE%E7%9A%84%E9%83%A8%E7%BD%B2/" rel="next" title="Vue项目打包入门：从流程到核心要点解析">
+                  Vue项目打包入门：从流程到核心要点解析 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">© 2026 鳞游. 保留所有权利. <a href="https://icp.gov.moe/?keyword=20267766" target="_blank">萌ICP备20267766号</a></span>
+  </div>
+<div class="busuanzi-count">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-calendar"></i>
+    </span>
+    <span title="今日总访问量">
+      今日总访问量 <span id="busuanzi_today_pv">加载中...</span> 次
+    </span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span title="今日总访客数">
+      今日总访客数 <span id="busuanzi_today_uv">加载中...</span> 人
+    </span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span title="本站总访问量">
+      本站总访问量 <span id="busuanzi_site_pv">加载中...</span> 次
+    </span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-users"></i>
+    </span>
+    <span title="本站总访客数">
+      本站总访客数 <span id="busuanzi_site_uv">加载中...</span> 人
+    </span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"siciyuan/blog","repo_id":"R_kgDORcXi_w","category":"Announcements","category_id":"DIC_kwDORcXi_84C6EiT","mapping":"pathname","strict":1,"reactions_enabled":1,"emit_metadata":1,"theme":"preferred_color_scheme","lang":"zh-CN","crossorigin":"anonymous","input_position":"top","loading":"lazy"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+</body>
+</html>
