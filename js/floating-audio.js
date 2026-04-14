@@ -37,15 +37,15 @@ class FloatingAudioPlayer {
       position: fixed;
       bottom: ${this.options.position.y}px;
       right: ${this.options.position.x}px;
-      width: 300px;
-      background: rgba(255, 255, 255, 0.95);
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      padding: 10px;
+      width: 320px;
+      background: linear-gradient(135deg, #4CAF50 0%, #81C784 100%);
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(76, 175, 80, 0.3);
+      padding: 16px;
       z-index: 9999;
       transition: all 0.3s ease;
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     `;
 
     // Create player header
@@ -55,30 +55,48 @@ class FloatingAudioPlayer {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 10px;
-      cursor: move;
+      margin-bottom: 12px;
+      cursor: grab;
     `;
 
     const title = document.createElement('h4');
     title.style.cssText = `
       margin: 0;
-      font-size: 14px;
-      color: #333;
+      font-size: 16px;
+      color: white;
+      font-weight: 600;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     `;
     title.textContent = `${this.options.title} - ${this.options.artist}`;
 
     const closeBtn = document.createElement('button');
     closeBtn.className = 'close-btn';
     closeBtn.style.cssText = `
-      background: none;
+      background: rgba(255, 255, 255, 0.2);
       border: none;
-      font-size: 16px;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      font-size: 14px;
       cursor: pointer;
-      color: #999;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
     `;
     closeBtn.innerHTML = '&times;';
+    closeBtn.addEventListener('mouseenter', () => {
+      closeBtn.style.background = 'rgba(255, 255, 255, 0.3)';
+    });
+    closeBtn.addEventListener('mouseleave', () => {
+      closeBtn.style.background = 'rgba(255, 255, 255, 0.2)';
+    });
     closeBtn.addEventListener('click', () => {
-      container.style.display = 'none';
+      container.style.opacity = '0';
+      setTimeout(() => {
+        container.style.display = 'none';
+      }, 300);
     });
 
     header.appendChild(title);
@@ -90,7 +108,8 @@ class FloatingAudioPlayer {
     audio.preload = 'metadata';
     audio.style.cssText = `
       width: 100%;
-      height: 35px;
+      height: 40px;
+      filter: invert(1) hue-rotate(180deg) saturate(1.2);
     `;
 
     const source = document.createElement('source');
@@ -99,9 +118,59 @@ class FloatingAudioPlayer {
 
     audio.appendChild(source);
 
+    // Add visualizer placeholder
+    const visualizer = document.createElement('div');
+    visualizer.className = 'audio-visualizer';
+    visualizer.style.cssText = `
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      margin-top: 10px;
+      gap: 4px;
+    `;
+
+    // Create visualizer bars
+    for (let i = 0; i < 10; i++) {
+      const bar = document.createElement('div');
+      bar.style.cssText = `
+        width: 4px;
+        background: linear-gradient(to top, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 1));
+        border-radius: 2px;
+        height: ${Math.random() * 20 + 10}px;
+        animation: pulse ${Math.random() * 0.5 + 0.5}s infinite ease-in-out alternate;
+        animation-delay: ${i * 0.05}s;
+      `;
+      visualizer.appendChild(bar);
+    }
+
+    // Add animation styles
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes pulse {
+        from { 
+          height: 10px;
+          opacity: 0.6;
+        }
+        to { 
+          height: 30px;
+          opacity: 1;
+        }
+      }
+      .floating-audio-player:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(76, 175, 80, 0.4);
+      }
+      .player-header:active {
+        cursor: grabbing;
+      }
+    `;
+    document.head.appendChild(style);
+
     // Assemble player
     container.appendChild(header);
     container.appendChild(audio);
+    container.appendChild(visualizer);
 
     // Add to document
     document.body.appendChild(container);
