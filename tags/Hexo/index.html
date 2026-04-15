@@ -389,30 +389,84 @@
 </noscript>
 <script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"siciyuan/blog","repo_id":"R_kgDORcXi_w","category":"Announcements","category_id":"DIC_kwDORcXi_84C6EiT","mapping":"pathname","strict":1,"reactions_enabled":1,"emit_metadata":1,"theme":"preferred_color_scheme","lang":"zh-CN","crossorigin":"anonymous","input_position":"top","loading":"lazy"}</script>
 
+<!-- Cloudflare Turnstile -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
 <script>
 document.addEventListener('page:loaded', () => {
   if (!CONFIG.page.comments) return;
 
-  NexT.utils.loadComments('.giscus-container')
-    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
-      attributes: {
-        async                   : true,
-        crossOrigin             : 'anonymous',
-        'data-repo'             : CONFIG.giscus.repo,
-        'data-repo-id'          : CONFIG.giscus.repo_id,
-        'data-category'         : CONFIG.giscus.category,
-        'data-category-id'      : CONFIG.giscus.category_id,
-        'data-mapping'          : CONFIG.giscus.mapping,
-        'data-strict'           : CONFIG.giscus.strict,
-        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
-        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
-        'data-theme'            : CONFIG.giscus.theme,
-        'data-lang'             : CONFIG.giscus.lang,
-        'data-input-position'   : CONFIG.giscus.input_position,
-        'data-loading'          : CONFIG.giscus.loading
-      },
-      parentNode: document.querySelector('.giscus-container')
-    }));
+  const giscusContainer = document.querySelector('.giscus-container');
+  
+  // Check if it's local domain (localhost or 127.0.0.1)
+  const isLocalDomain = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  
+  if (isLocalDomain) {
+    // For local domains, directly load Giscus without Turnstile
+    NexT.utils.loadComments('.giscus-container')
+      .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+        attributes: {
+          async                   : true,
+          crossOrigin             : 'anonymous',
+          'data-repo'             : CONFIG.giscus.repo,
+          'data-repo-id'          : CONFIG.giscus.repo_id,
+          'data-category'         : CONFIG.giscus.category,
+          'data-category-id'      : CONFIG.giscus.category_id,
+          'data-mapping'          : CONFIG.giscus.mapping,
+          'data-strict'           : CONFIG.giscus.strict,
+          'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+          'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+          'data-theme'            : CONFIG.giscus.theme,
+          'data-lang'             : CONFIG.giscus.lang,
+          'data-input-position'   : CONFIG.giscus.input_position,
+          'data-loading'          : CONFIG.giscus.loading
+        },
+        parentNode: giscusContainer
+      }));
+  } else {
+    // For remote domains, show Turnstile first
+    // Create Turnstile container
+    const turnstileContainer = document.createElement('div');
+    turnstileContainer.className = 'turnstile-container';
+    turnstileContainer.style.textAlign = 'center';
+    turnstileContainer.style.padding = '20px';
+    turnstileContainer.innerHTML = `
+      <h3>请验证您不是机器人</h3>
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAAC9_eHOjn1qyCvSf" data-callback="onTurnstileSuccess"></div>
+    `;
+    
+    // Clear giscus container and add turnstile
+    giscusContainer.innerHTML = '';
+    giscusContainer.appendChild(turnstileContainer);
+    
+    // Define success callback
+    window.onTurnstileSuccess = function(token) {
+      // Remove turnstile container
+      giscusContainer.innerHTML = '';
+      
+      // Load Giscus
+      NexT.utils.loadComments('.giscus-container')
+        .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+          attributes: {
+            async                   : true,
+            crossOrigin             : 'anonymous',
+            'data-repo'             : CONFIG.giscus.repo,
+            'data-repo-id'          : CONFIG.giscus.repo_id,
+            'data-category'         : CONFIG.giscus.category,
+            'data-category-id'      : CONFIG.giscus.category_id,
+            'data-mapping'          : CONFIG.giscus.mapping,
+            'data-strict'           : CONFIG.giscus.strict,
+            'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+            'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+            'data-theme'            : CONFIG.giscus.theme,
+            'data-lang'             : CONFIG.giscus.lang,
+            'data-input-position'   : CONFIG.giscus.input_position,
+            'data-loading'          : CONFIG.giscus.loading
+          },
+          parentNode: giscusContainer
+        }));
+    };
+  }
 });
 </script>
 
