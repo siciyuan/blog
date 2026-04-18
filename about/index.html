@@ -668,7 +668,7 @@ document.addEventListener('page:loaded', () => {
         // Ensure Turnstile script is loaded before rendering
         function renderTurnstile() {
           if (typeof turnstile !== 'undefined') {
-            turnstile.render();
+            turnstile.render(turnstileDiv);
           } else {
             // Retry after a short delay
             setTimeout(renderTurnstile, 100);
@@ -788,7 +788,7 @@ document.addEventListener('page:loaded', () => {
         // Ensure Turnstile script is loaded before rendering
         function renderTurnstile() {
           if (typeof turnstile !== 'undefined') {
-            turnstile.render();
+            turnstile.render(turnstileDiv);
           } else {
             // Retry after a short delay
             setTimeout(renderTurnstile, 100);
