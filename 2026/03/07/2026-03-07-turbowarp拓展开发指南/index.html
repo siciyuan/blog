@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#37c6c0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#37c6c0" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://gp3e.saobby.com/i/1KmIsDN13WaHYFB0.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://gp3e.saobby.com/i/1KmIsDN13WaHYFB0.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://gp3e.saobby.com/i/1KmIsDN13WaHYFB0.ico">
+  <link rel="mask-icon" href="https://gp3e.saobby.com/i/1KmIsDN13WaHYFB0.ico" color="#37c6c0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Noto+Serif+SC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Fira+Code:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"world123.top","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"giscus","storage":true,"lazyload":false,"nav":{"giscus":{"text":"Giscus","order":-1}},"activeClass":"giscus"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="TurboWarp拓展开发教程前言TurboWarp是一个基于Scratch的现代化编程环境，它不仅提供了更快的执行速度，还支持自定义拓展功能。通过JavaScript开发拓展，我们可以为TurboWarp添加新的积木块、功能模块和交互方式。本文将详细介绍如何开发TurboWarp拓展。 什么是TurboWarp拓展TurboWarp拓展是用JavaScript编写的插件，可以为TurboWarp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TurboWarp拓展开发教程">
+<meta property="og:url" content="https://world123.top/2026/03/07/2026-03-07-turbowarp%E6%8B%93%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="鳞游の博客">
+<meta property="og:description" content="TurboWarp拓展开发教程前言TurboWarp是一个基于Scratch的现代化编程环境，它不仅提供了更快的执行速度，还支持自定义拓展功能。通过JavaScript开发拓展，我们可以为TurboWarp添加新的积木块、功能模块和交互方式。本文将详细介绍如何开发TurboWarp拓展。 什么是TurboWarp拓展TurboWarp拓展是用JavaScript编写的插件，可以为TurboWarp">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-03-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-07T05:07:42.114Z">
+<meta property="article:author" content="鳞游">
+<meta property="article:tag" content="鳞游,技术,博客,生活,记录,分享,个人博客,Hexo,Next,主题,搭建,记录,分享,个人博客,Hexo,Next,主题,搭建,记录,分享">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://world123.top/2026/03/07/2026-03-07-turbowarp%E6%8B%93%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://world123.top/2026/03/07/2026-03-07-turbowarp%E6%8B%93%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/","path":"2026/03/07/2026-03-07-turbowarp拓展开发指南/","title":"TurboWarp拓展开发教程"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>TurboWarp拓展开发教程 | 鳞游の博客</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/floating-audio.js" defer></script>
+
+  <script src="/js/third-party/search/search.js" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+  <script src="https://cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">鳞游の博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录生活与技术的一个小空间</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-一些链接"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>一些链接</a></li><li class="menu-item menu-item-微语录"><a href="/quotes/" rel="section"><i class="fa fa-quote-right fa-fw"></i>微语录</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TurboWarp%E6%8B%93%E5%B1%95%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">TurboWarp拓展开发教程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFTurboWarp%E6%8B%93%E5%B1%95"><span class="nav-number">1.2.</span> <span class="nav-text">什么是TurboWarp拓展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="nav-number">1.3.</span> <span class="nav-text">开发环境准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E8%A6%81%E6%B1%82"><span class="nav-number">1.3.1.</span> <span class="nav-text">基础要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="nav-number">1.3.2.</span> <span class="nav-text">项目结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E6%8B%93%E5%B1%95%E5%BC%80%E5%8F%91"><span class="nav-number">1.4.</span> <span class="nav-text">基础拓展开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%8B%93%E5%B1%95%E6%96%87%E4%BB%B6"><span class="nav-number">1.4.1.</span> <span class="nav-text">创建拓展文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">1.4.2.</span> <span class="nav-text">项目配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E7%BA%A7%E6%8B%93%E5%B1%95%E5%8A%9F%E8%83%BD"><span class="nav-number">1.5.</span> <span class="nav-text">高级拓展功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E7%A7%AF%E6%9C%A8%E5%9D%97"><span class="nav-number">1.5.1.</span> <span class="nav-text">带参数的积木块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%94%A8%E6%8B%93%E5%B1%95%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.6.</span> <span class="nav-text">实用拓展示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%8B%93%E5%B1%95"><span class="nav-number">1.6.1.</span> <span class="nav-text">数学计算拓展</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E6%8B%93%E5%B1%95"><span class="nav-number">1.7.</span> <span class="nav-text">网络请求拓展</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#API%E9%9B%86%E6%88%90%E6%8B%93%E5%B1%95"><span class="nav-number">1.7.1.</span> <span class="nav-text">API集成拓展</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%93%E5%B1%95%E6%B5%8B%E8%AF%95%E5%92%8C%E8%B0%83%E8%AF%95"><span class="nav-number">1.8.</span> <span class="nav-text">拓展测试和调试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95"><span class="nav-number">1.8.1.</span> <span class="nav-text">本地测试方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7"><span class="nav-number">1.8.2.</span> <span class="nav-text">调试技巧</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%91%E5%B8%83%E5%92%8C%E5%88%86%E4%BA%AB"><span class="nav-number">1.9.</span> <span class="nav-text">发布和分享</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%98%E7%AE%A1%E6%8B%93%E5%B1%95%E6%96%87%E4%BB%B6"><span class="nav-number">1.9.1.</span> <span class="nav-text">托管拓展文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E4%BA%AB%E7%BB%99%E7%A4%BE%E5%8C%BA"><span class="nav-number">1.9.2.</span> <span class="nav-text">分享给社区</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E5%BB%BA%E8%AE%AE"><span class="nav-number">1.10.</span> <span class="nav-text">最佳实践建议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83"><span class="nav-number">1.10.1.</span> <span class="nav-text">代码规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="nav-number">1.10.2.</span> <span class="nav-text">性能优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C"><span class="nav-number">1.10.3.</span> <span class="nav-text">用户体验</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="nav-number">1.11.</span> <span class="nav-text">常见问题解决</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%93%E5%B1%95%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD"><span class="nav-number">1.11.1.</span> <span class="nav-text">拓展无法加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%AF%E6%9C%A8%E4%B8%8D%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.11.2.</span> <span class="nav-text">积木不工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E5%A4%B1%E8%B4%A5"><span class="nav-number">1.11.3.</span> <span class="nav-text">网络请求失败</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="鳞游"
+      src="https://gp3e.saobby.com/i/l7daUORlxBgbejIo.png">
+  <p class="site-author-name" itemprop="name">鳞游</p>
+  <div class="site-description" itemprop="description">这是一个使用Hexo和Next主题搭建的个人博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://www.caellab.com/" title="https:&#x2F;&#x2F;www.caellab.com&#x2F;" rel="noopener" target="_blank">虚舟实验室</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.ccw.site/student/63ef2da0e77d1a05041bd28a" title="https:&#x2F;&#x2F;www.ccw.site&#x2F;student&#x2F;63ef2da0e77d1a05041bd28a" rel="noopener" target="_blank">A.C·TD（狙宿/宿长）</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://youye-luna.top/" title="https:&#x2F;&#x2F;youye-luna.top" rel="noopener" target="_blank">XIAOWU Blog</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://huhu.tomstudio.site/" title="https:&#x2F;&#x2F;huhu.tomstudio.site" rel="noopener" target="_blank">思绪矩阵</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://hexo.io/" title="https:&#x2F;&#x2F;hexo.io" rel="noopener" target="_blank">Hexo</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://theme-next.js.org/" title="https:&#x2F;&#x2F;theme-next.js.org" rel="noopener" target="_blank">NexT</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://world123.top/2026/03/07/2026-03-07-turbowarp%E6%8B%93%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://gp3e.saobby.com/i/l7daUORlxBgbejIo.png">
+      <meta itemprop="name" content="鳞游">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鳞游の博客">
+      <meta itemprop="description" content="这是一个使用Hexo和Next主题搭建的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="TurboWarp拓展开发教程 | 鳞游の博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          TurboWarp拓展开发教程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-03-07 00:00:00 / 修改时间：13:07:42" itemprop="dateCreated datePublished" datetime="2026-03-07T00:00:00+08:00">2026-03-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/turbowarp/" itemprop="url" rel="index"><span itemprop="name">turbowarp</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/turbowarp/%E6%8B%93%E5%B1%95/" itemprop="url" rel="index"><span itemprop="name">拓展</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/turbowarp/%E6%8B%93%E5%B1%95/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">开发</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/turbowarp/%E6%8B%93%E5%B1%95/%E5%BC%80%E5%8F%91/%E6%8C%87%E5%8D%97/" itemprop="url" rel="index"><span itemprop="name">指南</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/turbowarp/%E6%8B%93%E5%B1%95/%E5%BC%80%E5%8F%91/%E6%8C%87%E5%8D%97/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/turbowarp/%E6%8B%93%E5%B1%95/%E5%BC%80%E5%8F%91/%E6%8C%87%E5%8D%97/%E6%8A%80%E6%9C%AF/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="TurboWarp拓展开发教程"><a href="#TurboWarp拓展开发教程" class="headerlink" title="TurboWarp拓展开发教程"></a>TurboWarp拓展开发教程</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>TurboWarp是一个基于Scratch的现代化编程环境，它不仅提供了更快的执行速度，还支持自定义拓展功能。通过JavaScript开发拓展，我们可以为TurboWarp添加新的积木块、功能模块和交互方式。本文将详细介绍如何开发TurboWarp拓展。</p>
+<h2 id="什么是TurboWarp拓展"><a href="#什么是TurboWarp拓展" class="headerlink" title="什么是TurboWarp拓展"></a>什么是TurboWarp拓展</h2><p>TurboWarp拓展是用JavaScript编写的插件，可以为TurboWarp编辑器添加新的功能。拓展可以包含：</p>
+<ul>
+<li>自定义积木块（blocks）</li>
+<li>新的变量和列表操作</li>
+<li>外部API集成</li>
+<li>硬件控制功能</li>
+<li>游戏增强功能</li>
+</ul>
+<h2 id="开发环境准备"><a href="#开发环境准备" class="headerlink" title="开发环境准备"></a>开发环境准备</h2><h3 id="基础要求"><a href="#基础要求" class="headerlink" title="基础要求"></a>基础要求</h3><ol>
+<li>熟悉JavaScript编程</li>
+<li>了解TurboWarp&#x2F;Scratch的基本概念</li>
+<li>文本编辑器（推荐VS Code）</li>
+<li>现代浏览器（用于测试）</li>
+</ol>
+<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">turbowarp-extension/</span><br><span class="line">├── extension.js          # 拓展主文件</span><br><span class="line">├── package.json         # 项目配置文件</span><br><span class="line">└── README.md           # 说明文档</span><br></pre></td></tr></table></figure>
+
+<h2 id="基础拓展开发"><a href="#基础拓展开发" class="headerlink" title="基础拓展开发"></a>基础拓展开发</h2><h3 id="创建拓展文件"><a href="#创建拓展文件" class="headerlink" title="创建拓展文件"></a>创建拓展文件</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>(<span class="params">Scratch</span>) &#123;</span><br><span class="line">  <span class="string">&#x27;use strict&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">class</span> <span class="title class_">ExampleExtension</span> &#123;</span><br><span class="line">    <span class="title function_">getInfo</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="comment">// 拓展ID，必须唯一</span></span><br><span class="line">        <span class="attr">id</span>: <span class="string">&#x27;exampleExtension&#x27;</span>,</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 拓展显示名称</span></span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;示例拓展&#x27;</span>,</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 拓展颜色（可选）</span></span><br><span class="line">        <span class="attr">color1</span>: <span class="string">&#x27;#FF6680&#x27;</span>,</span><br><span class="line">        <span class="attr">color2</span>: <span class="string">&#x27;#FF4D6A&#x27;</span>,</span><br><span class="line">        <span class="attr">color3</span>: <span class="string">&#x27;#FF3355&#x27;</span>,</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 拓展菜单项</span></span><br><span class="line">        <span class="attr">menuIconURI</span>: <span class="string">&#x27;&#x27;</span>, <span class="comment">// 菜单图标URL</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 拓展描述</span></span><br><span class="line">        <span class="attr">blocks</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">opcode</span>: <span class="string">&#x27;exampleBlock&#x27;</span>,</span><br><span class="line">            <span class="attr">blockType</span>: <span class="title class_">Scratch</span>.<span class="property">BlockType</span>.<span class="property">COMMAND</span>,</span><br><span class="line">            <span class="attr">text</span>: <span class="string">&#x27;执行示例操作&#x27;</span>,</span><br><span class="line">            <span class="attr">arguments</span>: &#123;&#125;</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">opcode</span>: <span class="string">&#x27;getValue&#x27;</span>,</span><br><span class="line">            <span class="attr">blockType</span>: <span class="title class_">Scratch</span>.<span class="property">BlockType</span>.<span class="property">REPORTER</span>,</span><br><span class="line">            <span class="attr">text</span>: <span class="string">&#x27;获取示例值&#x27;</span>,</span><br><span class="line">            <span class="attr">arguments</span>: &#123;&#125;</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 实现积木块功能</span></span><br><span class="line">    <span class="title function_">exampleBlock</span>(<span class="params">args, util</span>) &#123;</span><br><span class="line">      <span class="comment">// 这里实现具体功能</span></span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;示例积木被执行&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">getValue</span>(<span class="params">args, util</span>) &#123;</span><br><span class="line">      <span class="comment">// 返回一个值</span></span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;Hello TurboWarp!&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 注册拓展</span></span><br><span class="line">  <span class="title class_">Scratch</span>.<span class="property">extensions</span>.<span class="title function_">register</span>(<span class="keyword">new</span> <span class="title class_">ExampleExtension</span>());</span><br><span class="line">&#125;)(<span class="title class_">Scratch</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="项目配置文件"><a href="#项目配置文件" class="headerlink" title="项目配置文件"></a>项目配置文件</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;turbowarp-example-extension&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;TurboWarp示例拓展&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;main&quot;</span><span class="punctuation">:</span> <span class="string">&quot;extension.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;test&quot;</span><span class="punctuation">:</span> <span class="string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;keywords&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;turbowarp&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;extension&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;scratch&quot;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;author&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Your Name&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;license&quot;</span><span class="punctuation">:</span> <span class="string">&quot;MIT&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="高级拓展功能"><a href="#高级拓展功能" class="headerlink" title="高级拓展功能"></a>高级拓展功能</h2><h3 id="带参数的积木块"><a href="#带参数的积木块" class="headerlink" title="带参数的积木块"></a>带参数的积木块</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>(<span class="params">Scratch</span>) &#123;</span><br><span class="line">  <span class="string">&#x27;use strict&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">class</span> <span class="title class_">AdvancedExtension</span> &#123;</span><br><span class="line">    <span class="title function_">getInfo</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="attr">id</span>: <span class="string">&#x27;advancedExtension&#x27;</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;高级拓展&#x27;</span>,</span><br><span class="line">        <span class="attr">color1</span>: <span class="string">&#x27;#4CAF50&#x27;</span>,</span><br><span class="line">        <span class="attr">color2</span>: <span class="string">&#x27;#45a049&#x27;</span>,</span><br><span class="line">        <span class="attr">color3</span>: <span class="string">&#x27;#3d8b40&#x27;</span>,</span><br><span class="line">        </span><br><span class="line">        <span class="attr">blocks</span>: [</span><br><span class="line">          <span class="comment">// 带输入参数的命令积木</span></span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">opcode</span>: <span class="string">&#x27;sayHello&#x27;</span>,</span><br><span class="line">            <span class="attr">blockType</span>: <span class="title class_">Scratch</span>.<span class="property">BlockType</span>.<span class="property">COMMAND</span>,</span><br><span class="line">            <span class="attr">text</span>: <span class="string">&#x27;向 [NAME] 打招呼&#x27;</span>,</span><br><span class="line">            <span class="attr">arguments</span>: &#123;</span><br><span class="line">              <span class="attr">NAME</span>: &#123;</span><br><span class="line">                <span class="attr">type</span>: <span class="title class_">Scratch</span>.<span class="property">ArgumentType</span>.<span class="property">STRING</span>,</span><br><span class="line">                <span class="attr">defaultValue</span>: <span class="string">&#x27;世界&#x27;</span></span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;,</span><br><span class="line">          </span><br><span class="line">          <span class="comment">// 带多个参数的积木</span></span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">opcode</span>: <span class="string">&#x27;calculate&#x27;</span>,</span><br><span class="line">            <span class="attr">blockType</span>: <span class="title class_">Scratch</span>.<span class="property">BlockType</span>.<span class="property">REPORTER</span>,</span><br><span class="line">            <span class="attr">text</span>: <span class="string">&#x27;[A] 加 [B] 等于&#x27;</span>,</span><br><span class="line">            <span class="attr">arguments</span>: &#123;</span><br><span class="line">              <span class="attr">A</span>: &#123;</span><br><span class="line">                <span class="attr">type</span>: <span class="title class_">Scratch</span>.<span class="property">ArgumentType</span>.<span class="property">NUMBER</span>,</span><br><span class="line">                <span class="attr">defaultValue</span>: <span class="number">10</span></span><br><span class="line">              &#125;,</span><br><span class="line">              <span class="attr">B</span>: &#123;</span><br><span class="line">                <span class="attr">type</span>: <span class="title class_">Scratch</span>.<span class="property">ArgumentType</span>.<span class="property">NUMBER</span>,</span><br><span class="line">                <span class="attr">defaultValue</span>: <span class="number">5</span></span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;,</span><br><span class="line">          </span><br><span class="line">          <span class="comment">// 布尔值积木</span></span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">opcode</span>: <span class="string">&#x27;isEven&#x27;</span>,</span><br><span class="line">            <span class="attr">blockType</span>: <span class="title class_">Scratch</span>.<span class="property">BlockType</span>.<span class="property">BOOLEAN</span>,</span><br><span class="line">            <span class="attr">text</span>: <span class="string">&#x27;[NUMBER] 是偶数？&#x27;</span>,</span><br><span class="line">            <span class="attr">arguments</span>: &#123;</span><br><span class="line">              <span class="attr">NUMBER</span>: &#123;</span><br><span class="line">                <span class="attr">type</span>: <span class="title class_">Scratch</span>.<span class="property">ArgumentType</span>.<span class="property">NUMBER</span>,</span><br><span class="line">                <span class="attr">defaultValue</span>: <span class="number">4</span></span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;,</span><br><span class="line">          </span><br><span class="line">          <span class="comment">// 下拉菜单积木</span></span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">opcode</span>: <span class="string">&#x27;getDay&#x27;</span>,</span><br><span class="line">            <span class="attr">blockType</span>: <span class="title class_">Scratch</span>.<span class="property">BlockType</span>.<span class="property">REPORTER</span>,</span><br><span class="line">            <span class="attr">text</span>: <span class="string">&#x27;获取 [DAY] 的信息&#x27;</span>,</span><br><span class="line">            <span class="attr">arguments</span>: &#123;</span><br><span class="line">              <span class="attr">DAY</span>: &#123;</span><br><span class="line">                <span class="attr">type</span>: <span class="title class_">Scratch</span>.<span class="property">ArgumentType</span>.<span class="property">STRING</span>,</span><br><span class="line">                <span class="attr">menu</span>: <span class="string">&#x27;days&#x27;</span>,</span><br><span class="line">                <span class="attr">defaultValue</span>: <span class="string">&#x27;monday&#x27;</span></span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        ],</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 下拉菜单定义</span></span><br><span class="line">        <span class="attr">menus</span>: &#123;</span><br><span class="line">          <span class="attr">days</span>: &#123;</span><br><span class="line">            <span class="attr">items</span>: [</span><br><span class="line">              &#123;</span><br><span class="line">                <span class="attr">text</span>: <span class="string">&#x27;星期一&#x27;</span>,</span><br><span class="line">                <span class="attr">value</span>: <span class="string">&#x27;monday&#x27;</span></span><br><span class="line">              &#125;,</span><br><span class="line">              &#123;</span><br><span class="line">                <span class="attr">text</span>: <span class="string">&#x27;星期二&#x27;</span>,</span><br><span class="line">                <span class="attr">value</span>: <span class="string">&#x27;tuesday&#x27;</span></span><br><span class="line">              &#125;,</span><br><span class="line">              &#123;</span><br><span class="line">                <span class="attr">text</span>: <span class="string">&#x27;星期三&#x27;</span>,</span><br><span class="line">                <span class="attr">value</span>: <span class="string">&#x27;wednesday&#x27;</span></span><br><span class="line">              &#125;</span><br><span class="line">            ]</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 实现积木功能</span></span><br><span class="line">    <span class="title function_">sayHello</span>(<span class="params">args, util</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> name = args.<span class="property">NAME</span>;</span><br><span class="line">      <span class="comment">// 在TurboWarp中显示消息</span></span><br><span class="line">      <span class="keyword">if</span> (util.<span class="property">runtime</span>.<span class="property">renderer</span>) &#123;</span><br><span class="line">        <span class="comment">// 可以在这里添加更多逻辑</span></span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Hello, <span class="subst">$&#123;name&#125;</span>!`</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">calculate</span>(<span class="params">args, util</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> a = <span class="title class_">Number</span>(args.<span class="property">A</span>);</span><br><span class="line">      <span class="keyword">const</span> b = <span class="title class_">Number</span>(args.<span class="property">B</span>);</span><br><span class="line">      <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">isEven</span>(<span class="params">args, util</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> number = <span class="title class_">Number</span>(args.<span class="property">NUMBER</span>);</span><br><span class="line">      <span class="keyword">return</span> number % <span class="number">2</span> === <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">getDay</span>(<span class="params">args, util</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> day = args.<span class="property">DAY</span>;</span><br><span class="line">      <span class="keyword">const</span> dayMap = &#123;</span><br><span class="line">        <span class="string">&#x27;monday&#x27;</span>: <span class="string">&#x27;星期一&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;tuesday&#x27;</span>: <span class="string">&#x27;星期二&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;wednesday&#x27;</span>: <span class="string">&#x27;星期三&#x27;</span></span><br><span class="line">      &#125;;</span><br><span class="line">      <span class="keyword">return</span> dayMap[day] || <span class="string">&#x27;未知&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title class_">Scratch</span>.<span class="property">extensions</span>.<span class="title function_">register</span>(<span class="keyword">new</span> <span class="title class_">AdvancedExtension</span>());</span><br><span class="line">&#125;)(<span class="title class_">Scratch</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="实用拓展示例"><a href="#实用拓展示例" class="headerlink" title="实用拓展示例"></a>实用拓展示例</h2><h3 id="数学计算拓展"><a href="#数学计算拓展" class="headerlink" title="数学计算拓展"></a>数学计算拓展</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>(<span class="params">Scratch</span>) &#123;</span><br><span class="line">  <span class="string">&#x27;use strict&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">class</span> <span class="title class_">MathExtension</span> &#123;</span><br><span class="line">    <span class="title function_">getInfo</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="attr">id</span>: <span class="string">&#x27;mathExtension&#x27;</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;数学拓展&#x27;</span>,</span><br><span class="line">        <span class="attr">color1</span>: <span class="string">&#x27;#2196F3&#x27;</span>,</span><br><span class="line">        <span class="attr">color2</span>: <span class="string">&#x27;#1976D2&#x27;</span>,</span><br><span class="line">        <span class="attr">color3</span>: <span class="string">&#x27;#0D47A1&#x27;</span>,</span><br><span class="line">        </span><br><span class="line">        <span class="attr">blocks</span>: [</span><br><span class="line">          <span class="comment">// 阶乘计算</span></span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">opcode</span>: <span class="string">&#x27;factorial&#x27;</span>,</span><br><span class="line">            <span class="attr">blockType</span>: <span class="title class_">Scratch</span>.<span class="property">BlockType</span>.<span class="property">REPORTER</span>,</span><br><span class="line">            <span class="attr">text</span>: <span class="string">&#x27;[NUMBER] 的阶乘&#x27;</span>,</span><br><span class="line">            <span class="attr">arguments</span>: &#123;</span><br><span class="line">              <span class="attr">NUMBER</span>: &#123;</span><br><span class="line">                <span class="attr">type</span>: <span class="title class_">Scratch</span>.<span class="property">ArgumentType</span>.<span class="property">NUMBER</span>,</span><br><span class="line">                <span class="attr">defaultValue</span>: <span class="number">5</span></span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;,</span><br><span class="line">          </span><br><span class="line">          <span class="comment">// 随机数生成</span></span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">opcode</span>: <span class="string">&#x27;randomRange&#x27;</span>,</span><br><span class="line">            <span class="attr">blockType</span>: <span class="title class_">Scratch</span>.<span class="property">BlockType</span>.<span class="property">REPORTER</span>,</span><br><span class="line">            <span class="attr">text</span>: <span class="string">&#x27;在 [MIN] 到 [MAX] 之间的随机数&#x27;</span>,</span><br><span class="line">            <span class="attr">arguments</span>: &#123;</span><br><span class="line">              <span class="attr">MIN</span>: &#123;</span><br><span class="line">                <span class="attr">type</span>: <span class="title class_">Scratch</span>.<span class="property">ArgumentType</span>.<span class="property">NUMBER</span>,</span><br><span class="line">                <span class="attr">defaultValue</span>: <span class="number">1</span></span><br><span class="line">              &#125;,</span><br><span class="line">              <span class="attr">MAX</span>: &#123;</span><br><span class="line">                <span class="attr">type</span>: <span class="title class_">Scratch</span>.<span class="property">ArgumentType</span>.<span class="property">NUMBER</span>,</span><br><span class="line">                <span class="attr">defaultValue</span>: <span class="number">100</span></span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;,</span><br><span class="line">          </span><br><span class="line">          <span class="comment">// 质数判断</span></span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">opcode</span>: <span class="string">&#x27;isPrime&#x27;</span>,</span><br><span class="line">            <span class="attr">blockType</span>: <span class="title class_">Scratch</span>.<span class="property">BlockType</span>.<span class="property">BOOLEAN</span>,</span><br><span class="line">            <span class="attr">text</span>: <span class="string">&#x27;[NUMBER] 是质数？&#x27;</span>,</span><br><span class="line">            <span class="attr">arguments</span>: &#123;</span><br><span class="line">              <span class="attr">NUMBER</span>: &#123;</span><br><span class="line">                <span class="attr">type</span>: <span class="title class_">Scratch</span>.<span class="property">ArgumentType</span>.<span class="property">NUMBER</span>,</span><br><span class="line">                <span class="attr">defaultValue</span>: <span class="number">7</span></span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;,</span><br><span class="line">          </span><br><span class="line">          <span class="comment">// 最大公约数</span></span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">opcode</span>: <span class="string">&#x27;gcd&#x27;</span>,</span><br><span class="line">            <span class="attr">blockType</span>: <span class="title class_">Scratch</span>.<span class="property">BlockType</span>.<span class="property">REPORTER</span>,</span><br><span class="line">            <span class="attr">text</span>: <span class="string">&#x27;[A] 和 [B] 的最大公约数&#x27;</span>,</span><br><span class="line">            <span class="attr">arguments</span>: &#123;</span><br><span class="line">              <span class="attr">A</span>: &#123;</span><br><span class="line">                <span class="attr">type</span>: <span class="title class_">Scratch</span>.<span class="property">ArgumentType</span>.<span class="property">NUMBER</span>,</span><br><span class="line">                <span class="attr">defaultValue</span>: <span class="number">12</span></span><br><span class="line">              &#125;,</span><br><span class="line">              <span class="attr">B</span>: &#123;</span><br><span class="line">                <span class="attr">type</span>: <span class="title class_">Scratch</span>.<span class="property">ArgumentType</span>.<span class="property">NUMBER</span>,</span><br><span class="line">                <span class="attr">defaultValue</span>: <span class="number">18</span></span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">factorial</span>(<span class="params">args, util</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> n = <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Number</span>(args.<span class="property">NUMBER</span>));</span><br><span class="line">      <span class="keyword">if</span> (n &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">if</span> (n === <span class="number">0</span> || n === <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">      </span><br><span class="line">      <span class="keyword">let</span> result = <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        result *= i;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">randomRange</span>(<span class="params">args, util</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> min = <span class="title class_">Number</span>(args.<span class="property">MIN</span>);</span><br><span class="line">      <span class="keyword">const</span> max = <span class="title class_">Number</span>(args.<span class="property">MAX</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Math</span>.<span class="title function_">random</span>() * (max - min + <span class="number">1</span>)) + min;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">isPrime</span>(<span class="params">args, util</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> n = <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Number</span>(args.<span class="property">NUMBER</span>));</span><br><span class="line">      <span class="keyword">if</span> (n &lt; <span class="number">2</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">      <span class="keyword">if</span> (n === <span class="number">2</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">      <span class="keyword">if</span> (n % <span class="number">2</span> === <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">      </span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">3</span>; i &lt;= <span class="title class_">Math</span>.<span class="title function_">sqrt</span>(n); i += <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (n % i === <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">gcd</span>(<span class="params">args, util</span>) &#123;</span><br><span class="line">      <span class="keyword">let</span> a = <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Math</span>.<span class="title function_">abs</span>(<span class="title class_">Number</span>(args.<span class="property">A</span>)));</span><br><span class="line">      <span class="keyword">let</span> b = <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Math</span>.<span class="title function_">abs</span>(<span class="title class_">Number</span>(args.<span class="property">B</span>)));</span><br><span class="line">      </span><br><span class="line">      <span class="keyword">while</span> (b !== <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> temp = b;</span><br><span class="line">        b = a % b;</span><br><span class="line">        a = temp;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title class_">Scratch</span>.<span class="property">extensions</span>.<span class="title function_">register</span>(<span class="keyword">new</span> <span class="title class_">MathExtension</span>());</span><br><span class="line">&#125;)(<span class="title class_">Scratch</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="网络请求拓展"><a href="#网络请求拓展" class="headerlink" title="网络请求拓展"></a>网络请求拓展</h2><h3 id="API集成拓展"><a href="#API集成拓展" class="headerlink" title="API集成拓展"></a>API集成拓展</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>(<span class="params">Scratch</span>) &#123;</span><br><span class="line">  <span class="string">&#x27;use strict&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">class</span> <span class="title class_">NetworkExtension</span> &#123;</span><br><span class="line">    <span class="title function_">getInfo</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="attr">id</span>: <span class="string">&#x27;networkExtension&#x27;</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;网络拓展&#x27;</span>,</span><br><span class="line">        <span class="attr">color1</span>: <span class="string">&#x27;#9C27B0&#x27;</span>,</span><br><span class="line">        <span class="attr">color2</span>: <span class="string">&#x27;#7B1FA2&#x27;</span>,</span><br><span class="line">        <span class="attr">color3</span>: <span class="string">&#x27;#4A148C&#x27;</span>,</span><br><span class="line">        </span><br><span class="line">        <span class="attr">blocks</span>: [</span><br><span class="line">          <span class="comment">// 获取网页内容</span></span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">opcode</span>: <span class="string">&#x27;fetchUrl&#x27;</span>,</span><br><span class="line">            <span class="attr">blockType</span>: <span class="title class_">Scratch</span>.<span class="property">BlockType</span>.<span class="property">REPORTER</span>,</span><br><span class="line">            <span class="attr">text</span>: <span class="string">&#x27;获取网址 [URL] 的内容&#x27;</span>,</span><br><span class="line">            <span class="attr">arguments</span>: &#123;</span><br><span class="line">              <span class="attr">URL</span>: &#123;</span><br><span class="line">                <span class="attr">type</span>: <span class="title class_">Scratch</span>.<span class="property">ArgumentType</span>.<span class="property">STRING</span>,</span><br><span class="line">                <span class="attr">defaultValue</span>: <span class="string">&#x27;https://api.github.com&#x27;</span></span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;,</span><br><span class="line">          </span><br><span class="line">          <span class="comment">// JSON数据解析</span></span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">opcode</span>: <span class="string">&#x27;parseJSON&#x27;</span>,</span><br><span class="line">            <span class="attr">blockType</span>: <span class="title class_">Scratch</span>.<span class="property">BlockType</span>.<span class="property">REPORTER</span>,</span><br><span class="line">            <span class="attr">text</span>: <span class="string">&#x27;从 [JSON] 中获取 [KEY] 的值&#x27;</span>,</span><br><span class="line">            <span class="attr">arguments</span>: &#123;</span><br><span class="line">              <span class="title class_">JSON</span>: &#123;</span><br><span class="line">                <span class="attr">type</span>: <span class="title class_">Scratch</span>.<span class="property">ArgumentType</span>.<span class="property">STRING</span>,</span><br><span class="line">                <span class="attr">defaultValue</span>: <span class="string">&#x27;&#123;&quot;name&quot;:&quot;TurboWarp&quot;,&quot;version&quot;:&quot;1.0&quot;&#125;&#x27;</span></span><br><span class="line">              &#125;,</span><br><span class="line">              <span class="attr">KEY</span>: &#123;</span><br><span class="line">                <span class="attr">type</span>: <span class="title class_">Scratch</span>.<span class="property">ArgumentType</span>.<span class="property">STRING</span>,</span><br><span class="line">                <span class="attr">defaultValue</span>: <span class="string">&#x27;name&#x27;</span></span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;,</span><br><span class="line">          </span><br><span class="line">          <span class="comment">// 天气查询</span></span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">opcode</span>: <span class="string">&#x27;getWeather&#x27;</span>,</span><br><span class="line">            <span class="attr">blockType</span>: <span class="title class_">Scratch</span>.<span class="property">BlockType</span>.<span class="property">REPORTER</span>,</span><br><span class="line">            <span class="attr">text</span>: <span class="string">&#x27;获取城市 [CITY] 的天气&#x27;</span>,</span><br><span class="line">            <span class="attr">arguments</span>: &#123;</span><br><span class="line">              <span class="attr">CITY</span>: &#123;</span><br><span class="line">                <span class="attr">type</span>: <span class="title class_">Scratch</span>.<span class="property">ArgumentType</span>.<span class="property">STRING</span>,</span><br><span class="line">                <span class="attr">defaultValue</span>: <span class="string">&#x27;北京&#x27;</span></span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">async</span> <span class="title function_">fetchUrl</span>(<span class="params">args, util</span>) &#123;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="title function_">fetch</span>(args.<span class="property">URL</span>);</span><br><span class="line">        <span class="keyword">const</span> text = <span class="keyword">await</span> response.<span class="title function_">text</span>();</span><br><span class="line">        <span class="keyword">return</span> text;</span><br><span class="line">      &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;网络请求失败:&#x27;</span>, error);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;请求失败&#x27;</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">parseJSON</span>(<span class="params">args, util</span>) &#123;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> json = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(args.<span class="property">JSON</span>);</span><br><span class="line">        <span class="keyword">return</span> json[args.<span class="property">KEY</span>] || <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">      &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;JSON解析失败:&#x27;</span>, error);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">async</span> <span class="title function_">getWeather</span>(<span class="params">args, util</span>) &#123;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 这里使用一个免费的天气API示例</span></span><br><span class="line">        <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="string">`https://wttr.in/<span class="subst">$&#123;args.CITY&#125;</span>?format=3`</span>);</span><br><span class="line">        <span class="keyword">const</span> weather = <span class="keyword">await</span> response.<span class="title function_">text</span>();</span><br><span class="line">        <span class="keyword">return</span> weather.<span class="title function_">trim</span>();</span><br><span class="line">      &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;天气查询失败:&#x27;</span>, error);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;查询失败&#x27;</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title class_">Scratch</span>.<span class="property">extensions</span>.<span class="title function_">register</span>(<span class="keyword">new</span> <span class="title class_">NetworkExtension</span>());</span><br><span class="line">&#125;)(<span class="title class_">Scratch</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="拓展测试和调试"><a href="#拓展测试和调试" class="headerlink" title="拓展测试和调试"></a>拓展测试和调试</h2><h3 id="本地测试方法"><a href="#本地测试方法" class="headerlink" title="本地测试方法"></a>本地测试方法</h3><ol>
+<li>将拓展文件保存为.js文件</li>
+<li>在TurboWarp编辑器中打开”添加拓展”</li>
+<li>选择”从文件添加”或使用开发者模式</li>
+<li>加载你的拓展文件进行测试</li>
+</ol>
+<h3 id="调试技巧"><a href="#调试技巧" class="headerlink" title="调试技巧"></a>调试技巧</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在拓展中添加调试信息</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;拓展已加载&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;参数:&#x27;</span>, args);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;工具对象:&#x27;</span>, util);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用try-catch处理错误</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="comment">// 你的代码逻辑</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;错误信息:&#x27;</span>, error);</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&#x27;错误&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="发布和分享"><a href="#发布和分享" class="headerlink" title="发布和分享"></a>发布和分享</h2><h3 id="托管拓展文件"><a href="#托管拓展文件" class="headerlink" title="托管拓展文件"></a>托管拓展文件</h3><ol>
+<li>将拓展文件上传到GitHub Gist</li>
+<li>使用GitHub Pages托管</li>
+<li>使用专门的拓展托管服务</li>
+</ol>
+<h3 id="分享给社区"><a href="#分享给社区" class="headerlink" title="分享给社区"></a>分享给社区</h3><ol>
+<li>在TurboWarp社区论坛发布</li>
+<li>在Scratch社区分享</li>
+<li>在GitHub上创建仓库</li>
+</ol>
+<h2 id="最佳实践建议"><a href="#最佳实践建议" class="headerlink" title="最佳实践建议"></a>最佳实践建议</h2><h3 id="代码规范"><a href="#代码规范" class="headerlink" title="代码规范"></a>代码规范</h3><ol>
+<li>使用清晰的变量和函数命名</li>
+<li>添加详细的注释说明</li>
+<li>遵循JavaScript编码规范</li>
+<li>处理各种异常情况</li>
+</ol>
+<h3 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h3><ol>
+<li>避免阻塞主线程的操作</li>
+<li>合理使用异步编程</li>
+<li>优化算法复杂度</li>
+<li>减少不必要的计算</li>
+</ol>
+<h3 id="用户体验"><a href="#用户体验" class="headerlink" title="用户体验"></a>用户体验</h3><ol>
+<li>提供清晰的积木文本说明</li>
+<li>设置合理的默认值</li>
+<li>添加错误提示信息</li>
+<li>考虑不同用户的需求</li>
+</ol>
+<h2 id="常见问题解决"><a href="#常见问题解决" class="headerlink" title="常见问题解决"></a>常见问题解决</h2><h3 id="拓展无法加载"><a href="#拓展无法加载" class="headerlink" title="拓展无法加载"></a>拓展无法加载</h3><ul>
+<li>检查JavaScript语法错误</li>
+<li>确认文件编码为UTF-8</li>
+<li>验证拓展格式是否正确</li>
+</ul>
+<h3 id="积木不工作"><a href="#积木不工作" class="headerlink" title="积木不工作"></a>积木不工作</h3><ul>
+<li>检查opcode是否匹配</li>
+<li>验证参数定义是否正确</li>
+<li>确认函数实现是否完整</li>
+</ul>
+<h3 id="网络请求失败"><a href="#网络请求失败" class="headerlink" title="网络请求失败"></a>网络请求失败</h3><ul>
+<li>检查CORS设置</li>
+<li>验证API访问权限</li>
+<li>处理网络异常情况</li>
+</ul>
+<p>通过本教程，您应该能够掌握TurboWarp拓展开发的基本技能。从简单的积木块创建到复杂的网络API集成，拓展开发为TurboWarp提供了无限的可能性。建议从基础示例开始，逐步尝试更复杂的功能实现。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/02/2026-03-02-test-post/" rel="prev" title="测试文章">
+                  <i class="fa fa-angle-left"></i> 测试文章
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/03/07/2026-03-07-hello-world/" rel="next" title="Hello World">
+                  Hello World <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">© 2026 鳞游. 保留所有权利. <a href="https://icp.gov.moe/?keyword=20267766" target="_blank">萌ICP备20267766号</a></span>
+  </div>
+<div class="busuanzi-count">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-calendar"></i>
+    </span>
+    <span title="今日总访问量">
+      今日总访问量 <span id="busuanzi_today_pv">加载中...</span> 次
+    </span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span title="今日总访客数">
+      今日总访客数 <span id="busuanzi_today_uv">加载中...</span> 人
+    </span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span title="本站总访问量">
+      本站总访问量 <span id="busuanzi_site_pv">加载中...</span> 次
+    </span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-users"></i>
+    </span>
+    <span title="本站总访客数">
+      本站总访客数 <span id="busuanzi_site_uv">加载中...</span> 人
+    </span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"siciyuan/blog","repo_id":"R_kgDORcXi_w","category":"Announcements","category_id":"DIC_kwDORcXi_84C6EiT","mapping":"pathname","strict":1,"reactions_enabled":1,"emit_metadata":1,"theme":"preferred_color_scheme","lang":"zh-CN","crossorigin":"anonymous","input_position":"top","loading":"lazy"}</script>
+
+<!-- Cloudflare Turnstile -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  const giscusContainer = document.querySelector('.giscus-container');
+  if (!giscusContainer) return;
+  
+  // Check if it's local domain (localhost or 127.0.0.1)
+  const isLocalDomain = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  
+  if (isLocalDomain) {
+    // For local domains, always show captcha test panel
+    // Create test mode selector for local domains
+    const testModeSelector = document.createElement('div');
+    testModeSelector.className = 'test-mode-selector';
+    testModeSelector.style.textAlign = 'center';
+    testModeSelector.style.padding = '20px';
+    testModeSelector.style.maxWidth = '300px';
+    testModeSelector.style.position = 'fixed';
+    testModeSelector.style.bottom = '20px';
+    testModeSelector.style.right = '20px';
+    testModeSelector.style.zIndex = '9999';
+    testModeSelector.style.background = '#fff3cd';
+    testModeSelector.style.borderRadius = '8px';
+    testModeSelector.style.border = '1px solid #ffc107';
+    testModeSelector.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+    testModeSelector.style.fontSize = '14px';
+    testModeSelector.innerHTML = `
+      <div style="margin-bottom: 15px;">
+        <h4 style="margin: 0 0 10px 0; color: #856404;">🧪 本地测试模式</h4>
+        <p style="margin: 0; color: #856404; font-size: 12px;">本地访问自动显示验证码测试</p>
+      </div>
+      <div id="captcha-container"></div>
+    `;
+    
+    giscusContainer.innerHTML = '';
+    giscusContainer.appendChild(testModeSelector);
+    
+    const captchaContainer = document.getElementById('captcha-container');
+    
+    // Show captcha selector
+    let savedCaptcha = localStorage.getItem('captcha_provider') || 'cloudflare';
+    
+    captchaContainer.innerHTML = `
+      <div style="background: #f5f5f5; border-radius: 8px; padding: 15px; margin-top: 15px;">
+        <label style="display: block; margin-bottom: 10px; font-weight: bold; color: #555;">选择验证码方式：</label>
+        <select id="captcha-provider-select" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ddd; font-size: 14px;">
+          <option value="cloudflare" ${savedCaptcha === 'cloudflare' ? 'selected' : ''}>☁️ Cloudflare Turnstile</option>
+          <option value="chinese" ${savedCaptcha === 'chinese' ? 'selected' : ''}>🔢 中文数字运算验证码</option>
+          <option value="none" ${savedCaptcha === 'none' ? 'selected' : ''}>⏩ 跳过验证</option>
+        </select>
+        <button id="save-captcha-preference" style="margin-top: 10px; padding: 8px 16px; background: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; width: 100%;">应用并测试</button>
+      </div>
+      <div id="captcha-widget-container" style="margin-top: 15px;"></div>
+    `;
+    
+    const providerSelect = document.getElementById('captcha-provider-select');
+    const saveButton = document.getElementById('save-captcha-preference');
+    const widgetContainer = document.getElementById('captcha-widget-container');
+    
+    // Function to render captcha widget
+    function renderWidget(provider) {
+      widgetContainer.innerHTML = '';
+      
+      if (provider === 'cloudflare') {
+        const turnstileDiv = document.createElement('div');
+        turnstileDiv.className = 'cf-turnstile';
+        turnstileDiv.setAttribute('data-sitekey', '0x4AAAAAAC9_eHOjn1qyCvSf');
+        turnstileDiv.setAttribute('data-callback', 'onCloudflareSuccess');
+        widgetContainer.appendChild(turnstileDiv);
+        
+        if (typeof turnstile !== 'undefined') {
+          turnstile.render();
+        }
+      } else if (provider === 'chinese') {
+        widgetContainer.innerHTML = '<div style="text-align: center; padding: 20px;"><p>正在加载验证码...</p></div>';
+        fetch('https://v2.xxapi.cn/api/chineseCaptcha')
+          .then(response => response.json())
+          .then(data => {
+            if (data.code === 200) {
+              widgetContainer.innerHTML = `
+                <div style="background: white; border-radius: 8px; padding: 15px; text-align: center;">
+                  <img src="${data.data.url}" alt="验证码" style="max-width: 100%; border-radius: 4px; margin-bottom: 15px;">
+                  <input type="text" id="chinese-captcha-answer" placeholder="请输入计算结果" 
+                    style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; text-align: center; font-size: 16px;">
+                  <button id="verify-chinese-captcha" data-captcha-id="${data.data.id}"
+                    style="margin-top: 10px; padding: 10px 20px; background: #2196F3; color: white; border: none; border-radius: 4px; cursor: pointer; width: 100%;">
+                    验证
+                  </button>
+                </div>
+              `;
+              
+              document.getElementById('verify-chinese-captcha').addEventListener('click', function() {
+                const answer = document.getElementById('chinese-captcha-answer').value;
+                const captchaId = this.getAttribute('data-captcha-id');
+                
+                fetch(`https://v2.xxapi.cn/api/chineseCaptcha?type=verify&id=${captchaId}&answer=${answer}`)
+                  .then(response => response.json())
+                  .then(result => {
+                    if (result.code === 200) {
+                      alert('验证成功！');
+                      loadGiscus(giscusContainer);
+                    } else {
+                      alert('验证失败，请重试！');
+                      renderWidget('chinese');
+                    }
+                  });
+              });
+            }
+          })
+          .catch(error => {
+            widgetContainer.innerHTML = '<p style="color: red;">验证码加载失败，请刷新重试</p>';
+          });
+      } else if (provider === 'none') {
+        alert('测试模式：跳过验证');
+        loadGiscus(giscusContainer);
+      }
+    }
+    
+    // Save preference and render widget
+    saveButton.addEventListener('click', function() {
+      const selectedProvider = providerSelect.value;
+      localStorage.setItem('captcha_provider', selectedProvider);
+      renderWidget(selectedProvider);
+    });
+    
+    // Initial render
+    renderWidget(savedCaptcha);
+    
+    // Define Cloudflare success callback
+    window.onCloudflareSuccess = function(token) {
+      alert('Cloudflare验证成功！');
+      loadGiscus(giscusContainer);
+    };
+  } else {
+    // Get saved captcha preference or default to cloudflare
+    let savedCaptcha = localStorage.getItem('captcha_provider') || 'cloudflare';
+    
+    // Create captcha selector container
+    const captchaSelector = document.createElement('div');
+    captchaSelector.className = 'captcha-selector';
+    captchaSelector.style.textAlign = 'center';
+    captchaSelector.style.padding = '20px';
+    captchaSelector.style.maxWidth = '300px';
+    captchaSelector.style.position = 'fixed';
+    captchaSelector.style.bottom = '20px';
+    captchaSelector.style.right = '20px';
+    captchaSelector.style.zIndex = '9999';
+    captchaSelector.style.background = 'white';
+    captchaSelector.style.borderRadius = '8px';
+    captchaSelector.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+    captchaSelector.style.fontSize = '14px';
+    captchaSelector.innerHTML = `
+      <h3 style="margin-bottom: 20px; color: #333;">请先验证您不是机器人</h3>
+      <div style="background: #f5f5f5; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+        <label style="display: block; margin-bottom: 10px; font-weight: bold; color: #555;">选择验证码方式：</label>
+        <select id="captcha-provider-select" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ddd; font-size: 14px;">
+          <option value="cloudflare" ${savedCaptcha === 'cloudflare' ? 'selected' : ''}>☁️ Cloudflare Turnstile (推荐)</option>
+          <option value="chinese" ${savedCaptcha === 'chinese' ? 'selected' : ''}>🔢 中文数字运算验证码</option>
+        </select>
+        <button id="save-captcha-preference" style="margin-top: 10px; padding: 8px 16px; background: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; width: 100%;">保存偏好</button>
+      </div>
+      <div id="captcha-container"></div>
+    `;
+    
+    giscusContainer.innerHTML = '';
+    giscusContainer.appendChild(captchaSelector);
+    
+    const captchaContainer = document.getElementById('captcha-container');
+    const providerSelect = document.getElementById('captcha-provider-select');
+    const saveButton = document.getElementById('save-captcha-preference');
+    
+    // Function to render captcha based on selection
+    function renderCaptcha(provider) {
+      captchaContainer.innerHTML = '';
+      
+      if (provider === 'cloudflare') {
+        // Render Cloudflare Turnstile
+        const turnstileDiv = document.createElement('div');
+        turnstileDiv.className = 'cf-turnstile';
+        turnstileDiv.setAttribute('data-sitekey', '0x4AAAAAAC9_eHOjn1qyCvSf');
+        turnstileDiv.setAttribute('data-callback', 'onCloudflareSuccess');
+        captchaContainer.appendChild(turnstileDiv);
+        
+        // Reload Turnstile script if needed
+        if (typeof turnstile !== 'undefined') {
+          turnstile.render();
+        }
+      } else if (provider === 'chinese') {
+        // Render Chinese Captcha
+        captchaContainer.innerHTML = '<div style="text-align: center; padding: 20px;"><p>正在加载验证码...</p></div>';
+        fetch('https://v2.xxapi.cn/api/chineseCaptcha')
+          .then(response => response.json())
+          .then(data => {
+            if (data.code === 200) {
+              captchaContainer.innerHTML = `
+                <div style="background: white; border-radius: 8px; padding: 15px; text-align: center;">
+                  <img src="${data.data.url}" alt="验证码" style="max-width: 100%; border-radius: 4px; margin-bottom: 15px;">
+                  <input type="text" id="chinese-captcha-answer" placeholder="请输入计算结果" 
+                    style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; text-align: center; font-size: 16px;">
+                  <button id="verify-chinese-captcha" data-captcha-id="${data.data.id}"
+                    style="margin-top: 10px; padding: 10px 20px; background: #2196F3; color: white; border: none; border-radius: 4px; cursor: pointer; width: 100%;">
+                    验证
+                  </button>
+                </div>
+              `;
+              
+              document.getElementById('verify-chinese-captcha').addEventListener('click', function() {
+                const answer = document.getElementById('chinese-captcha-answer').value;
+                const captchaId = this.getAttribute('data-captcha-id');
+                
+                fetch(`https://v2.xxapi.cn/api/chineseCaptcha?type=verify&id=${captchaId}&answer=${answer}`)
+                  .then(response => response.json())
+                  .then(result => {
+                    if (result.code === 200) {
+                      localStorage.setItem('captcha_verified', 'true');
+                      loadGiscus(giscusContainer);
+                    } else {
+                      alert('验证失败，请重试！');
+                      renderCaptcha('chinese');
+                    }
+                  });
+              });
+            }
+          })
+          .catch(error => {
+            captchaContainer.innerHTML = '<p style="color: red;">验证码加载失败，请刷新重试</p>';
+          });
+
+    }
+    
+    // Save preference button
+    saveButton.addEventListener('click', function() {
+      const selectedProvider = providerSelect.value;
+      localStorage.setItem('captcha_provider', selectedProvider);
+      alert('偏好已保存！');
+      renderCaptcha(selectedProvider);
+    });
+    
+    // Initial render
+    renderCaptcha(savedCaptcha);
+    
+    // Define Cloudflare success callback
+    window.onCloudflareSuccess = function(token) {
+      localStorage.setItem('captcha_verified', 'true');
+      loadGiscus(giscusContainer);
+    };
+  }
+});
+
+// Function to load Giscus comments
+function loadGiscus(container) {
+  // Clear container
+  container.innerHTML = '';
+  
+  // Load Giscus
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: container
+    }));
+}
+</script>
+
+</body>
+</html>
