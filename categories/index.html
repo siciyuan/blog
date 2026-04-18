@@ -356,80 +356,279 @@
 
 <script>
 document.addEventListener('page:loaded', () => {
-  if (!CONFIG.page.comments) return;
-
   const giscusContainer = document.querySelector('.giscus-container');
+  if (!giscusContainer) return;
   
   // Check if it's local domain (localhost or 127.0.0.1)
   const isLocalDomain = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
   
   if (isLocalDomain) {
-    // For local domains, directly load Giscus without Turnstile
-    NexT.utils.loadComments('.giscus-container')
-      .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
-        attributes: {
-          async                   : true,
-          crossOrigin             : 'anonymous',
-          'data-repo'             : CONFIG.giscus.repo,
-          'data-repo-id'          : CONFIG.giscus.repo_id,
-          'data-category'         : CONFIG.giscus.category,
-          'data-category-id'      : CONFIG.giscus.category_id,
-          'data-mapping'          : CONFIG.giscus.mapping,
-          'data-strict'           : CONFIG.giscus.strict,
-          'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
-          'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
-          'data-theme'            : CONFIG.giscus.theme,
-          'data-lang'             : CONFIG.giscus.lang,
-          'data-input-position'   : CONFIG.giscus.input_position,
-          'data-loading'          : CONFIG.giscus.loading
-        },
-        parentNode: giscusContainer
-      }));
-  } else {
-    // For remote domains, show Turnstile first
-    // Create Turnstile container
-    const turnstileContainer = document.createElement('div');
-    turnstileContainer.className = 'turnstile-container';
-    turnstileContainer.style.textAlign = 'center';
-    turnstileContainer.style.padding = '20px';
-    turnstileContainer.innerHTML = `
-      <h3>请验证您不是机器人</h3>
-      <div class="cf-turnstile" data-sitekey="0x4AAAAAAC9_eHOjn1qyCvSf" data-callback="onTurnstileSuccess"></div>
+    // For local domains, always show captcha test panel
+    // Create test mode selector for local domains
+    const testModeSelector = document.createElement('div');
+    testModeSelector.className = 'test-mode-selector';
+    testModeSelector.style.textAlign = 'center';
+    testModeSelector.style.padding = '20px';
+    testModeSelector.style.maxWidth = '300px';
+    testModeSelector.style.position = 'fixed';
+    testModeSelector.style.bottom = '20px';
+    testModeSelector.style.right = '20px';
+    testModeSelector.style.zIndex = '9999';
+    testModeSelector.style.background = '#fff3cd';
+    testModeSelector.style.borderRadius = '8px';
+    testModeSelector.style.border = '1px solid #ffc107';
+    testModeSelector.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+    testModeSelector.style.fontSize = '14px';
+    testModeSelector.innerHTML = `
+      <div style="margin-bottom: 15px;">
+        <h4 style="margin: 0 0 10px 0; color: #856404;">🧪 本地测试模式</h4>
+        <p style="margin: 0; color: #856404; font-size: 12px;">本地访问自动显示验证码测试</p>
+      </div>
+      <div id="captcha-container"></div>
     `;
     
-    // Clear giscus container and add turnstile
     giscusContainer.innerHTML = '';
-    giscusContainer.appendChild(turnstileContainer);
+    giscusContainer.appendChild(testModeSelector);
     
-    // Define success callback
-    window.onTurnstileSuccess = function(token) {
-      // Remove turnstile container
-      giscusContainer.innerHTML = '';
+    const captchaContainer = document.getElementById('captcha-container');
+    
+    // Show captcha selector
+    let savedCaptcha = localStorage.getItem('captcha_provider') || 'cloudflare';
+    
+    captchaContainer.innerHTML = `
+      <div style="background: #f5f5f5; border-radius: 8px; padding: 15px; margin-top: 15px;">
+        <label style="display: block; margin-bottom: 10px; font-weight: bold; color: #555;">选择验证码方式：</label>
+        <select id="captcha-provider-select" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ddd; font-size: 14px;">
+          <option value="cloudflare" ${savedCaptcha === 'cloudflare' ? 'selected' : ''}>☁️ Cloudflare Turnstile</option>
+          <option value="chinese" ${savedCaptcha === 'chinese' ? 'selected' : ''}>🔢 中文数字运算验证码</option>
+          <option value="none" ${savedCaptcha === 'none' ? 'selected' : ''}>⏩ 跳过验证</option>
+        </select>
+        <button id="save-captcha-preference" style="margin-top: 10px; padding: 8px 16px; background: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; width: 100%;">应用并测试</button>
+      </div>
+      <div id="captcha-widget-container" style="margin-top: 15px;"></div>
+    `;
+    
+    const providerSelect = document.getElementById('captcha-provider-select');
+    const saveButton = document.getElementById('save-captcha-preference');
+    const widgetContainer = document.getElementById('captcha-widget-container');
+    
+    // Function to render captcha widget
+    function renderWidget(provider) {
+      widgetContainer.innerHTML = '';
       
-      // Load Giscus
-      NexT.utils.loadComments('.giscus-container')
-        .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
-          attributes: {
-            async                   : true,
-            crossOrigin             : 'anonymous',
-            'data-repo'             : CONFIG.giscus.repo,
-            'data-repo-id'          : CONFIG.giscus.repo_id,
-            'data-category'         : CONFIG.giscus.category,
-            'data-category-id'      : CONFIG.giscus.category_id,
-            'data-mapping'          : CONFIG.giscus.mapping,
-            'data-strict'           : CONFIG.giscus.strict,
-            'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
-            'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
-            'data-theme'            : CONFIG.giscus.theme,
-            'data-lang'             : CONFIG.giscus.lang,
-            'data-input-position'   : CONFIG.giscus.input_position,
-            'data-loading'          : CONFIG.giscus.loading
-          },
-          parentNode: giscusContainer
-        }));
+      if (provider === 'cloudflare') {
+        const turnstileDiv = document.createElement('div');
+        turnstileDiv.className = 'cf-turnstile';
+        turnstileDiv.setAttribute('data-sitekey', '0x4AAAAAAC9_eHOjn1qyCvSf');
+        turnstileDiv.setAttribute('data-callback', 'onCloudflareSuccess');
+        widgetContainer.appendChild(turnstileDiv);
+        
+        if (typeof turnstile !== 'undefined') {
+          turnstile.render();
+        }
+      } else if (provider === 'chinese') {
+        widgetContainer.innerHTML = '<div style="text-align: center; padding: 20px;"><p>正在加载验证码...</p></div>';
+        fetch('https://v2.xxapi.cn/api/chineseCaptcha')
+          .then(response => response.json())
+          .then(data => {
+            if (data.code === 200) {
+              widgetContainer.innerHTML = `
+                <div style="background: white; border-radius: 8px; padding: 15px; text-align: center;">
+                  <img src="${data.data.url}" alt="验证码" style="max-width: 100%; border-radius: 4px; margin-bottom: 15px;">
+                  <input type="text" id="chinese-captcha-answer" placeholder="请输入计算结果" 
+                    style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; text-align: center; font-size: 16px;">
+                  <button id="verify-chinese-captcha" data-captcha-id="${data.data.id}"
+                    style="margin-top: 10px; padding: 10px 20px; background: #2196F3; color: white; border: none; border-radius: 4px; cursor: pointer; width: 100%;">
+                    验证
+                  </button>
+                </div>
+              `;
+              
+              document.getElementById('verify-chinese-captcha').addEventListener('click', function() {
+                const answer = document.getElementById('chinese-captcha-answer').value;
+                const captchaId = this.getAttribute('data-captcha-id');
+                
+                fetch(`https://v2.xxapi.cn/api/chineseCaptcha?type=verify&id=${captchaId}&answer=${answer}`)
+                  .then(response => response.json())
+                  .then(result => {
+                    if (result.code === 200) {
+                      alert('验证成功！');
+                      loadGiscus(giscusContainer);
+                    } else {
+                      alert('验证失败，请重试！');
+                      renderWidget('chinese');
+                    }
+                  });
+              });
+            }
+          })
+          .catch(error => {
+            widgetContainer.innerHTML = '<p style="color: red;">验证码加载失败，请刷新重试</p>';
+          });
+      } else if (provider === 'none') {
+        alert('测试模式：跳过验证');
+        loadGiscus(giscusContainer);
+      }
+    }
+    
+    // Save preference and render widget
+    saveButton.addEventListener('click', function() {
+      const selectedProvider = providerSelect.value;
+      localStorage.setItem('captcha_provider', selectedProvider);
+      renderWidget(selectedProvider);
+    });
+    
+    // Initial render
+    renderWidget(savedCaptcha);
+    
+    // Define Cloudflare success callback
+    window.onCloudflareSuccess = function(token) {
+      alert('Cloudflare验证成功！');
+      loadGiscus(giscusContainer);
+    };
+  } else {
+    // Get saved captcha preference or default to cloudflare
+    let savedCaptcha = localStorage.getItem('captcha_provider') || 'cloudflare';
+    
+    // Create captcha selector container
+    const captchaSelector = document.createElement('div');
+    captchaSelector.className = 'captcha-selector';
+    captchaSelector.style.textAlign = 'center';
+    captchaSelector.style.padding = '20px';
+    captchaSelector.style.maxWidth = '300px';
+    captchaSelector.style.position = 'fixed';
+    captchaSelector.style.bottom = '20px';
+    captchaSelector.style.right = '20px';
+    captchaSelector.style.zIndex = '9999';
+    captchaSelector.style.background = 'white';
+    captchaSelector.style.borderRadius = '8px';
+    captchaSelector.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+    captchaSelector.style.fontSize = '14px';
+    captchaSelector.innerHTML = `
+      <h3 style="margin-bottom: 20px; color: #333;">请先验证您不是机器人</h3>
+      <div style="background: #f5f5f5; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+        <label style="display: block; margin-bottom: 10px; font-weight: bold; color: #555;">选择验证码方式：</label>
+        <select id="captcha-provider-select" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ddd; font-size: 14px;">
+          <option value="cloudflare" ${savedCaptcha === 'cloudflare' ? 'selected' : ''}>☁️ Cloudflare Turnstile (推荐)</option>
+          <option value="chinese" ${savedCaptcha === 'chinese' ? 'selected' : ''}>🔢 中文数字运算验证码</option>
+        </select>
+        <button id="save-captcha-preference" style="margin-top: 10px; padding: 8px 16px; background: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; width: 100%;">保存偏好</button>
+      </div>
+      <div id="captcha-container"></div>
+    `;
+    
+    giscusContainer.innerHTML = '';
+    giscusContainer.appendChild(captchaSelector);
+    
+    const captchaContainer = document.getElementById('captcha-container');
+    const providerSelect = document.getElementById('captcha-provider-select');
+    const saveButton = document.getElementById('save-captcha-preference');
+    
+    // Function to render captcha based on selection
+    function renderCaptcha(provider) {
+      captchaContainer.innerHTML = '';
+      
+      if (provider === 'cloudflare') {
+        // Render Cloudflare Turnstile
+        const turnstileDiv = document.createElement('div');
+        turnstileDiv.className = 'cf-turnstile';
+        turnstileDiv.setAttribute('data-sitekey', '0x4AAAAAAC9_eHOjn1qyCvSf');
+        turnstileDiv.setAttribute('data-callback', 'onCloudflareSuccess');
+        captchaContainer.appendChild(turnstileDiv);
+        
+        // Reload Turnstile script if needed
+        if (typeof turnstile !== 'undefined') {
+          turnstile.render();
+        }
+      } else if (provider === 'chinese') {
+        // Render Chinese Captcha
+        captchaContainer.innerHTML = '<div style="text-align: center; padding: 20px;"><p>正在加载验证码...</p></div>';
+        fetch('https://v2.xxapi.cn/api/chineseCaptcha')
+          .then(response => response.json())
+          .then(data => {
+            if (data.code === 200) {
+              captchaContainer.innerHTML = `
+                <div style="background: white; border-radius: 8px; padding: 15px; text-align: center;">
+                  <img src="${data.data.url}" alt="验证码" style="max-width: 100%; border-radius: 4px; margin-bottom: 15px;">
+                  <input type="text" id="chinese-captcha-answer" placeholder="请输入计算结果" 
+                    style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; text-align: center; font-size: 16px;">
+                  <button id="verify-chinese-captcha" data-captcha-id="${data.data.id}"
+                    style="margin-top: 10px; padding: 10px 20px; background: #2196F3; color: white; border: none; border-radius: 4px; cursor: pointer; width: 100%;">
+                    验证
+                  </button>
+                </div>
+              `;
+              
+              document.getElementById('verify-chinese-captcha').addEventListener('click', function() {
+                const answer = document.getElementById('chinese-captcha-answer').value;
+                const captchaId = this.getAttribute('data-captcha-id');
+                
+                fetch(`https://v2.xxapi.cn/api/chineseCaptcha?type=verify&id=${captchaId}&answer=${answer}`)
+                  .then(response => response.json())
+                  .then(result => {
+                    if (result.code === 200) {
+                      localStorage.setItem('captcha_verified', 'true');
+                      loadGiscus(giscusContainer);
+                    } else {
+                      alert('验证失败，请重试！');
+                      renderCaptcha('chinese');
+                    }
+                  });
+              });
+            }
+          })
+          .catch(error => {
+            captchaContainer.innerHTML = '<p style="color: red;">验证码加载失败，请刷新重试</p>';
+          });
+
+    }
+    
+    // Save preference button
+    saveButton.addEventListener('click', function() {
+      const selectedProvider = providerSelect.value;
+      localStorage.setItem('captcha_provider', selectedProvider);
+      alert('偏好已保存！');
+      renderCaptcha(selectedProvider);
+    });
+    
+    // Initial render
+    renderCaptcha(savedCaptcha);
+    
+    // Define Cloudflare success callback
+    window.onCloudflareSuccess = function(token) {
+      localStorage.setItem('captcha_verified', 'true');
+      loadGiscus(giscusContainer);
     };
   }
 });
+
+// Function to load Giscus comments
+function loadGiscus(container) {
+  // Clear container
+  container.innerHTML = '';
+  
+  // Load Giscus
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: container
+    }));
+}
 </script>
 
 </body>
