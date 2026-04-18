@@ -520,9 +520,16 @@ document.addEventListener('page:loaded', () => {
         turnstileDiv.setAttribute('data-callback', 'onCloudflareSuccess');
         widgetContainer.appendChild(turnstileDiv);
         
-        if (typeof turnstile !== 'undefined') {
-          turnstile.render();
+        // Ensure Turnstile script is loaded before rendering
+        function renderTurnstile() {
+          if (typeof turnstile !== 'undefined') {
+            turnstile.render();
+          } else {
+            // Retry after a short delay
+            setTimeout(renderTurnstile, 100);
+          }
         }
+        renderTurnstile();
       } else if (provider === 'chinese') {
         widgetContainer.innerHTML = '<div style="text-align: center; padding: 20px;"><p>正在加载验证码...</p></div>';
         fetch('https://v2.xxapi.cn/api/chineseCaptcha')
@@ -633,10 +640,16 @@ document.addEventListener('page:loaded', () => {
         turnstileDiv.setAttribute('data-callback', 'onCloudflareSuccess');
         captchaContainer.appendChild(turnstileDiv);
         
-        // Reload Turnstile script if needed
-        if (typeof turnstile !== 'undefined') {
-          turnstile.render();
+        // Ensure Turnstile script is loaded before rendering
+        function renderTurnstile() {
+          if (typeof turnstile !== 'undefined') {
+            turnstile.render();
+          } else {
+            // Retry after a short delay
+            setTimeout(renderTurnstile, 100);
+          }
         }
+        renderTurnstile();
       } else if (provider === 'chinese') {
         // Render Chinese Captcha
         captchaContainer.innerHTML = '<div style="text-align: center; padding: 20px;"><p>正在加载验证码...</p></div>';
