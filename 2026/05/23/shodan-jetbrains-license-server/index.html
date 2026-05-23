@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#37c6c0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#37c6c0" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://gp3e.saobby.com/i/1KmIsDN13WaHYFB0.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://gp3e.saobby.com/i/1KmIsDN13WaHYFB0.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://gp3e.saobby.com/i/1KmIsDN13WaHYFB0.ico">
+  <link rel="mask-icon" href="https://gp3e.saobby.com/i/1KmIsDN13WaHYFB0.ico" color="#37c6c0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Noto+Serif+SC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Fira+Code:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"world123.top","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"giscus","storage":true,"lazyload":false,"nav":{"giscus":{"text":"Giscus","order":-1}},"activeClass":"giscus"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="🔍 使用 Shodan 查找 JetBrains 许可证服务器地址的技术指南 ⚠️ 免责声明与法律声明 🔹 仅供技术交流与学习：本文档仅用于演示 Shodan 搜索引擎的高级查询语法及 HTTP 协议分析技术，旨在提升网络安全意识与信息检索能力。 🔸 严禁非法用途：严禁将本文提供的技术手段用于软件破解、盗版授权、侵犯知识产权或任何违反《中华人民共和国著作权法》及相关法律法规的行为。 🔶 安">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 Shodan 查找 JetBrains 许可证服务器地址的技术指南">
+<meta property="og:url" content="https://world123.top/2026/05/23/shodan-jetbrains-license-server/index.html">
+<meta property="og:site_name" content="鳞游の博客">
+<meta property="og:description" content="🔍 使用 Shodan 查找 JetBrains 许可证服务器地址的技术指南 ⚠️ 免责声明与法律声明 🔹 仅供技术交流与学习：本文档仅用于演示 Shodan 搜索引擎的高级查询语法及 HTTP 协议分析技术，旨在提升网络安全意识与信息检索能力。 🔸 严禁非法用途：严禁将本文提供的技术手段用于软件破解、盗版授权、侵犯知识产权或任何违反《中华人民共和国著作权法》及相关法律法规的行为。 🔶 安">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-23T02:30:00.000Z">
+<meta property="article:modified_time" content="2026-05-23T04:57:44.573Z">
+<meta property="article:author" content="鳞游">
+<meta property="article:tag" content="技术">
+<meta property="article:tag" content="网络安全">
+<meta property="article:tag" content="Shodan">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://world123.top/2026/05/23/shodan-jetbrains-license-server/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://world123.top/2026/05/23/shodan-jetbrains-license-server/","path":"2026/05/23/shodan-jetbrains-license-server/","title":"使用 Shodan 查找 JetBrains 许可证服务器地址的技术指南"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>使用 Shodan 查找 JetBrains 许可证服务器地址的技术指南 | 鳞游の博客</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/floating-audio.js" defer></script>
+
+  <script src="/js/third-party/search/search.js" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+  <script src="https://cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">鳞游の博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录生活与技术的一个小空间</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-一些链接"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>一些链接</a></li><li class="menu-item menu-item-微语录"><a href="/quotes/" rel="section"><i class="fa fa-quote-right fa-fw"></i>微语录</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%8D-%E4%BD%BF%E7%94%A8-Shodan-%E6%9F%A5%E6%89%BE-JetBrains-%E8%AE%B8%E5%8F%AF%E8%AF%81%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80%E7%9A%84%E6%8A%80%E6%9C%AF%E6%8C%87%E5%8D%97"><span class="nav-number">1.</span> <span class="nav-text">🔍 使用 Shodan 查找 JetBrains 许可证服务器地址的技术指南</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%93%96-1-%E8%83%8C%E6%99%AF%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.</span> <span class="nav-text">📖 1. 背景介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%94%AC-2-%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86"><span class="nav-number">1.2.</span> <span class="nav-text">🔬 2. 技术原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%F0%9F%8E%AF-%E7%9B%AE%E6%A0%87%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 🎯 目标特征分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%F0%9F%94%A7-Shodan-%E6%9F%A5%E8%AF%A2%E8%AF%AD%E6%B3%95"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 🔧 Shodan 查询语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%93%8B-3-%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.3.</span> <span class="nav-text">📋 3. 操作步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%9A%80-%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E8%AE%BF%E9%97%AE-Shodan"><span class="nav-number">1.3.1.</span> <span class="nav-text">🚀 第一步：访问 Shodan</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%8E-%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E6%89%A7%E8%A1%8C%E6%90%9C%E7%B4%A2"><span class="nav-number">1.3.2.</span> <span class="nav-text">🔎 第二步：执行搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%90-%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E8%B4%A6%E6%88%B7%E7%99%BB%E5%BD%95%E8%A6%81%E6%B1%82"><span class="nav-number">1.3.3.</span> <span class="nav-text">🔐 第三步：账户登录要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%93%8A-%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E7%BB%93%E6%9E%9C%E8%A7%A3%E8%AF%BB"><span class="nav-number">1.3.4.</span> <span class="nav-text">📊 第四步：结果解读</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9A%A0%EF%B8%8F-4-%E9%87%8D%E8%A6%81%E5%AE%89%E5%85%A8%E4%B8%8E%E5%90%88%E8%A7%84%E8%AD%A6%E5%91%8A"><span class="nav-number">1.4.</span> <span class="nav-text">⚠️ 4. 重要安全与合规警告</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%9A%AB-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E5%BB%BA%E8%AE%AE%E4%BD%BF%E7%94%A8%E6%90%9C%E7%B4%A2%E5%88%B0%E7%9A%84%E5%85%AC%E5%85%B1%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%9F"><span class="nav-number">1.4.1.</span> <span class="nav-text">🚫 为什么不建议使用搜索到的公共服务器？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%F0%9F%93%9C-%E6%B3%95%E5%BE%8B%E9%A3%8E%E9%99%A9-%E2%9A%96%EF%B8%8F"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">📜 法律风险 ⚖️</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%F0%9F%9B%A1%EF%B8%8F-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%A3%8E%E9%99%A9-%F0%9F%94%92"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">🛡️ 网络安全风险 🔒</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%F0%9F%A4%9D-%E9%81%93%E5%BE%B7%E4%B8%8E%E8%81%8C%E4%B8%9A%E5%87%86%E5%88%99-%F0%9F%92%BC"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">🤝 道德与职业准则 💼</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-5-%E6%8E%A8%E8%8D%90%E7%9A%84%E5%90%88%E6%B3%95%E6%9B%BF%E4%BB%A3%E6%96%B9%E6%A1%88"><span class="nav-number">1.5.</span> <span class="nav-text">✅ 5. 推荐的合法替代方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%EF%B8%8F%E2%83%A3-%E5%AE%98%E6%96%B9%E5%85%8D%E8%B4%B9%E8%AF%95%E7%94%A8-%F0%9F%86%93"><span class="nav-number">1.5.1.</span> <span class="nav-text">1️⃣ 官方免费试用 🆓</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%EF%B8%8F%E2%83%A3-%E6%95%99%E8%82%B2%E8%AE%B8%E5%8F%AF%E8%AF%81%EF%BC%88%E5%85%8D%E8%B4%B9%EF%BC%89%F0%9F%8E%93"><span class="nav-number">1.5.2.</span> <span class="nav-text">2️⃣ 教育许可证（免费）🎓</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%EF%B8%8F%E2%83%A3-%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E8%AE%B8%E5%8F%AF%E8%AF%81%EF%BC%88%E5%85%8D%E8%B4%B9%EF%BC%89%F0%9F%8C%9F"><span class="nav-number">1.5.3.</span> <span class="nav-text">3️⃣ 开源项目许可证（免费）🌟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%EF%B8%8F%E2%83%A3-PyCharm-Community-Edition%EF%BC%88%E6%B0%B8%E4%B9%85%E5%85%8D%E8%B4%B9%EF%BC%89%F0%9F%92%8E"><span class="nav-number">1.5.4.</span> <span class="nav-text">4️⃣ PyCharm Community Edition（永久免费）💎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%EF%B8%8F%E2%83%A3-%E4%B8%AA%E4%BA%BA%E8%AE%A2%E9%98%85%E4%BC%98%E6%83%A0-%F0%9F%92%B0"><span class="nav-number">1.5.5.</span> <span class="nav-text">5️⃣ 个人订阅优惠 💰</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%8E%AF-6-%E6%80%BB%E7%BB%93"><span class="nav-number">1.6.</span> <span class="nav-text">🎯 6. 总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%92%A1-%E6%A0%B8%E5%BF%83%E5%BB%BA%E8%AE%AE%EF%BC%9A"><span class="nav-number">1.6.1.</span> <span class="nav-text">💡 核心建议：</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="鳞游"
+      src="https://gp3e.saobby.com/i/l7daUORlxBgbejIo.png">
+  <p class="site-author-name" itemprop="name">鳞游</p>
+  <div class="site-description" itemprop="description">这是一个使用Hexo和Next主题搭建的个人博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://www.caellab.com/" title="https:&#x2F;&#x2F;www.caellab.com&#x2F;" rel="noopener" target="_blank">虚舟实验室</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.ccw.site/student/63ef2da0e77d1a05041bd28a" title="https:&#x2F;&#x2F;www.ccw.site&#x2F;student&#x2F;63ef2da0e77d1a05041bd28a" rel="noopener" target="_blank">A.C·TD（狙宿/宿长）</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://youye-luna.top/" title="https:&#x2F;&#x2F;youye-luna.top" rel="noopener" target="_blank">XIAOWU Blog</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://huhu.tomstudio.site/" title="https:&#x2F;&#x2F;huhu.tomstudio.site" rel="noopener" target="_blank">思绪矩阵</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://hexo.io/" title="https:&#x2F;&#x2F;hexo.io" rel="noopener" target="_blank">Hexo</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://theme-next.js.org/" title="https:&#x2F;&#x2F;theme-next.js.org" rel="noopener" target="_blank">NexT</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://world123.top/2026/05/23/shodan-jetbrains-license-server/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://gp3e.saobby.com/i/l7daUORlxBgbejIo.png">
+      <meta itemprop="name" content="鳞游">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鳞游の博客">
+      <meta itemprop="description" content="这是一个使用Hexo和Next主题搭建的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="使用 Shodan 查找 JetBrains 许可证服务器地址的技术指南 | 鳞游の博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用 Shodan 查找 JetBrains 许可证服务器地址的技术指南
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-05-23 10:30:00 / 修改时间：12:57:44" itemprop="dateCreated datePublished" datetime="2026-05-23T10:30:00+08:00">2026-05-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">网络安全</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="🔍-使用-Shodan-查找-JetBrains-许可证服务器地址的技术指南"><a href="#🔍-使用-Shodan-查找-JetBrains-许可证服务器地址的技术指南" class="headerlink" title="🔍 使用 Shodan 查找 JetBrains 许可证服务器地址的技术指南"></a>🔍 使用 Shodan 查找 JetBrains 许可证服务器地址的技术指南</h1><blockquote>
+<p>⚠️ <strong>免责声明与法律声明</strong></p>
+<p>🔹 <strong>仅供技术交流与学习</strong>：本文档仅用于演示 Shodan 搜索引擎的高级查询语法及 HTTP 协议分析技术，旨在提升网络安全意识与信息检索能力。</p>
+<p>🔸 <strong>严禁非法用途</strong>：严禁将本文提供的技术手段用于软件破解、盗版授权、侵犯知识产权或任何违反《中华人民共和国著作权法》及相关法律法规的行为。</p>
+<p>🔶 <strong>安全风险警示</strong>：连接未知的第三方许可证服务器存在极高的安全风险，包括但不限于中间人攻击、恶意代码注入、隐私数据泄露等。生产环境严禁使用非官方授权的服务器。</p>
+<p>🔷 <strong>支持正版</strong>：JetBrains 系列软件（PyCharm 💻, IntelliJ IDEA 💎 等）是优秀的商业开发工具。建议通过官方渠道购买许可证，或申请免费的教育版、开源版许可证。</p>
+</blockquote>
+<hr>
+<h2 id="📖-1-背景介绍"><a href="#📖-1-背景介绍" class="headerlink" title="📖 1. 背景介绍"></a>📖 1. 背景介绍</h2><p>🔭 <strong>Shodan</strong> 被称为”物联网搜索引擎”，它扫描互联网上连接设备的端口和服务 Banner 信息。在网络安全研究中，研究人员常通过特定的 HTTP 响应头来定位暴露在互联网上的特定服务实例。</p>
+<p>🎯 <strong>本教程将演示</strong>如何构造 Shodan 查询语句，以查找返回特定重定向地址 <code>Location: https://account.jetbrains.com/fls-auth</code> 的服务器。这通常与 JetBrains 浮动许可证服务器（Floating License Server）的配置有关。</p>
+<h2 id="🔬-2-技术原理"><a href="#🔬-2-技术原理" class="headerlink" title="🔬 2. 技术原理"></a>🔬 2. 技术原理</h2><h3 id="2-1-🎯-目标特征分析"><a href="#2-1-🎯-目标特征分析" class="headerlink" title="2.1 🎯 目标特征分析"></a>2.1 🎯 目标特征分析</h3><p>💡 JetBrains 的许可证验证机制中，客户端可能会向服务器发送请求，服务器若配置为重定向到官方认证页面，其 HTTP 响应头中会包含：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Location</span><span class="punctuation">: </span>https://account.jetbrains.com/fls-auth</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-🔧-Shodan-查询语法"><a href="#2-2-🔧-Shodan-查询语法" class="headerlink" title="2.2 🔧 Shodan 查询语法"></a>2.2 🔧 Shodan 查询语法</h3><p>⚙️ <strong>Shodan 支持对 HTTP 头部进行精确匹配搜索</strong>。基本语法为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;Header-Name: Header-Value&quot;</span><br></pre></td></tr></table></figure>
+
+<p>📌 <strong>为了在 URL 参数中传递该查询，必须进行 URL 编码</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>🔣 特殊字符</th>
+<th>🌐 URL 编码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&quot;</code> (双引号)</td>
+<td><code>%22</code></td>
+</tr>
+<tr>
+<td><code>:</code> (冒号)</td>
+<td><code>%3A</code></td>
+</tr>
+<tr>
+<td>(空格)</td>
+<td><code>+</code> 或 <code>%20</code></td>
+</tr>
+<tr>
+<td><code>/</code> (斜杠)</td>
+<td><code>%2F</code></td>
+</tr>
+</tbody></table>
+<p>📝 <strong>原始查询：</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;Location: https://account.jetbrains.com/fls-auth &quot;</span><br></pre></td></tr></table></figure>
+
+<p>🔐 <strong>URL 编码后：</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%22Location%3A+https%3A%2F%2Faccount.jetbrains.com%2Ffls-auth%22</span><br></pre></td></tr></table></figure>
+
+<h2 id="📋-3-操作步骤"><a href="#📋-3-操作步骤" class="headerlink" title="📋 3. 操作步骤"></a>📋 3. 操作步骤</h2><h3 id="🚀-第一步：访问-Shodan"><a href="#🚀-第一步：访问-Shodan" class="headerlink" title="🚀 第一步：访问 Shodan"></a>🚀 第一步：访问 Shodan</h3><p>🌐 打开浏览器，访问 <a target="_blank" rel="noopener" href="https://www.shodan.io/">Shodan 官网</a>。</p>
+<h3 id="🔎-第二步：执行搜索"><a href="#🔎-第二步：执行搜索" class="headerlink" title="🔎 第二步：执行搜索"></a>🔎 第二步：执行搜索</h3><p>👉 你可以直接点击以下链接，或在 Shodan 搜索框中手动输入解码后的查询语句。</p>
+<blockquote>
+<p>🔗 <strong>直接搜索链接：</strong><br><a target="_blank" rel="noopener" href="https://www.shodan.io/search?query=%22Location:+https://account.jetbrains.com/fls-auth%22">👉 点击此处搜索</a></p>
+</blockquote>
+<blockquote>
+<p>📝 <strong>手动输入查询：</strong><br>在搜索框中输入以下内容（务必保留双引号）：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;Location: https://account.jetbrains.com/fls-auth &quot;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="🔐-第三步：账户登录要求"><a href="#🔐-第三步：账户登录要求" class="headerlink" title="🔐 第三步：账户登录要求"></a>🔐 第三步：账户登录要求</h3><p>🔒 根据 Shodan 当前的安全策略，高级搜索功能通常需要登录账户：</p>
+<ul>
+<li>⚠️ 如果页面提示 <code>Error: Please log in to use search filters.</code> ，请点击右上角 <strong>Login</strong></li>
+<li>📝 若无账户，需注册 Shodan 账号</li>
+<li>⚡ 注意：免费账户可能存在搜索频率限制或结果展示限制</li>
+</ul>
+<h3 id="📊-第四步：结果解读"><a href="#📊-第四步：结果解读" class="headerlink" title="📊 第四步：结果解读"></a>📊 第四步：结果解读</h3><p>🔍 登录并执行搜索后，结果列表将显示匹配该 HTTP 头的服务器 IP 地址。每个条目通常包含：</p>
+<table>
+<thead>
+<tr>
+<th>📋 字段</th>
+<th>📝 说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>🌐 <strong>IP Address</strong></td>
+<td>服务器公网 IP</td>
+</tr>
+<tr>
+<td>🚪 <strong>Port</strong></td>
+<td>服务端口（常见为 80, 443, 1017 等）</td>
+</tr>
+<tr>
+<td>🏢 <strong>Organization</strong></td>
+<td>IP 所属组织或 ISP</td>
+</tr>
+<tr>
+<td>🌍 <strong>Country</strong></td>
+<td>地理位置</td>
+</tr>
+<tr>
+<td>⏰ <strong>Last Update</strong></td>
+<td>最后扫描时间</td>
+</tr>
+</tbody></table>
+<h2 id="⚠️-4-重要安全与合规警告"><a href="#⚠️-4-重要安全与合规警告" class="headerlink" title="⚠️ 4. 重要安全与合规警告"></a>⚠️ 4. 重要安全与合规警告</h2><h3 id="🚫-为什么不建议使用搜索到的公共服务器？"><a href="#🚫-为什么不建议使用搜索到的公共服务器？" class="headerlink" title="🚫 为什么不建议使用搜索到的公共服务器？"></a>🚫 为什么不建议使用搜索到的公共服务器？</h3><h4 id="📜-法律风险-⚖️"><a href="#📜-法律风险-⚖️" class="headerlink" title="📜 法律风险 ⚖️"></a>📜 法律风险 ⚖️</h4><p>❌ <strong>未经授权使用他人搭建的许可证服务器属于软件盗版行为</strong>，侵犯了 JetBrains 的软件著作权。这在大多数国家&#x2F;地区均为违法行为，可能导致法律诉讼或罚款。</p>
+<h4 id="🛡️-网络安全风险-🔒"><a href="#🛡️-网络安全风险-🔒" class="headerlink" title="🛡️ 网络安全风险 🔒"></a>🛡️ 网络安全风险 🔒</h4><table>
+<thead>
+<tr>
+<th>⚡ 风险类型</th>
+<th>💀 危害说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>🕵️ <strong>中间人攻击 (MitM)</strong></td>
+<td>你无法验证服务器的真实性。攻击者可能篡改响应，向你的 IDE 注入恶意插件或后门</td>
+</tr>
+<tr>
+<td>📡 <strong>数据泄露</strong></td>
+<td>连接不可信服务器可能导致项目元数据、机器指纹、甚至代码片段泄露</td>
+</tr>
+<tr>
+<td>⚙️ <strong>稳定性问题</strong></td>
+<td>公共服务器随时可能关闭、被封锁或过载，导致开发工作中断</td>
+</tr>
+</tbody></table>
+<h4 id="🤝-道德与职业准则-💼"><a href="#🤝-道德与职业准则-💼" class="headerlink" title="🤝 道德与职业准则 💼"></a>🤝 道德与职业准则 💼</h4><p>👔 技术人员应尊重知识产权，维护健康的软件生态。使用盗版不仅损害开发商利益，也可能给个人或企业带来合规审计风险。</p>
+<h2 id="✅-5-推荐的合法替代方案"><a href="#✅-5-推荐的合法替代方案" class="headerlink" title="✅ 5. 推荐的合法替代方案"></a>✅ 5. 推荐的合法替代方案</h2><p>🎁 为了获得安全、稳定且合法的开发体验，建议采用以下官方途径：</p>
+<h3 id="1️⃣-官方免费试用-🆓"><a href="#1️⃣-官方免费试用-🆓" class="headerlink" title="1️⃣ 官方免费试用 🆓"></a>1️⃣ 官方免费试用 🆓</h3><p>🎉 JetBrains 提供所有专业版软件的 <strong>30 天免费试用</strong>。适用于短期项目评估或临时需求。</p>
+<p>👉 <a target="_blank" rel="noopener" href="https://www.jetbrains.com/products.html">下载试用版</a></p>
+<h3 id="2️⃣-教育许可证（免费）🎓"><a href="#2️⃣-教育许可证（免费）🎓" class="headerlink" title="2️⃣ 教育许可证（免费）🎓"></a>2️⃣ 教育许可证（免费）🎓</h3><p>🏫 如果你是<strong>学生</strong>或<strong>教师</strong>，可以使用学校邮箱或有效证件申请免费的教育许可证。</p>
+<table>
+<thead>
+<tr>
+<th>📚 项目</th>
+<th>📖 说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>⏳ 有效期</td>
+<td>1 年（可续期）</td>
+</tr>
+<tr>
+<td>🌟 适用范围</td>
+<td>所有 JetBrains 产品</td>
+</tr>
+</tbody></table>
+<p>👉 <a target="_blank" rel="noopener" href="https://www.jetbrains.com/zh-cn/community/education/">申请教育许可证</a></p>
+<h3 id="3️⃣-开源项目许可证（免费）🌟"><a href="#3️⃣-开源项目许可证（免费）🌟" class="headerlink" title="3️⃣ 开源项目许可证（免费）🌟"></a>3️⃣ 开源项目许可证（免费）🌟</h3><p>🔓 如果你是活跃的非商业<strong>开源项目</strong>维护者，可申请免费的开源许可证。</p>
+<p>👉 <a target="_blank" rel="noopener" href="https://www.jetbrains.com/zh-cn/community/opensource/">申请开源许可证</a></p>
+<h3 id="4️⃣-PyCharm-Community-Edition（永久免费）💎"><a href="#4️⃣-PyCharm-Community-Edition（永久免费）💎" class="headerlink" title="4️⃣ PyCharm Community Edition（永久免费）💎"></a>4️⃣ PyCharm Community Edition（永久免费）💎</h3><p>🆓 PyCharm 社区版完全免费且开源，满足大多数 Python 开发需求（除 Web 框架、数据库工具等专业功能外）。</p>
+<p>👉 <a target="_blank" rel="noopener" href="https://www.jetbrains.com/pycharm/download/">下载社区版</a></p>
+<h3 id="5️⃣-个人订阅优惠-💰"><a href="#5️⃣-个人订阅优惠-💰" class="headerlink" title="5️⃣ 个人订阅优惠 💰"></a>5️⃣ 个人订阅优惠 💰</h3><p>💳 JetBrains 提供针对个人的订阅计划，价格低于商业授权，且第二年续订享有折扣。</p>
+<h2 id="🎯-6-总结"><a href="#🎯-6-总结" class="headerlink" title="🎯 6. 总结"></a>🎯 6. 总结</h2><p>🎓 本教程展示了如何利用 Shodan 进行基于 HTTP 头的网络空间测绘。这是一种强大的网络安全研究技术，但必须<strong>严格限制在合法、授权的研究范围内</strong>。</p>
+<h3 id="💡-核心建议："><a href="#💡-核心建议：" class="headerlink" title="💡 核心建议："></a>💡 核心建议：</h3><table>
+<thead>
+<tr>
+<th>🎯 原则</th>
+<th>📝 说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>🔒 <strong>安全第一</strong></td>
+<td>永远不要连接不可信的第三方许可证服务器</td>
+</tr>
+<tr>
+<td>⚖️ <strong>合法合规</strong></td>
+<td>尊重知识产权，使用官方提供的合法授权途径</td>
+</tr>
+<tr>
+<td>📚 <strong>持续学习</strong></td>
+<td>将技术能力应用于网络安全防护、漏洞挖掘（白帽子）等正向领域</td>
+</tr>
+</tbody></table>
+<hr>
+<div align="center">
+
+<p><strong>📄 文档信息</strong></p>
+<table>
+<thead>
+<tr>
+<th>📌 项目</th>
+<th>📋 内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>📅 生成日期</td>
+<td>2026年05月23日</td>
+</tr>
+<tr>
+<td>🔄 最后更新</td>
+<td>基于当前 Shodan 搜索机制与 JetBrains 授权政策</td>
+</tr>
+<tr>
+<td>👤 作者</td>
+<td>鳞游</td>
+</tr>
+</tbody></table>
+</div>
+
+<hr>
+<blockquote>
+<p>💡 <strong>温馨提示</strong>：技术是一把双刃剑，请善用您的知识，为网络安全世界贡献一份力量！</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag"># 技术</a>
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"># 网络安全</a>
+              <a href="/tags/Shodan/" rel="tag"># Shodan</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/04/14/2026-04-14-%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" rel="prev" title="常用软件安装教程">
+                  <i class="fa fa-angle-left"></i> 常用软件安装教程
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">© 2026 鳞游. 保留所有权利. <a href="https://icp.gov.moe/?keyword=20267766" target="_blank">萌ICP备20267766号</a></span>
+  </div>
+<div class="busuanzi-count">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-calendar"></i>
+    </span>
+    <span title="今日总访问量">
+      今日总访问量 <span id="busuanzi_today_pv">加载中...</span> 次
+    </span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span title="今日总访客数">
+      今日总访客数 <span id="busuanzi_today_uv">加载中...</span> 人
+    </span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span title="本站总访问量">
+      本站总访问量 <span id="busuanzi_site_pv">加载中...</span> 次
+    </span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-users"></i>
+    </span>
+    <span title="本站总访客数">
+      本站总访客数 <span id="busuanzi_site_uv">加载中...</span> 人
+    </span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"siciyuan/blog","repo_id":"R_kgDORcXi_w","category":"Announcements","category_id":"DIC_kwDORcXi_84C6EiT","mapping":"pathname","strict":1,"reactions_enabled":1,"emit_metadata":1,"theme":"preferred_color_scheme","lang":"zh-CN","crossorigin":"anonymous","input_position":"top","loading":"lazy"}</script>
+
+<!-- Cloudflare Turnstile -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  const giscusContainer = document.querySelector('.giscus-container');
+  if (!giscusContainer) return;
+  
+  // Check if it's local domain (localhost or 127.0.0.1)
+  const isLocalDomain = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  
+  if (isLocalDomain) {
+    // For local domains, always show captcha test panel
+    // Create test mode selector for local domains
+    const testModeSelector = document.createElement('div');
+    testModeSelector.className = 'test-mode-selector';
+    testModeSelector.style.textAlign = 'center';
+    testModeSelector.style.padding = '20px';
+    testModeSelector.style.maxWidth = '300px';
+    testModeSelector.style.position = 'fixed';
+    testModeSelector.style.bottom = '20px';
+    testModeSelector.style.right = '20px';
+    testModeSelector.style.zIndex = '9999';
+    testModeSelector.style.background = '#fff3cd';
+    testModeSelector.style.borderRadius = '8px';
+    testModeSelector.style.border = '1px solid #ffc107';
+    testModeSelector.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+    testModeSelector.style.fontSize = '14px';
+    testModeSelector.innerHTML = `
+      <div style="margin-bottom: 15px;">
+        <h4 style="margin: 0 0 10px 0; color: #856404;">🧪 本地测试模式</h4>
+        <p style="margin: 0; color: #856404; font-size: 12px;">本地访问自动显示验证码测试</p>
+      </div>
+      <div id="captcha-container"></div>
+    `;
+    
+    giscusContainer.innerHTML = '';
+    giscusContainer.appendChild(testModeSelector);
+    
+    const captchaContainer = document.getElementById('captcha-container');
+    
+    // Show captcha selector
+    let savedCaptcha = localStorage.getItem('captcha_provider') || 'cloudflare';
+    
+    captchaContainer.innerHTML = `
+      <div style="background: #f5f5f5; border-radius: 8px; padding: 15px; margin-top: 15px;">
+        <label style="display: block; margin-bottom: 10px; font-weight: bold; color: #555;">选择验证码方式：</label>
+        <select id="captcha-provider-select" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ddd; font-size: 14px;">
+          <option value="cloudflare" ${savedCaptcha === 'cloudflare' ? 'selected' : ''}>☁️ Cloudflare Turnstile</option>
+          <option value="chinese" ${savedCaptcha === 'chinese' ? 'selected' : ''}>🔢 中文数字运算验证码</option>
+          <option value="none" ${savedCaptcha === 'none' ? 'selected' : ''}>⏩ 跳过验证</option>
+        </select>
+        <button id="save-captcha-preference" style="margin-top: 10px; padding: 8px 16px; background: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; width: 100%;">应用并测试</button>
+      </div>
+      <div id="captcha-widget-container" style="margin-top: 15px;"></div>
+    `;
+    
+    const providerSelect = document.getElementById('captcha-provider-select');
+    const saveButton = document.getElementById('save-captcha-preference');
+    const widgetContainer = document.getElementById('captcha-widget-container');
+    
+    // Function to render captcha widget
+    function renderWidget(provider) {
+      widgetContainer.innerHTML = '';
+      
+      if (provider === 'cloudflare') {
+        const turnstileDiv = document.createElement('div');
+        turnstileDiv.className = 'cf-turnstile';
+        turnstileDiv.setAttribute('data-sitekey', '0x4AAAAAAC9_eHOjn1qyCvSf');
+        turnstileDiv.setAttribute('data-callback', 'onCloudflareSuccess');
+        widgetContainer.appendChild(turnstileDiv);
+        
+        // Ensure Turnstile script is loaded before rendering
+        function renderTurnstile() {
+          if (typeof turnstile !== 'undefined') {
+            turnstile.render(turnstileDiv);
+          } else {
+            // Retry after a short delay
+            setTimeout(renderTurnstile, 100);
+          }
+        }
+        renderTurnstile();
+      } else if (provider === 'chinese') {
+        widgetContainer.innerHTML = '<div style="text-align: center; padding: 20px;"><p>正在加载验证码...</p></div>';
+        fetch('https://v2.xxapi.cn/api/chineseCaptcha')
+          .then(response => response.json())
+          .then(data => {
+            if (data.code === 200) {
+              widgetContainer.innerHTML = `
+                <div style="background: white; border-radius: 8px; padding: 15px; text-align: center;">
+                  <img src="${data.data.url}" alt="验证码" style="max-width: 100%; border-radius: 4px; margin-bottom: 15px;">
+                  <input type="text" id="chinese-captcha-answer" placeholder="请输入计算结果" 
+                    style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; text-align: center; font-size: 16px;">
+                  <button id="verify-chinese-captcha" data-captcha-id="${data.data.id}"
+                    style="margin-top: 10px; padding: 10px 20px; background: #2196F3; color: white; border: none; border-radius: 4px; cursor: pointer; width: 100%;">
+                    验证
+                  </button>
+                </div>
+              `;
+              
+              document.getElementById('verify-chinese-captcha').addEventListener('click', function() {
+                const answer = document.getElementById('chinese-captcha-answer').value;
+                const captchaId = this.getAttribute('data-captcha-id');
+                
+                fetch(`https://v2.xxapi.cn/api/chineseCaptcha?type=verify&id=${captchaId}&answer=${answer}`)
+                  .then(response => response.json())
+                  .then(result => {
+                    if (result.code === 200) {
+                      alert('验证成功！');
+                      loadGiscus(giscusContainer);
+                    } else {
+                      alert('验证失败，请重试！');
+                      renderWidget('chinese');
+                    }
+                  });
+              });
+            }
+          })
+          .catch(error => {
+            widgetContainer.innerHTML = '<p style="color: red;">验证码加载失败，请刷新重试</p>';
+          });
+      } else if (provider === 'none') {
+        alert('测试模式：跳过验证');
+        loadGiscus(giscusContainer);
+      }
+    }
+    
+    // Save preference and render widget
+    saveButton.addEventListener('click', function() {
+      const selectedProvider = providerSelect.value;
+      localStorage.setItem('captcha_provider', selectedProvider);
+      renderWidget(selectedProvider);
+    });
+    
+    // Initial render
+    renderWidget(savedCaptcha);
+    
+    // Define Cloudflare success callback
+    window.onCloudflareSuccess = function(token) {
+      alert('Cloudflare验证成功！');
+      loadGiscus(giscusContainer);
+    };
+  } else {
+    // Get saved captcha preference or default to cloudflare
+    let savedCaptcha = localStorage.getItem('captcha_provider') || 'cloudflare';
+    
+    // Create captcha selector container
+    const captchaSelector = document.createElement('div');
+    captchaSelector.className = 'captcha-selector';
+    captchaSelector.style.textAlign = 'center';
+    captchaSelector.style.padding = '20px';
+    captchaSelector.style.maxWidth = '300px';
+    captchaSelector.style.position = 'fixed';
+    captchaSelector.style.bottom = '20px';
+    captchaSelector.style.right = '20px';
+    captchaSelector.style.zIndex = '9999';
+    captchaSelector.style.background = 'white';
+    captchaSelector.style.borderRadius = '8px';
+    captchaSelector.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+    captchaSelector.style.fontSize = '14px';
+    captchaSelector.innerHTML = `
+      <h3 style="margin-bottom: 20px; color: #333;">请先验证您不是机器人</h3>
+      <div style="background: #f5f5f5; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+        <label style="display: block; margin-bottom: 10px; font-weight: bold; color: #555;">选择验证码方式：</label>
+        <select id="captcha-provider-select" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ddd; font-size: 14px;">
+          <option value="cloudflare" ${savedCaptcha === 'cloudflare' ? 'selected' : ''}>☁️ Cloudflare Turnstile (推荐)</option>
+          <option value="chinese" ${savedCaptcha === 'chinese' ? 'selected' : ''}>🔢 中文数字运算验证码</option>
+        </select>
+        <button id="save-captcha-preference" style="margin-top: 10px; padding: 8px 16px; background: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; width: 100%;">保存偏好</button>
+      </div>
+      <div id="captcha-container"></div>
+    `;
+    
+    giscusContainer.innerHTML = '';
+    giscusContainer.appendChild(captchaSelector);
+    
+    const captchaContainer = document.getElementById('captcha-container');
+    const providerSelect = document.getElementById('captcha-provider-select');
+    const saveButton = document.getElementById('save-captcha-preference');
+    
+    // Function to render captcha based on selection
+    function renderCaptcha(provider) {
+      captchaContainer.innerHTML = '';
+      
+      if (provider === 'cloudflare') {
+        // Render Cloudflare Turnstile
+        const turnstileDiv = document.createElement('div');
+        turnstileDiv.className = 'cf-turnstile';
+        turnstileDiv.setAttribute('data-sitekey', '0x4AAAAAAC9_eHOjn1qyCvSf');
+        turnstileDiv.setAttribute('data-callback', 'onCloudflareSuccess');
+        captchaContainer.appendChild(turnstileDiv);
+        
+        // Ensure Turnstile script is loaded before rendering
+        function renderTurnstile() {
+          if (typeof turnstile !== 'undefined') {
+            turnstile.render(turnstileDiv);
+          } else {
+            // Retry after a short delay
+            setTimeout(renderTurnstile, 100);
+          }
+        }
+        renderTurnstile();
+      } else if (provider === 'chinese') {
+        // Render Chinese Captcha
+        captchaContainer.innerHTML = '<div style="text-align: center; padding: 20px;"><p>正在加载验证码...</p></div>';
+        fetch('https://v2.xxapi.cn/api/chineseCaptcha')
+          .then(response => response.json())
+          .then(data => {
+            if (data.code === 200) {
+              captchaContainer.innerHTML = `
+                <div style="background: white; border-radius: 8px; padding: 15px; text-align: center;">
+                  <img src="${data.data.url}" alt="验证码" style="max-width: 100%; border-radius: 4px; margin-bottom: 15px;">
+                  <input type="text" id="chinese-captcha-answer" placeholder="请输入计算结果" 
+                    style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; text-align: center; font-size: 16px;">
+                  <button id="verify-chinese-captcha" data-captcha-id="${data.data.id}"
+                    style="margin-top: 10px; padding: 10px 20px; background: #2196F3; color: white; border: none; border-radius: 4px; cursor: pointer; width: 100%;">
+                    验证
+                  </button>
+                </div>
+              `;
+              
+              document.getElementById('verify-chinese-captcha').addEventListener('click', function() {
+                const answer = document.getElementById('chinese-captcha-answer').value;
+                const captchaId = this.getAttribute('data-captcha-id');
+                
+                fetch(`https://v2.xxapi.cn/api/chineseCaptcha?type=verify&id=${captchaId}&answer=${answer}`)
+                  .then(response => response.json())
+                  .then(result => {
+                    if (result.code === 200) {
+                      localStorage.setItem('captcha_verified', 'true');
+                      loadGiscus(giscusContainer);
+                    } else {
+                      alert('验证失败，请重试！');
+                      renderCaptcha('chinese');
+                    }
+                  });
+              });
+            }
+          })
+          .catch(error => {
+            captchaContainer.innerHTML = '<p style="color: red;">验证码加载失败，请刷新重试</p>';
+          });
+      }
+    }
+    
+    // Save preference button
+    saveButton.addEventListener('click', function() {
+      const selectedProvider = providerSelect.value;
+      localStorage.setItem('captcha_provider', selectedProvider);
+      alert('偏好已保存！');
+      renderCaptcha(selectedProvider);
+    });
+    
+    // Initial render
+    renderCaptcha(savedCaptcha);
+    
+    // Define Cloudflare success callback
+    window.onCloudflareSuccess = function(token) {
+      localStorage.setItem('captcha_verified', 'true');
+      loadGiscus(giscusContainer);
+    };
+  }
+});
+
+// Function to load Giscus comments
+function loadGiscus(container) {
+  // Clear container content but keep the element
+  if (container) {
+    container.innerHTML = '';
+  }
+  
+  // Load Giscus
+  return NexT.utils.loadComments('.giscus-container')
+    .then(() => {
+      if (container) {
+        NexT.utils.getScript('https://giscus.app/client.js', {
+          attributes: {
+            async                   : true,
+            crossOrigin             : 'anonymous',
+            'data-repo'             : CONFIG.giscus.repo,
+            'data-repo-id'          : CONFIG.giscus.repo_id,
+            'data-category'         : CONFIG.giscus.category,
+            'data-category-id'      : CONFIG.giscus.category_id,
+            'data-mapping'          : CONFIG.giscus.mapping,
+            'data-strict'           : CONFIG.giscus.strict,
+            'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+            'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+            'data-theme'            : CONFIG.giscus.theme,
+            'data-lang'             : CONFIG.giscus.lang,
+            'data-input-position'   : CONFIG.giscus.input_position,
+            'data-loading'          : CONFIG.giscus.loading
+          },
+          parentNode: container
+        });
+      }
+    });
+}
+</script>
+
+</body>
+</html>
